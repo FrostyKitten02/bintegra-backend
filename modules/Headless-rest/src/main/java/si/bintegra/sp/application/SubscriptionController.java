@@ -36,18 +36,17 @@ public class SubscriptionController extends Application {
     @POST
     @Path("/subscribe")
     public void subscribe(@RequestBody SubscriptionRequestDto req, @Context HttpServletRequest request) throws PortalException {
-        //TODO get current user and his ID!!
         User user = PortalUtil.getUser(request);
         subscriptionService.addSubscription(req.getPackageOfferId(), user.getUserId(),req.getPhoneId());
     }
-    //
+
     @GET
     public List<SubscriptionDto> getSubscriptions(@Context HttpServletRequest request) throws PortalException {
         User user = PortalUtil.getUser(request);
         return subscriptionService.findSubscriptionsByUserId(user.getUserId()).stream().map(this::toDto).collect(Collectors.toList());
     }
 
-
+    //TODO move to separate class and package
     private SubscriptionDto toDto(Subscription subscription) {
         SubscriptionDto dto = new SubscriptionDto();
         dto.setPackageOffer(subscription.getPackageOffer());
