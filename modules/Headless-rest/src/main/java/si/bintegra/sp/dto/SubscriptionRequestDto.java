@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class SubscriptionRequestDto {
-    private Long offerId;
+    private Long packageOfferId;
     private Long duration;
     private Long phoneId;
 }

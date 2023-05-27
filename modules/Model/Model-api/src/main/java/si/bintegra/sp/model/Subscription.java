@@ -21,27 +21,27 @@ import com.liferay.portal.kernel.util.Accessor;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * The extended model interface for the Foo service. Represents a row in the &quot;SP_Foo&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Subscription service. Represents a row in the &quot;SP_Subscription&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
- * @see FooModel
+ * @see SubscriptionModel
  * @generated
  */
-@ImplementationClassName("si.bintegra.sp.model.impl.FooImpl")
+@ImplementationClassName("si.bintegra.sp.model.impl.SubscriptionImpl")
 @ProviderType
-public interface Foo extends FooModel, PersistedModel {
+public interface Subscription extends PersistedModel, SubscriptionModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to <code>si.bintegra.sp.model.impl.FooImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>si.bintegra.sp.model.impl.SubscriptionImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Foo, Long> FOO_ID_ACCESSOR =
-		new Accessor<Foo, Long>() {
+	public static final Accessor<Subscription, Long> ID_ACCESSOR =
+		new Accessor<Subscription, Long>() {
 
 			@Override
-			public Long get(Foo foo) {
-				return foo.getFooId();
+			public Long get(Subscription subscription) {
+				return subscription.getId();
 			}
 
 			@Override
@@ -50,8 +50,8 @@ public interface Foo extends FooModel, PersistedModel {
 			}
 
 			@Override
-			public Class<Foo> getTypeClass() {
-				return Foo.class;
+			public Class<Subscription> getTypeClass() {
+				return Subscription.class;
 			}
 
 		};

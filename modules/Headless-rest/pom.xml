@@ -70,6 +70,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>si.bintegra.sp</groupId>
+			<artifactId>Model-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>release.portal.api</artifactId>
 			<scope>provided</scope>

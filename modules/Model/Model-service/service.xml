@@ -4,47 +4,27 @@
 <service-builder dependency-injector="ds" package-path="si.bintegra.sp">
 	<namespace>SP</namespace>
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
 
-		<!-- PK fields -->
-
-		<column name="fooId" primary="true" type="long" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
+	<entity local-service="true" remote-service="true" name="Subscription">
+		<column name="id" primary="true" type="long" />
+		<column name="packageOffer" type="long" />
 		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="field1" type="String" />
-		<column name="field2" type="boolean" />
-		<column name="field3" type="int" />
-		<column name="field4" type="Date" />
-		<column name="field5" type="String" />
-
-		<!-- Order -->
+		<column name="phoneId" type="long" />
 
 		<order by="asc">
-			<order-column name="field1" />
+			<order-column name="id" />
 		</order>
 
-		<!-- Finder methods -->
-
-		<finder name="Field2" return-type="Collection">
-			<finder-column name="field2" />
+		<finder name="packageOffer" return-type="Collection">
+			<finder-column name="packageOffer" />
 		</finder>
 
-		<!-- References -->
+		<finder name="userId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
 
 		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+
 	</entity>
 </service-builder>

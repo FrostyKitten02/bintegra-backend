@@ -23,18 +23,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.service.component.annotations.Component;
 
-import si.bintegra.sp.model.FooTable;
-import si.bintegra.sp.model.impl.FooImpl;
-import si.bintegra.sp.model.impl.FooModelImpl;
+import si.bintegra.sp.model.SubscriptionTable;
+import si.bintegra.sp.model.impl.SubscriptionImpl;
+import si.bintegra.sp.model.impl.SubscriptionModelImpl;
 
 /**
- * The arguments resolver class for retrieving value from Foo.
+ * The arguments resolver class for retrieving value from Subscription.
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
 @Component(service = ArgumentsResolver.class)
-public class FooModelArgumentsResolver implements ArgumentsResolver {
+public class SubscriptionModelArgumentsResolver implements ArgumentsResolver {
 
 	@Override
 	public Object[] getArguments(
@@ -51,12 +51,13 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 			return null;
 		}
 
-		FooModelImpl fooModelImpl = (FooModelImpl)baseModel;
+		SubscriptionModelImpl subscriptionModelImpl =
+			(SubscriptionModelImpl)baseModel;
 
-		long columnBitmask = fooModelImpl.getColumnBitmask();
+		long columnBitmask = subscriptionModelImpl.getColumnBitmask();
 
 		if (!checkColumn || (columnBitmask == 0)) {
-			return _getValue(fooModelImpl, columnNames, original);
+			return _getValue(subscriptionModelImpl, columnNames, original);
 		}
 
 		Long finderPathColumnBitmask = _finderPathColumnBitmasksCache.get(
@@ -66,13 +67,14 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 			finderPathColumnBitmask = 0L;
 
 			for (String columnName : columnNames) {
-				finderPathColumnBitmask |= fooModelImpl.getColumnBitmask(
-					columnName);
+				finderPathColumnBitmask |=
+					subscriptionModelImpl.getColumnBitmask(columnName);
 			}
 
 			if (finderPath.isBaseModelResult() &&
-				(FooPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION ==
-					finderPath.getCacheName())) {
+				(SubscriptionPersistenceImpl.
+					FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION ==
+						finderPath.getCacheName())) {
 
 				finderPathColumnBitmask |= _ORDER_BY_COLUMNS_BITMASK;
 			}
@@ -82,7 +84,7 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 		}
 
 		if ((columnBitmask & finderPathColumnBitmask) != 0) {
-			return _getValue(fooModelImpl, columnNames, original);
+			return _getValue(subscriptionModelImpl, columnNames, original);
 		}
 
 		return null;
@@ -90,16 +92,17 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 
 	@Override
 	public String getClassName() {
-		return FooImpl.class.getName();
+		return SubscriptionImpl.class.getName();
 	}
 
 	@Override
 	public String getTableName() {
-		return FooTable.INSTANCE.getTableName();
+		return SubscriptionTable.INSTANCE.getTableName();
 	}
 
 	private static Object[] _getValue(
-		FooModelImpl fooModelImpl, String[] columnNames, boolean original) {
+		SubscriptionModelImpl subscriptionModelImpl, String[] columnNames,
+		boolean original) {
 
 		Object[] arguments = new Object[columnNames.length];
 
@@ -107,10 +110,11 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 			String columnName = columnNames[i];
 
 			if (original) {
-				arguments[i] = fooModelImpl.getColumnOriginalValue(columnName);
+				arguments[i] = subscriptionModelImpl.getColumnOriginalValue(
+					columnName);
 			}
 			else {
-				arguments[i] = fooModelImpl.getColumnValue(columnName);
+				arguments[i] = subscriptionModelImpl.getColumnValue(columnName);
 			}
 		}
 
@@ -124,8 +128,6 @@ public class FooModelArgumentsResolver implements ArgumentsResolver {
 
 	static {
 		long orderByColumnsBitmask = 0;
-
-		orderByColumnsBitmask |= FooModelImpl.getColumnBitmask("field1");
 
 		_ORDER_BY_COLUMNS_BITMASK = orderByColumnsBitmask;
 	}

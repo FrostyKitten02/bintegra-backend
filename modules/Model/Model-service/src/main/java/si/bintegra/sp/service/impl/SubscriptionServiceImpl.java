@@ -15,19 +15,33 @@
 package si.bintegra.sp.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import si.bintegra.sp.model.Subscription;
+import si.bintegra.sp.service.SubscriptionLocalService;
+import si.bintegra.sp.service.base.SubscriptionServiceBaseImpl;
 
-import si.bintegra.sp.service.base.FooServiceBaseImpl;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
  */
 @Component(
 	property = {
-		"json.web.service.context.name=sp", "json.web.service.context.path=Foo"
+		"json.web.service.context.name=sp",
+		"json.web.service.context.path=Subscription"
 	},
 	service = AopService.class
 )
-public class FooServiceImpl extends FooServiceBaseImpl {
+public class SubscriptionServiceImpl extends SubscriptionServiceBaseImpl {
+
+	public Subscription addSubscription(Long packageOfferId, Long userId, Long phoneId) {
+		//TODO add permissions check!!
+		return subscriptionLocalService.addSubscription(packageOfferId, userId, phoneId);
+	}
+
+	public List<Subscription> findSubscriptionsByUserId(Long userId) {
+		//TODO add permissions check!!
+		return subscriptionLocalService.findSubscriptionsByUserId(userId);
+	}
 }

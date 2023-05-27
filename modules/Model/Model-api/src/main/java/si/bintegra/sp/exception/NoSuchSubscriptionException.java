@@ -18,20 +18,20 @@ import com.liferay.portal.kernel.exception.NoSuchModelException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class NoSuchFooException extends NoSuchModelException {
+public class NoSuchSubscriptionException extends NoSuchModelException {
 
-	public NoSuchFooException() {
+	public NoSuchSubscriptionException() {
 	}
 
-	public NoSuchFooException(String msg) {
+	public NoSuchSubscriptionException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchFooException(String msg, Throwable throwable) {
+	public NoSuchSubscriptionException(String msg, Throwable throwable) {
 		super(msg, throwable);
 	}
 
-	public NoSuchFooException(Throwable throwable) {
+	public NoSuchSubscriptionException(Throwable throwable) {
 		super(throwable);
 	}
 
