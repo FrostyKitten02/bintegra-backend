@@ -1,0 +1,12 @@
+Bundle-Name: Model-api
+Bundle-SymbolicName: si.bintegra.sp.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	si.bintegra.sp.exception,\
+	si.bintegra.sp.model,\
+	si.bintegra.sp.service,\
+	si.bintegra.sp.service.persistence
+-check: EXPORTS
+-consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
+-includeresource: META-INF/service.xml=../Model-service/service.xml
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}

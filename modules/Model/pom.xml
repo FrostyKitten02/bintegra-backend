@@ -8,8 +8,9 @@
 		<relativePath>../../pom.xml</relativePath>
   	</parent>
 	<groupId>si.bintegra.sp</groupId>
-	<artifactId>Headless-rest</artifactId>
+	<artifactId>Model</artifactId>
 	<version>1.0.0</version>
+	<packaging>pom</packaging>
 	<profiles>
 		<profile>
 			<id>standalone</id>
@@ -62,18 +63,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>release.portal.api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.service.jaxrs</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -121,4 +110,8 @@
 			</plugin>
 		</plugins>
 	</build>
+	<modules>
+		<module>Model-api</module>
+		<module>Model-service</module>
+	</modules>
 </project>

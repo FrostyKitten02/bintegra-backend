@@ -6,17 +6,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
 	<modelVersion>4.0.0</modelVersion>
-	<modules>
-		<module>Headless-rest</module>
-		<module>Model</module>
-	</modules>
+	<artifactId>Model-api</artifactId>
+	<version>1.0.0</version>
 	<parent>
-		<groupId>bintegra.backend</groupId>
-		<artifactId>bintegra-backend</artifactId>
+		<groupId>si.bintegra.sp</groupId>
+		<artifactId>Model</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>bintegra-backend-modules</artifactId>
-	<name>bintegra-backend Modules</name>
-	<packaging>pom</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>release.portal.api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
