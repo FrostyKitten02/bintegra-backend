@@ -64,6 +64,12 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>release.portal.api</artifactId>
 			<scope>provided</scope>

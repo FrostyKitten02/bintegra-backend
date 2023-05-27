@@ -18,44 +18,14 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_BASE + "=/greetings",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Greetings.Rest"
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_BASE + "=/sp/api",
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=HeadlessSP.Rest"
 	},
 	service = Application.class
 )
 public class HeadlessRestApplication extends Application {
-
-	public Set<Object> getSingletons() {
-		return Collections.<Object>singleton(this);
-	}
-
 	@GET
-	@Produces("text/plain")
-	public String working() {
-		return "It works!";
+	public String get() {
+		return "Hello World!";
 	}
-
-	@GET
-	@Path("/morning")
-	@Produces("text/plain")
-	public String hello() {
-		return "Good morning!";
-	}
-
-	@GET
-	@Path("/morning/{name}")
-	@Produces("text/plain")
-	public String morning(
-		@PathParam("name") String name,
-		@QueryParam("drink") String drink) {
-
-		String greeting = "Good Morning " + name;
-
-		if (drink != null) {
-			greeting += ". Would you like some " + drink + "?";
-		}
-
-		return greeting;
-	}
-
 }
