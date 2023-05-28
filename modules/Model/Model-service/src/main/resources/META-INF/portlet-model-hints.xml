@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="si.bintegra.sp.model.PackageOffer">
+		<field name="id" type="long" />
+		<field name="packageId" type="long" />
+		<field name="fullDuration" type="long" />
+		<field name="discountDuration" type="long" />
+		<field name="basePrice" type="double" />
+		<field name="discountPrice" type="double" />
+		<field name="active" type="boolean" />
+	</model>
 	<model name="si.bintegra.sp.model.Subscription">
 		<field name="id" type="long" />
 		<field name="packageOffer" type="long" />

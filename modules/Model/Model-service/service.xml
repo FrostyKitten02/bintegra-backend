@@ -25,6 +25,40 @@
 
 		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
-
 	</entity>
+
+	<entity local-service="true" remote-service="true" name="PackageOffer">
+		<column name="id" type="long" primary="true"/>
+
+		<column name="packageId" type="long" />
+
+		<column name="fullDuration" type="long" />
+		<column name="discountDuration" type="long" />
+
+		<column name="basePrice" type="double" />
+		<column name="discountPrice" type="double" />
+
+		<column name="active" type="boolean" />
+
+		<order by="asc">
+			<order-column name="id" />
+		</order>
+
+		<finder name="active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+
+		<finder name="packageId" return-type="Collection">
+			<finder-column name="packageId" />
+		</finder>
+
+		<finder name="packageIdAndActive" return-type="Collection">
+			<finder-column name="packageId" />
+			<finder-column name="active" />
+		</finder>
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+
 </service-builder>
