@@ -18,7 +18,10 @@ import com.liferay.portal.aop.AopService;
 
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.base.OfferServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,4 +34,8 @@ import si.bintegra.sp.service.base.OfferServiceBaseImpl;
 	service = AopService.class
 )
 public class OfferServiceImpl extends OfferServiceBaseImpl {
+	public List<Offer> findActiveByType(String type) {
+		//todo premisisons check!!!
+		return offerLocalService.findActiveByType(type);
+	}
 }

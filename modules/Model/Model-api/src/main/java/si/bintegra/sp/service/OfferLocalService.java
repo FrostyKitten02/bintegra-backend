@@ -200,6 +200,8 @@ public interface OfferLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Offer fetchOffer(long id);
 
+	public List<Offer> findActiveByType(String type);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 

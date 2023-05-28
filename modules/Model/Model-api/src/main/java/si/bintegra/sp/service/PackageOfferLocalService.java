@@ -200,6 +200,8 @@ public interface PackageOfferLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PackageOffer fetchPackageOffer(long id);
 
+	public List<PackageOffer> findActiveByPackageId(Long id);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 

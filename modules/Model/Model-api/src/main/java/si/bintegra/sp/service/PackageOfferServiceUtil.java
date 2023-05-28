@@ -14,6 +14,10 @@
 
 package si.bintegra.sp.service;
 
+import java.util.List;
+
+import si.bintegra.sp.model.PackageOffer;
+
 /**
  * Provides the remote service utility for PackageOffer. This utility wraps
  * <code>si.bintegra.sp.service.impl.PackageOfferServiceImpl</code> and is an
@@ -33,13 +37,16 @@ public class PackageOfferServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.PackageOfferServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static List<PackageOffer> findActiveByPackageId(Long id) {
+		return getService().findActiveByPackageId(id);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

@@ -18,7 +18,10 @@ import com.liferay.portal.aop.AopService;
 
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -29,4 +32,9 @@ import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
 )
 public class PackageOfferLocalServiceImpl
 	extends PackageOfferLocalServiceBaseImpl {
+
+	public List<PackageOffer> findActiveByPackageId(Long id) {
+		return packageOfferPersistence.findBypackageIdAndActive(id, true);
+	}
+
 }

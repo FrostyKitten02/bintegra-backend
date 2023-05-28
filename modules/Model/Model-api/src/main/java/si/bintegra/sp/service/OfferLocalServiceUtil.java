@@ -208,6 +208,10 @@ public class OfferLocalServiceUtil {
 		return getService().fetchOffer(id);
 	}
 
+	public static List<Offer> findActiveByType(String type) {
+		return getService().findActiveByType(type);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

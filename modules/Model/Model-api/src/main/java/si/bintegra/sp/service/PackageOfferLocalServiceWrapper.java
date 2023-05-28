@@ -230,6 +230,13 @@ public class PackageOfferLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<si.bintegra.sp.model.PackageOffer>
+		findActiveByPackageId(Long id) {
+
+		return _packageOfferLocalService.findActiveByPackageId(id);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

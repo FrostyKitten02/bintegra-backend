@@ -210,6 +210,10 @@ public class PackageOfferLocalServiceUtil {
 		return getService().fetchPackageOffer(id);
 	}
 
+	public static List<PackageOffer> findActiveByPackageId(Long id) {
+		return getService().findActiveByPackageId(id);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

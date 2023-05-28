@@ -18,7 +18,11 @@ import com.liferay.portal.aop.AopService;
 
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.model.PackageOffer;
+import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.base.PackageOfferServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,4 +35,8 @@ import si.bintegra.sp.service.base.PackageOfferServiceBaseImpl;
 	service = AopService.class
 )
 public class PackageOfferServiceImpl extends PackageOfferServiceBaseImpl {
+	public List<PackageOffer> findActiveByPackageId(Long id) {
+		//TODO check premissions!!!
+		return packageOfferLocalService.findActiveByPackageId(id);
+	}
 }

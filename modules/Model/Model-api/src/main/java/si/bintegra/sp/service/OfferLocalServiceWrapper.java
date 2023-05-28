@@ -226,6 +226,13 @@ public class OfferLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<si.bintegra.sp.model.Offer> findActiveByType(
+		String type) {
+
+		return _offerLocalService.findActiveByType(type);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

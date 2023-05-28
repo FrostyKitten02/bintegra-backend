@@ -34,6 +34,13 @@ public class PackageOfferServiceWrapper
 		_packageOfferService = packageOfferService;
 	}
 
+	@Override
+	public java.util.List<si.bintegra.sp.model.PackageOffer>
+		findActiveByPackageId(Long id) {
+
+		return _packageOfferService.findActiveByPackageId(id);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

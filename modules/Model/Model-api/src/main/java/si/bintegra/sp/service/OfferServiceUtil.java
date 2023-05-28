@@ -14,6 +14,10 @@
 
 package si.bintegra.sp.service;
 
+import java.util.List;
+
+import si.bintegra.sp.model.Offer;
+
 /**
  * Provides the remote service utility for Offer. This utility wraps
  * <code>si.bintegra.sp.service.impl.OfferServiceImpl</code> and is an
@@ -33,13 +37,16 @@ public class OfferServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.OfferServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static List<Offer> findActiveByType(String type) {
+		return getService().findActiveByType(type);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

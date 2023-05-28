@@ -22,7 +22,11 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.List;
+
 import org.osgi.annotation.versioning.ProviderType;
+
+import si.bintegra.sp.model.PackageOffer;
 
 /**
  * Provides the remote service interface for PackageOffer. Methods of this
@@ -47,6 +51,7 @@ public interface PackageOfferService extends BaseService {
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>si.bintegra.sp.service.impl.PackageOfferServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the package offer remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PackageOfferServiceUtil} if injection and service tracking are not available.
 	 */
+	public List<PackageOffer> findActiveByPackageId(Long id);
 
 	/**
 	 * Returns the OSGi service identifier.

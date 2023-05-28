@@ -34,6 +34,13 @@ public class OfferServiceWrapper
 		_offerService = offerService;
 	}
 
+	@Override
+	public java.util.List<si.bintegra.sp.model.Offer> findActiveByType(
+		String type) {
+
+		return _offerService.findActiveByType(type);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
