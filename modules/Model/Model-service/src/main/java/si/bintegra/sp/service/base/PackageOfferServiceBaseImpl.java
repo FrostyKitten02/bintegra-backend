@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.PackageOfferServiceUtil;
+import si.bintegra.sp.service.persistence.OfferPersistence;
 import si.bintegra.sp.service.persistence.PackageOfferPersistence;
 import si.bintegra.sp.service.persistence.SubscriptionPersistence;
 
@@ -135,6 +136,9 @@ public abstract class PackageOfferServiceBaseImpl
 			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
+
+	@Reference
+	protected OfferPersistence offerPersistence;
 
 	@Reference
 	protected si.bintegra.sp.service.PackageOfferLocalService

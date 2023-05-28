@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="si.bintegra.sp.model.Offer">
+		<field name="id" type="long" />
+		<field name="type" type="String" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="mobileData" type="long" />
+		<field name="mobileMinutes" type="long" />
+		<field name="mobileSms" type="long" />
+		<field name="programsNumber" type="long" />
+		<field name="defaultNumberOfTvs" type="long" />
+		<field name="downloadSpeed" type="long" />
+		<field name="uploadSpeed" type="long" />
+		<field name="active" type="boolean" />
+	</model>
 	<model name="si.bintegra.sp.model.PackageOffer">
 		<field name="id" type="long" />
 		<field name="packageId" type="long" />

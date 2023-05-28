@@ -1,3 +1,5 @@
+create index IX_B74B97F4 on SP_Offer (type_[$COLUMN_LENGTH:75$], active_);
+
 create index IX_DF3A6A8B on SP_PackageOffer (active_);
 create index IX_35B26DF6 on SP_PackageOffer (packageId, active_);
 
