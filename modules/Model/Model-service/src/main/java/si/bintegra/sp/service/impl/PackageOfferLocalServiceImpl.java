@@ -25,6 +25,7 @@ import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.exception.NoSuchPackageOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
+import si.bintegra.sp.service.OfferLocalService;
 import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
 
@@ -40,8 +41,9 @@ import java.util.List;
 )
 public class PackageOfferLocalServiceImpl
 	extends PackageOfferLocalServiceBaseImpl {
+
 	@Reference
-	private OfferLocalServiceImpl offerLocalService;
+	private OfferLocalService offerLocalService;
 
 	public List<PackageOffer> findActiveByOfferId(Long id) {
 		return packageOfferPersistence.findByofferIdAndActive(id, true);
