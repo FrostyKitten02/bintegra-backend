@@ -1,9 +1,6 @@
 Bundle-Name: Model-service
 Bundle-SymbolicName: si.bintegra.sp.service
 Bundle-Version: 1.0.0
-Import-Package: \
-    com.sun.tools.javac.util;resolution:=optional,\
-    *
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}

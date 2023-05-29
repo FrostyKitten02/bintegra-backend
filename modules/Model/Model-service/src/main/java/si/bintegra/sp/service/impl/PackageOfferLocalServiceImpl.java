@@ -25,6 +25,7 @@ import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.exception.NoSuchPackageOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
+import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
 
 import java.util.ArrayList;
@@ -50,13 +51,14 @@ public class PackageOfferLocalServiceImpl
 		return packageOfferPersistence.findByid(id);
 	}
 
-	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type) throws NoSuchOfferException {
+	public List<PackageOffer> findActiveByOfferType(String type) throws NoSuchOfferException {
 		List<PackageOffer> allActive  = packageOfferPersistence.findByactive(true);
-		List<Pair<Offer, PackageOffer>> result = new ArrayList<>(allActive.size());
+		List<PackageOffer> result = new ArrayList<>(allActive.size());
 
 		for (PackageOffer p : allActive) {
-			Offer offer = offerLocalService.findById(p.getOfferId());
-			result.add(new Pair<>(offer, p));
+			if (offerLocalService.findById(p.getOfferId()).getType().equals(type)) {
+				result.add(p);
+			}
 		}
 
 		return result;

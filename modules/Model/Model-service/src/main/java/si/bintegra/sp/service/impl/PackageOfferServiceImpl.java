@@ -46,7 +46,7 @@ public class PackageOfferServiceImpl extends PackageOfferServiceBaseImpl {
 		return packageOfferLocalService.findById(id);
 	}
 
-	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type) throws NoSuchOfferException {
+	public List<PackageOffer> findActiveByOfferType(String type) throws NoSuchOfferException {
 		//TODO check premissions!!!
 		return packageOfferLocalService.findActiveByOfferType(type);
 	}

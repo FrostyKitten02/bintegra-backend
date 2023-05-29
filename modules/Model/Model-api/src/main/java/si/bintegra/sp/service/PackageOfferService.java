@@ -22,15 +22,12 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import com.sun.tools.javac.util.Pair;
-
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.exception.NoSuchPackageOfferException;
-import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 
 /**
@@ -63,7 +60,7 @@ public interface PackageOfferService extends BaseService {
 
 	public List<PackageOffer> findActiveByOfferId(Long id);
 
-	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type)
+	public List<PackageOffer> findActiveByOfferType(String type)
 		throws NoSuchOfferException;
 
 	public PackageOffer findById(Long id) throws NoSuchPackageOfferException;

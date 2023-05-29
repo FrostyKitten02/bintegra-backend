@@ -1,9 +1,6 @@
 Bundle-Name: Model-api
 Bundle-SymbolicName: si.bintegra.sp.api
 Bundle-Version: 1.0.0
-Import-Package: \
-    com.sun.tools.javac.util;resolution:=optional,\
-    *
 Export-Package:\
 	si.bintegra.sp.exception,\
 	si.bintegra.sp.model,\

@@ -53,11 +53,9 @@ public class PackageOfferServiceWrapper
 	}
 
 	@Override
-	public java.util.List
-		<com.sun.tools.javac.util.Pair
-			<si.bintegra.sp.model.Offer, si.bintegra.sp.model.PackageOffer>>
-					findActiveByOfferType(String type)
-				throws si.bintegra.sp.exception.NoSuchOfferException {
+	public java.util.List<si.bintegra.sp.model.PackageOffer>
+			findActiveByOfferType(String type)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
 
 		return _packageOfferService.findActiveByOfferType(type);
 	}

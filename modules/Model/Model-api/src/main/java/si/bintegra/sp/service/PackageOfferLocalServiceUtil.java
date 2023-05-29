@@ -224,11 +224,8 @@ public class PackageOfferLocalServiceUtil {
 		return getService().findActiveByOfferId(id);
 	}
 
-	public static List
-		<com.sun.tools.javac.util.Pair
-			<si.bintegra.sp.model.Offer, PackageOffer>> findActiveByOfferType(
-					String type)
-				throws si.bintegra.sp.exception.NoSuchOfferException {
+	public static List<PackageOffer> findActiveByOfferType(String type)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
 
 		return getService().findActiveByOfferType(type);
 	}

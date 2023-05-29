@@ -121,12 +121,9 @@ public class PackageOfferServiceHttp {
 		}
 	}
 
-	public static java.util.List
-		<com.sun.tools.javac.util.Pair
-			<si.bintegra.sp.model.Offer, si.bintegra.sp.model.PackageOffer>>
-					findActiveByOfferType(
-						HttpPrincipal httpPrincipal, String type)
-				throws si.bintegra.sp.exception.NoSuchOfferException {
+	public static java.util.List<si.bintegra.sp.model.PackageOffer>
+			findActiveByOfferType(HttpPrincipal httpPrincipal, String type)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -152,10 +149,7 @@ public class PackageOfferServiceHttp {
 					exception);
 			}
 
-			return (java.util.List
-				<com.sun.tools.javac.util.Pair
-					<si.bintegra.sp.model.Offer,
-					 si.bintegra.sp.model.PackageOffer>>)returnObj;
+			return (java.util.List<si.bintegra.sp.model.PackageOffer>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException
 					systemException) {
