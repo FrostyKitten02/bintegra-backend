@@ -11,6 +11,7 @@ import si.bintegra.sp.dto.SubscriptionDto;
 import si.bintegra.sp.dto.SubscriptionRequestDto;
 import si.bintegra.sp.model.Subscription;
 import si.bintegra.sp.service.SubscriptionService;
+import si.bintegra.sp.util.Mapper;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,14 +44,6 @@ public class SubscriptionController extends Application {
     @GET
     public List<SubscriptionDto> getSubscriptions(@Context HttpServletRequest request) throws PortalException {
         User user = PortalUtil.getUser(request);
-        return subscriptionService.findSubscriptionsByUserId(user.getUserId()).stream().map(this::toDto).collect(Collectors.toList());
+        return subscriptionService.findSubscriptionsByUserId(user.getUserId()).stream().map(Mapper::toSubscriptionDto).collect(Collectors.toList());
     }
-
-    //TODO move to separate class and package
-    private SubscriptionDto toDto(Subscription subscription) {
-        SubscriptionDto dto = new SubscriptionDto();
-        dto.setPackageOffer(subscription.getPackageOffer());
-        return dto;
-    }
-
 }
