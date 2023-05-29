@@ -1,10 +1,7 @@
 Bundle-Name: Headless-rest
 Bundle-SymbolicName: si.bintegra.sp
 Bundle-Version: 1.0.0
-#Liferay-Configuration-Path: /configuration
-Import-Package: \
-    com.sun.tools.javac.util;resolution:=optional,\
-    *
+Liferay-Configuration-Path: /configuration
 -consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
 -metatype: *
 -plugin.metatype: com.liferay.ant.bnd.metatype.MetatypePlugin

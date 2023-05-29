@@ -1,6 +1,5 @@
 package si.bintegra.sp.util;
 
-import com.sun.tools.javac.util.Pair;
 import si.bintegra.sp.dto.OfferDto;
 import si.bintegra.sp.dto.PackageOfferDto;
 import si.bintegra.sp.dto.SubscriptionDto;
@@ -26,10 +25,6 @@ public class Mapper {
         dto.setStartDate(subscription.getStartDate());
 
         return dto;
-    }
-
-    public static PackageOfferDto toPackageOfferDto(Pair<Offer, PackageOffer> pair) {
-        return toPackageOfferDto(pair.snd, pair.fst);
     }
 
     public static PackageOfferDto toPackageOfferDto(PackageOffer packageOffer) {
