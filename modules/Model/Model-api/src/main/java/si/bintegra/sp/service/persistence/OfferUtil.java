@@ -283,7 +283,7 @@ public class OfferUtil {
 	 * @param active the active
 	 * @return the matching offers
 	 */
-	public static List<Offer> findBytypeAndActive(String type, boolean active) {
+	public static List<Offer> findBytypeAndActive(String type, Boolean active) {
 		return getPersistence().findBytypeAndActive(type, active);
 	}
 
@@ -301,7 +301,7 @@ public class OfferUtil {
 	 * @return the range of matching offers
 	 */
 	public static List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end) {
+		String type, Boolean active, int start, int end) {
 
 		return getPersistence().findBytypeAndActive(type, active, start, end);
 	}
@@ -321,7 +321,7 @@ public class OfferUtil {
 	 * @return the ordered range of matching offers
 	 */
 	public static List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		OrderByComparator<Offer> orderByComparator) {
 
 		return getPersistence().findBytypeAndActive(
@@ -344,7 +344,7 @@ public class OfferUtil {
 	 * @return the ordered range of matching offers
 	 */
 	public static List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		OrderByComparator<Offer> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findBytypeAndActive(
@@ -361,7 +361,7 @@ public class OfferUtil {
 	 * @throws NoSuchOfferException if a matching offer could not be found
 	 */
 	public static Offer findBytypeAndActive_First(
-			String type, boolean active,
+			String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchOfferException {
 
@@ -378,7 +378,7 @@ public class OfferUtil {
 	 * @return the first matching offer, or <code>null</code> if a matching offer could not be found
 	 */
 	public static Offer fetchBytypeAndActive_First(
-		String type, boolean active,
+		String type, Boolean active,
 		OrderByComparator<Offer> orderByComparator) {
 
 		return getPersistence().fetchBytypeAndActive_First(
@@ -395,7 +395,7 @@ public class OfferUtil {
 	 * @throws NoSuchOfferException if a matching offer could not be found
 	 */
 	public static Offer findBytypeAndActive_Last(
-			String type, boolean active,
+			String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchOfferException {
 
@@ -412,7 +412,7 @@ public class OfferUtil {
 	 * @return the last matching offer, or <code>null</code> if a matching offer could not be found
 	 */
 	public static Offer fetchBytypeAndActive_Last(
-		String type, boolean active,
+		String type, Boolean active,
 		OrderByComparator<Offer> orderByComparator) {
 
 		return getPersistence().fetchBytypeAndActive_Last(
@@ -430,7 +430,7 @@ public class OfferUtil {
 	 * @throws NoSuchOfferException if a offer with the primary key could not be found
 	 */
 	public static Offer[] findBytypeAndActive_PrevAndNext(
-			long id, String type, boolean active,
+			long id, String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchOfferException {
 
@@ -444,7 +444,7 @@ public class OfferUtil {
 	 * @param type the type
 	 * @param active the active
 	 */
-	public static void removeBytypeAndActive(String type, boolean active) {
+	public static void removeBytypeAndActive(String type, Boolean active) {
 		getPersistence().removeBytypeAndActive(type, active);
 	}
 
@@ -455,7 +455,7 @@ public class OfferUtil {
 	 * @param active the active
 	 * @return the number of matching offers
 	 */
-	public static int countBytypeAndActive(String type, boolean active) {
+	public static int countBytypeAndActive(String type, Boolean active) {
 		return getPersistence().countBytypeAndActive(type, active);
 	}
 

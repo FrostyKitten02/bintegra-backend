@@ -37,6 +37,7 @@ import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 
 /**
@@ -75,6 +76,12 @@ public interface OfferLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Offer addOffer(Offer offer);
+
+	public Offer addOffer(
+		String title, String type, String description, Boolean active,
+		Long mobileData, Long mobileMinutes, Long mobileSms,
+		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
+		Long uploadSpeed);
 
 	/**
 	 * Creates a new offer with the primary key. Does not add the offer to the database.
@@ -201,6 +208,10 @@ public interface OfferLocalService
 	public Offer fetchOffer(long id);
 
 	public List<Offer> findActiveByType(String type);
+
+	public Offer findById(long id) throws NoSuchOfferException;
+
+	public List<Offer> findByType(String type);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

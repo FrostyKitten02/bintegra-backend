@@ -117,119 +117,112 @@ public interface OfferModel extends BaseModel<Offer> {
 	 *
 	 * @return the mobile data of this offer
 	 */
-	public long getMobileData();
+	public Long getMobileData();
 
 	/**
 	 * Sets the mobile data of this offer.
 	 *
 	 * @param mobileData the mobile data of this offer
 	 */
-	public void setMobileData(long mobileData);
+	public void setMobileData(Long mobileData);
 
 	/**
 	 * Returns the mobile minutes of this offer.
 	 *
 	 * @return the mobile minutes of this offer
 	 */
-	public long getMobileMinutes();
+	public Long getMobileMinutes();
 
 	/**
 	 * Sets the mobile minutes of this offer.
 	 *
 	 * @param mobileMinutes the mobile minutes of this offer
 	 */
-	public void setMobileMinutes(long mobileMinutes);
+	public void setMobileMinutes(Long mobileMinutes);
 
 	/**
 	 * Returns the mobile sms of this offer.
 	 *
 	 * @return the mobile sms of this offer
 	 */
-	public long getMobileSms();
+	public Long getMobileSms();
 
 	/**
 	 * Sets the mobile sms of this offer.
 	 *
 	 * @param mobileSms the mobile sms of this offer
 	 */
-	public void setMobileSms(long mobileSms);
+	public void setMobileSms(Long mobileSms);
 
 	/**
 	 * Returns the programs number of this offer.
 	 *
 	 * @return the programs number of this offer
 	 */
-	public long getProgramsNumber();
+	public Long getProgramsNumber();
 
 	/**
 	 * Sets the programs number of this offer.
 	 *
 	 * @param programsNumber the programs number of this offer
 	 */
-	public void setProgramsNumber(long programsNumber);
+	public void setProgramsNumber(Long programsNumber);
 
 	/**
 	 * Returns the default number of tvs of this offer.
 	 *
 	 * @return the default number of tvs of this offer
 	 */
-	public long getDefaultNumberOfTvs();
+	public Long getDefaultNumberOfTvs();
 
 	/**
 	 * Sets the default number of tvs of this offer.
 	 *
 	 * @param defaultNumberOfTvs the default number of tvs of this offer
 	 */
-	public void setDefaultNumberOfTvs(long defaultNumberOfTvs);
+	public void setDefaultNumberOfTvs(Long defaultNumberOfTvs);
 
 	/**
 	 * Returns the download speed of this offer.
 	 *
 	 * @return the download speed of this offer
 	 */
-	public long getDownloadSpeed();
+	public Long getDownloadSpeed();
 
 	/**
 	 * Sets the download speed of this offer.
 	 *
 	 * @param downloadSpeed the download speed of this offer
 	 */
-	public void setDownloadSpeed(long downloadSpeed);
+	public void setDownloadSpeed(Long downloadSpeed);
 
 	/**
 	 * Returns the upload speed of this offer.
 	 *
 	 * @return the upload speed of this offer
 	 */
-	public long getUploadSpeed();
+	public Long getUploadSpeed();
 
 	/**
 	 * Sets the upload speed of this offer.
 	 *
 	 * @param uploadSpeed the upload speed of this offer
 	 */
-	public void setUploadSpeed(long uploadSpeed);
+	public void setUploadSpeed(Long uploadSpeed);
 
 	/**
 	 * Returns the active of this offer.
 	 *
 	 * @return the active of this offer
 	 */
-	public boolean getActive();
+	public Boolean getActive();
 
 	/**
-	 * Returns <code>true</code> if this offer is active.
-	 *
-	 * @return <code>true</code> if this offer is active; <code>false</code> otherwise
-	 */
-	public boolean isActive();
-
-	/**
-	 * Sets whether this offer is active.
+	 * Sets the active of this offer.
 	 *
 	 * @param active the active of this offer
 	 */
-	public void setActive(boolean active);
+	public void setActive(Boolean active);
 
 	@Override
 	public Offer cloneWithOriginalValues();

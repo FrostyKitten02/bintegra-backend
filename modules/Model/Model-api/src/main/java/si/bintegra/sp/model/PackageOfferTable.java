@@ -32,8 +32,8 @@ public class PackageOfferTable extends BaseTable<PackageOfferTable> {
 
 	public final Column<PackageOfferTable, Long> id = createColumn(
 		"id_", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-	public final Column<PackageOfferTable, Long> packageId = createColumn(
-		"packageId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+	public final Column<PackageOfferTable, Long> offerId = createColumn(
+		"offerId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<PackageOfferTable, Long> fullDuration = createColumn(
 		"fullDuration", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<PackageOfferTable, Long> discountDuration =

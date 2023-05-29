@@ -42,12 +42,12 @@ public class PackageOfferWrapper
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
-		attributes.put("packageId", getPackageId());
+		attributes.put("offerId", getOfferId());
 		attributes.put("fullDuration", getFullDuration());
 		attributes.put("discountDuration", getDiscountDuration());
 		attributes.put("basePrice", getBasePrice());
 		attributes.put("discountPrice", getDiscountPrice());
-		attributes.put("active", isActive());
+		attributes.put("active", getActive());
 
 		return attributes;
 	}
@@ -60,10 +60,10 @@ public class PackageOfferWrapper
 			setId(id);
 		}
 
-		Long packageId = (Long)attributes.get("packageId");
+		Long offerId = (Long)attributes.get("offerId");
 
-		if (packageId != null) {
-			setPackageId(packageId);
+		if (offerId != null) {
+			setOfferId(offerId);
 		}
 
 		Long fullDuration = (Long)attributes.get("fullDuration");
@@ -108,7 +108,7 @@ public class PackageOfferWrapper
 	 * @return the active of this package offer
 	 */
 	@Override
-	public boolean getActive() {
+	public Boolean getActive() {
 		return model.getActive();
 	}
 
@@ -118,7 +118,7 @@ public class PackageOfferWrapper
 	 * @return the base price of this package offer
 	 */
 	@Override
-	public double getBasePrice() {
+	public Double getBasePrice() {
 		return model.getBasePrice();
 	}
 
@@ -128,7 +128,7 @@ public class PackageOfferWrapper
 	 * @return the discount duration of this package offer
 	 */
 	@Override
-	public long getDiscountDuration() {
+	public Long getDiscountDuration() {
 		return model.getDiscountDuration();
 	}
 
@@ -138,7 +138,7 @@ public class PackageOfferWrapper
 	 * @return the discount price of this package offer
 	 */
 	@Override
-	public double getDiscountPrice() {
+	public Double getDiscountPrice() {
 		return model.getDiscountPrice();
 	}
 
@@ -148,7 +148,7 @@ public class PackageOfferWrapper
 	 * @return the full duration of this package offer
 	 */
 	@Override
-	public long getFullDuration() {
+	public Long getFullDuration() {
 		return model.getFullDuration();
 	}
 
@@ -163,13 +163,13 @@ public class PackageOfferWrapper
 	}
 
 	/**
-	 * Returns the package ID of this package offer.
+	 * Returns the offer ID of this package offer.
 	 *
-	 * @return the package ID of this package offer
+	 * @return the offer ID of this package offer
 	 */
 	@Override
-	public long getPackageId() {
-		return model.getPackageId();
+	public Long getOfferId() {
+		return model.getOfferId();
 	}
 
 	/**
@@ -182,28 +182,18 @@ public class PackageOfferWrapper
 		return model.getPrimaryKey();
 	}
 
-	/**
-	 * Returns <code>true</code> if this package offer is active.
-	 *
-	 * @return <code>true</code> if this package offer is active; <code>false</code> otherwise
-	 */
-	@Override
-	public boolean isActive() {
-		return model.isActive();
-	}
-
 	@Override
 	public void persist() {
 		model.persist();
 	}
 
 	/**
-	 * Sets whether this package offer is active.
+	 * Sets the active of this package offer.
 	 *
 	 * @param active the active of this package offer
 	 */
 	@Override
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		model.setActive(active);
 	}
 
@@ -213,7 +203,7 @@ public class PackageOfferWrapper
 	 * @param basePrice the base price of this package offer
 	 */
 	@Override
-	public void setBasePrice(double basePrice) {
+	public void setBasePrice(Double basePrice) {
 		model.setBasePrice(basePrice);
 	}
 
@@ -223,7 +213,7 @@ public class PackageOfferWrapper
 	 * @param discountDuration the discount duration of this package offer
 	 */
 	@Override
-	public void setDiscountDuration(long discountDuration) {
+	public void setDiscountDuration(Long discountDuration) {
 		model.setDiscountDuration(discountDuration);
 	}
 
@@ -233,7 +223,7 @@ public class PackageOfferWrapper
 	 * @param discountPrice the discount price of this package offer
 	 */
 	@Override
-	public void setDiscountPrice(double discountPrice) {
+	public void setDiscountPrice(Double discountPrice) {
 		model.setDiscountPrice(discountPrice);
 	}
 
@@ -243,7 +233,7 @@ public class PackageOfferWrapper
 	 * @param fullDuration the full duration of this package offer
 	 */
 	@Override
-	public void setFullDuration(long fullDuration) {
+	public void setFullDuration(Long fullDuration) {
 		model.setFullDuration(fullDuration);
 	}
 
@@ -258,13 +248,13 @@ public class PackageOfferWrapper
 	}
 
 	/**
-	 * Sets the package ID of this package offer.
+	 * Sets the offer ID of this package offer.
 	 *
-	 * @param packageId the package ID of this package offer
+	 * @param offerId the offer ID of this package offer
 	 */
 	@Override
-	public void setPackageId(long packageId) {
-		model.setPackageId(packageId);
+	public void setOfferId(Long offerId) {
+		model.setOfferId(offerId);
 	}
 
 	/**

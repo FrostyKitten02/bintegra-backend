@@ -37,8 +37,26 @@ public class OfferServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.OfferServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static Offer addOffer(
+		String title, String type, String description, Boolean active,
+		Long mobileData, Long mobileMinutes, Long mobileSms,
+		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
+		Long uploadSpeed) {
+
+		return getService().addOffer(
+			title, type, description, active, mobileData, mobileMinutes,
+			mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed,
+			uploadSpeed);
+	}
+
 	public static List<Offer> findActiveByType(String type) {
 		return getService().findActiveByType(type);
+	}
+
+	public static Offer findById(Long id)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().findById(id);
 	}
 
 	/**

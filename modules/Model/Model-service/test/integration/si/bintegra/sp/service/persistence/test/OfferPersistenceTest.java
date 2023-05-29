@@ -128,21 +128,21 @@ public class OfferPersistenceTest {
 
 		newOffer.setDescription(RandomTestUtil.randomString());
 
-		newOffer.setMobileData(RandomTestUtil.nextLong());
+		newOffer.setMobileData();
 
-		newOffer.setMobileMinutes(RandomTestUtil.nextLong());
+		newOffer.setMobileMinutes();
 
-		newOffer.setMobileSms(RandomTestUtil.nextLong());
+		newOffer.setMobileSms();
 
-		newOffer.setProgramsNumber(RandomTestUtil.nextLong());
+		newOffer.setProgramsNumber();
 
-		newOffer.setDefaultNumberOfTvs(RandomTestUtil.nextLong());
+		newOffer.setDefaultNumberOfTvs();
 
-		newOffer.setDownloadSpeed(RandomTestUtil.nextLong());
+		newOffer.setDownloadSpeed();
 
-		newOffer.setUploadSpeed(RandomTestUtil.nextLong());
+		newOffer.setUploadSpeed();
 
-		newOffer.setActive(RandomTestUtil.randomBoolean());
+		newOffer.setActive();
 
 		_offers.add(_persistence.update(newOffer));
 
@@ -169,7 +169,7 @@ public class OfferPersistenceTest {
 			existingOffer.getDownloadSpeed(), newOffer.getDownloadSpeed());
 		Assert.assertEquals(
 			existingOffer.getUploadSpeed(), newOffer.getUploadSpeed());
-		Assert.assertEquals(existingOffer.isActive(), newOffer.isActive());
+		Assert.assertEquals(existingOffer.getActive(), newOffer.getActive());
 	}
 
 	@Test
@@ -183,13 +183,11 @@ public class OfferPersistenceTest {
 
 	@Test
 	public void testCountBytypeAndActive() throws Exception {
-		_persistence.countBytypeAndActive("", RandomTestUtil.randomBoolean());
+		_persistence.countBytypeAndActive("", (Boolean)null);
 
-		_persistence.countBytypeAndActive(
-			"null", RandomTestUtil.randomBoolean());
+		_persistence.countBytypeAndActive("null", (Boolean)null);
 
-		_persistence.countBytypeAndActive(
-			(String)null, RandomTestUtil.randomBoolean());
+		_persistence.countBytypeAndActive((String)null, (Boolean)null);
 	}
 
 	@Test
@@ -431,21 +429,21 @@ public class OfferPersistenceTest {
 
 		offer.setDescription(RandomTestUtil.randomString());
 
-		offer.setMobileData(RandomTestUtil.nextLong());
+		offer.setMobileData();
 
-		offer.setMobileMinutes(RandomTestUtil.nextLong());
+		offer.setMobileMinutes();
 
-		offer.setMobileSms(RandomTestUtil.nextLong());
+		offer.setMobileSms();
 
-		offer.setProgramsNumber(RandomTestUtil.nextLong());
+		offer.setProgramsNumber();
 
-		offer.setDefaultNumberOfTvs(RandomTestUtil.nextLong());
+		offer.setDefaultNumberOfTvs();
 
-		offer.setDownloadSpeed(RandomTestUtil.nextLong());
+		offer.setDownloadSpeed();
 
-		offer.setUploadSpeed(RandomTestUtil.nextLong());
+		offer.setUploadSpeed();
 
-		offer.setActive(RandomTestUtil.randomBoolean());
+		offer.setActive();
 
 		_offers.add(_persistence.update(offer));
 

@@ -51,7 +51,7 @@ public class OfferWrapper
 		attributes.put("defaultNumberOfTvs", getDefaultNumberOfTvs());
 		attributes.put("downloadSpeed", getDownloadSpeed());
 		attributes.put("uploadSpeed", getUploadSpeed());
-		attributes.put("active", isActive());
+		attributes.put("active", getActive());
 
 		return attributes;
 	}
@@ -142,7 +142,7 @@ public class OfferWrapper
 	 * @return the active of this offer
 	 */
 	@Override
-	public boolean getActive() {
+	public Boolean getActive() {
 		return model.getActive();
 	}
 
@@ -152,7 +152,7 @@ public class OfferWrapper
 	 * @return the default number of tvs of this offer
 	 */
 	@Override
-	public long getDefaultNumberOfTvs() {
+	public Long getDefaultNumberOfTvs() {
 		return model.getDefaultNumberOfTvs();
 	}
 
@@ -172,7 +172,7 @@ public class OfferWrapper
 	 * @return the download speed of this offer
 	 */
 	@Override
-	public long getDownloadSpeed() {
+	public Long getDownloadSpeed() {
 		return model.getDownloadSpeed();
 	}
 
@@ -192,7 +192,7 @@ public class OfferWrapper
 	 * @return the mobile data of this offer
 	 */
 	@Override
-	public long getMobileData() {
+	public Long getMobileData() {
 		return model.getMobileData();
 	}
 
@@ -202,7 +202,7 @@ public class OfferWrapper
 	 * @return the mobile minutes of this offer
 	 */
 	@Override
-	public long getMobileMinutes() {
+	public Long getMobileMinutes() {
 		return model.getMobileMinutes();
 	}
 
@@ -212,7 +212,7 @@ public class OfferWrapper
 	 * @return the mobile sms of this offer
 	 */
 	@Override
-	public long getMobileSms() {
+	public Long getMobileSms() {
 		return model.getMobileSms();
 	}
 
@@ -232,7 +232,7 @@ public class OfferWrapper
 	 * @return the programs number of this offer
 	 */
 	@Override
-	public long getProgramsNumber() {
+	public Long getProgramsNumber() {
 		return model.getProgramsNumber();
 	}
 
@@ -262,18 +262,8 @@ public class OfferWrapper
 	 * @return the upload speed of this offer
 	 */
 	@Override
-	public long getUploadSpeed() {
+	public Long getUploadSpeed() {
 		return model.getUploadSpeed();
-	}
-
-	/**
-	 * Returns <code>true</code> if this offer is active.
-	 *
-	 * @return <code>true</code> if this offer is active; <code>false</code> otherwise
-	 */
-	@Override
-	public boolean isActive() {
-		return model.isActive();
 	}
 
 	@Override
@@ -282,12 +272,12 @@ public class OfferWrapper
 	}
 
 	/**
-	 * Sets whether this offer is active.
+	 * Sets the active of this offer.
 	 *
 	 * @param active the active of this offer
 	 */
 	@Override
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		model.setActive(active);
 	}
 
@@ -297,7 +287,7 @@ public class OfferWrapper
 	 * @param defaultNumberOfTvs the default number of tvs of this offer
 	 */
 	@Override
-	public void setDefaultNumberOfTvs(long defaultNumberOfTvs) {
+	public void setDefaultNumberOfTvs(Long defaultNumberOfTvs) {
 		model.setDefaultNumberOfTvs(defaultNumberOfTvs);
 	}
 
@@ -317,7 +307,7 @@ public class OfferWrapper
 	 * @param downloadSpeed the download speed of this offer
 	 */
 	@Override
-	public void setDownloadSpeed(long downloadSpeed) {
+	public void setDownloadSpeed(Long downloadSpeed) {
 		model.setDownloadSpeed(downloadSpeed);
 	}
 
@@ -337,7 +327,7 @@ public class OfferWrapper
 	 * @param mobileData the mobile data of this offer
 	 */
 	@Override
-	public void setMobileData(long mobileData) {
+	public void setMobileData(Long mobileData) {
 		model.setMobileData(mobileData);
 	}
 
@@ -347,7 +337,7 @@ public class OfferWrapper
 	 * @param mobileMinutes the mobile minutes of this offer
 	 */
 	@Override
-	public void setMobileMinutes(long mobileMinutes) {
+	public void setMobileMinutes(Long mobileMinutes) {
 		model.setMobileMinutes(mobileMinutes);
 	}
 
@@ -357,7 +347,7 @@ public class OfferWrapper
 	 * @param mobileSms the mobile sms of this offer
 	 */
 	@Override
-	public void setMobileSms(long mobileSms) {
+	public void setMobileSms(Long mobileSms) {
 		model.setMobileSms(mobileSms);
 	}
 
@@ -377,7 +367,7 @@ public class OfferWrapper
 	 * @param programsNumber the programs number of this offer
 	 */
 	@Override
-	public void setProgramsNumber(long programsNumber) {
+	public void setProgramsNumber(Long programsNumber) {
 		model.setProgramsNumber(programsNumber);
 	}
 
@@ -407,7 +397,7 @@ public class OfferWrapper
 	 * @param uploadSpeed the upload speed of this offer
 	 */
 	@Override
-	public void setUploadSpeed(long uploadSpeed) {
+	public void setUploadSpeed(Long uploadSpeed) {
 		model.setUploadSpeed(uploadSpeed);
 	}
 

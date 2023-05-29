@@ -65,8 +65,8 @@ public class PackageOfferCacheModel
 
 		sb.append("{id=");
 		sb.append(id);
-		sb.append(", packageId=");
-		sb.append(packageId);
+		sb.append(", offerId=");
+		sb.append(offerId);
 		sb.append(", fullDuration=");
 		sb.append(fullDuration);
 		sb.append(", discountDuration=");
@@ -87,7 +87,7 @@ public class PackageOfferCacheModel
 		PackageOfferImpl packageOfferImpl = new PackageOfferImpl();
 
 		packageOfferImpl.setId(id);
-		packageOfferImpl.setPackageId(packageId);
+		packageOfferImpl.setOfferId(offerId);
 		packageOfferImpl.setFullDuration(fullDuration);
 		packageOfferImpl.setDiscountDuration(discountDuration);
 		packageOfferImpl.setBasePrice(basePrice);
@@ -103,7 +103,7 @@ public class PackageOfferCacheModel
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 
-		packageId = objectInput.readLong();
+		offerId = objectInput.readLong();
 
 		fullDuration = objectInput.readLong();
 
@@ -120,7 +120,7 @@ public class PackageOfferCacheModel
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(id);
 
-		objectOutput.writeLong(packageId);
+		objectOutput.writeLong(offerId);
 
 		objectOutput.writeLong(fullDuration);
 
@@ -134,7 +134,7 @@ public class PackageOfferCacheModel
 	}
 
 	public long id;
-	public long packageId;
+	public long offerId;
 	public long fullDuration;
 	public long discountDuration;
 	public double basePrice;

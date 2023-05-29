@@ -70,6 +70,16 @@ public class PackageOfferLocalServiceUtil {
 		return getService().createPackageOffer(id);
 	}
 
+	public static PackageOffer createPackageOffer(
+			Long offerId, Long fullDuration, Long discountDuration,
+			Double discountPrice, Double basePrice, Boolean active)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().createPackageOffer(
+			offerId, fullDuration, discountDuration, discountPrice, basePrice,
+			active);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -210,8 +220,23 @@ public class PackageOfferLocalServiceUtil {
 		return getService().fetchPackageOffer(id);
 	}
 
-	public static List<PackageOffer> findActiveByPackageId(Long id) {
-		return getService().findActiveByPackageId(id);
+	public static List<PackageOffer> findActiveByOfferId(Long id) {
+		return getService().findActiveByOfferId(id);
+	}
+
+	public static List
+		<com.sun.tools.javac.util.Pair
+			<si.bintegra.sp.model.Offer, PackageOffer>> findActiveByOfferType(
+					String type)
+				throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().findActiveByOfferType(type);
+	}
+
+	public static PackageOffer findById(Long id)
+		throws si.bintegra.sp.exception.NoSuchPackageOfferException {
+
+		return getService().findById(id);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery

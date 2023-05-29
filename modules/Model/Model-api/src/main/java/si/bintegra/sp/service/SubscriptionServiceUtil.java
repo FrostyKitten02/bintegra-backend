@@ -38,9 +38,10 @@ public class SubscriptionServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.SubscriptionServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId) {
+		Long packageOfferId, Long userId, Long phoneId, Long startDate) {
 
-		return getService().addSubscription(packageOfferId, userId, phoneId);
+		return getService().addSubscription(
+			packageOfferId, userId, phoneId, startDate);
 	}
 
 	public static List<Subscription> findSubscriptionsByUserId(Long userId) {

@@ -7,9 +7,10 @@
 
 	<entity local-service="true" remote-service="true" name="Subscription">
 		<column name="id" primary="true" type="long" />
-		<column name="packageOffer" type="long" />
-		<column name="userId" type="long" />
-		<column name="phoneId" type="long" />
+		<column name="packageOffer" type="Long" />
+		<column name="startDate" type="Long" />
+		<column name="userId" type="Long" />
+		<column name="phoneId" type="Long" />
 
 		<order by="asc">
 			<order-column name="id" />
@@ -30,30 +31,34 @@
 	<entity local-service="true" remote-service="true" name="PackageOffer">
 		<column name="id" type="long" primary="true"/>
 
-		<column name="packageId" type="long" />
+		<column name="offerId" type="Long" />
 
-		<column name="fullDuration" type="long" />
-		<column name="discountDuration" type="long" />
+		<column name="fullDuration" type="Long" />
+		<column name="discountDuration" type="Long" />
 
-		<column name="basePrice" type="double" />
-		<column name="discountPrice" type="double" />
+		<column name="basePrice" type="Double" />
+		<column name="discountPrice" type="Double" />
 
-		<column name="active" type="boolean" />
+		<column name="active" type="Boolean" />
 
 		<order by="asc">
 			<order-column name="id" />
 		</order>
 
+		<finder name="id" return-type="Entity">
+			<finder-column name="id" />
+		</finder>
+
 		<finder name="active" return-type="Collection">
 			<finder-column name="active" />
 		</finder>
 
-		<finder name="packageId" return-type="Collection">
-			<finder-column name="packageId" />
+		<finder name="offerId" return-type="Collection">
+			<finder-column name="offerId" />
 		</finder>
 
-		<finder name="packageIdAndActive" return-type="Collection">
-			<finder-column name="packageId" />
+		<finder name="offerIdAndActive" return-type="Collection">
+			<finder-column name="offerId" />
 			<finder-column name="active" />
 		</finder>
 
@@ -69,22 +74,22 @@
 		<column name="description" type="String" />
 
 		<!--Mobile fileds!-->
-		<column name="mobileData" type="long" />
-		<column name="mobileMinutes" type="long" />
-		<column name="mobileSms" type="long" />
+		<column name="mobileData" type="Long" />
+		<column name="mobileMinutes" type="Long" />
+		<column name="mobileSms" type="Long" />
 		<!---->
 
 		<!--TV fields!-->
-		<column name="programsNumber" type="long" />
-		<column name="defaultNumberOfTvs" type="long" />
+		<column name="programsNumber" type="Long" />
+		<column name="defaultNumberOfTvs" type="Long" />
 		<!---->
 
 		<!--Internet fields!-->
-		<column name="downloadSpeed" type="long" />
-		<column name="uploadSpeed" type="long" />
+		<column name="downloadSpeed" type="Long" />
+		<column name="uploadSpeed" type="Long" />
 		<!---->
 
-		<column name="active" type="boolean" />
+		<column name="active" type="Boolean" />
 
 		<order by="asc">
 			<order-column name="id" />

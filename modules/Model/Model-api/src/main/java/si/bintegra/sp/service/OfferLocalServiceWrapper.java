@@ -51,6 +51,19 @@ public class OfferLocalServiceWrapper
 		return _offerLocalService.addOffer(offer);
 	}
 
+	@Override
+	public si.bintegra.sp.model.Offer addOffer(
+		String title, String type, String description, Boolean active,
+		Long mobileData, Long mobileMinutes, Long mobileSms,
+		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
+		Long uploadSpeed) {
+
+		return _offerLocalService.addOffer(
+			title, type, description, active, mobileData, mobileMinutes,
+			mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed,
+			uploadSpeed);
+	}
+
 	/**
 	 * Creates a new offer with the primary key. Does not add the offer to the database.
 	 *
@@ -230,6 +243,18 @@ public class OfferLocalServiceWrapper
 		String type) {
 
 		return _offerLocalService.findActiveByType(type);
+	}
+
+	@Override
+	public si.bintegra.sp.model.Offer findById(long id)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return _offerLocalService.findById(id);
+	}
+
+	@Override
+	public java.util.List<si.bintegra.sp.model.Offer> findByType(String type) {
+		return _offerLocalService.findByType(type);
 	}
 
 	@Override

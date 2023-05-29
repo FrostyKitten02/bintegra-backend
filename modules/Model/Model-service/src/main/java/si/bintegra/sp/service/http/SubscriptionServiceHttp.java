@@ -53,7 +53,7 @@ public class SubscriptionServiceHttp {
 
 	public static si.bintegra.sp.model.Subscription addSubscription(
 		HttpPrincipal httpPrincipal, Long packageOfferId, Long userId,
-		Long phoneId) {
+		Long phoneId, Long startDate) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -61,7 +61,7 @@ public class SubscriptionServiceHttp {
 				_addSubscriptionParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, packageOfferId, userId, phoneId);
+				methodKey, packageOfferId, userId, phoneId, startDate);
 
 			Object returnObj = null;
 
@@ -119,7 +119,7 @@ public class SubscriptionServiceHttp {
 		SubscriptionServiceHttp.class);
 
 	private static final Class<?>[] _addSubscriptionParameterTypes0 =
-		new Class[] {Long.class, Long.class, Long.class};
+		new Class[] {Long.class, Long.class, Long.class, Long.class};
 	private static final Class<?>[] _findSubscriptionsByUserIdParameterTypes1 =
 		new Class[] {Long.class};
 

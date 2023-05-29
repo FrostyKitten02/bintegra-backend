@@ -6,28 +6,29 @@
 		<field name="type" type="String" />
 		<field name="title" type="String" />
 		<field name="description" type="String" />
-		<field name="mobileData" type="long" />
-		<field name="mobileMinutes" type="long" />
-		<field name="mobileSms" type="long" />
-		<field name="programsNumber" type="long" />
-		<field name="defaultNumberOfTvs" type="long" />
-		<field name="downloadSpeed" type="long" />
-		<field name="uploadSpeed" type="long" />
-		<field name="active" type="boolean" />
+		<field name="mobileData" type="Long" />
+		<field name="mobileMinutes" type="Long" />
+		<field name="mobileSms" type="Long" />
+		<field name="programsNumber" type="Long" />
+		<field name="defaultNumberOfTvs" type="Long" />
+		<field name="downloadSpeed" type="Long" />
+		<field name="uploadSpeed" type="Long" />
+		<field name="active" type="Boolean" />
 	</model>
 	<model name="si.bintegra.sp.model.PackageOffer">
 		<field name="id" type="long" />
-		<field name="packageId" type="long" />
-		<field name="fullDuration" type="long" />
-		<field name="discountDuration" type="long" />
-		<field name="basePrice" type="double" />
-		<field name="discountPrice" type="double" />
-		<field name="active" type="boolean" />
+		<field name="offerId" type="Long" />
+		<field name="fullDuration" type="Long" />
+		<field name="discountDuration" type="Long" />
+		<field name="basePrice" type="Double" />
+		<field name="discountPrice" type="Double" />
+		<field name="active" type="Boolean" />
 	</model>
 	<model name="si.bintegra.sp.model.Subscription">
 		<field name="id" type="long" />
-		<field name="packageOffer" type="long" />
-		<field name="userId" type="long" />
-		<field name="phoneId" type="long" />
+		<field name="packageOffer" type="Long" />
+		<field name="startDate" type="Long" />
+		<field name="userId" type="Long" />
+		<field name="phoneId" type="Long" />
 	</model>
 </model-hints>

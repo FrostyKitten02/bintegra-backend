@@ -65,6 +65,17 @@ public class PackageOfferLocalServiceWrapper
 		return _packageOfferLocalService.createPackageOffer(id);
 	}
 
+	@Override
+	public si.bintegra.sp.model.PackageOffer createPackageOffer(
+			Long offerId, Long fullDuration, Long discountDuration,
+			Double discountPrice, Double basePrice, Boolean active)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return _packageOfferLocalService.createPackageOffer(
+			offerId, fullDuration, discountDuration, discountPrice, basePrice,
+			active);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -231,9 +242,26 @@ public class PackageOfferLocalServiceWrapper
 
 	@Override
 	public java.util.List<si.bintegra.sp.model.PackageOffer>
-		findActiveByPackageId(Long id) {
+		findActiveByOfferId(Long id) {
 
-		return _packageOfferLocalService.findActiveByPackageId(id);
+		return _packageOfferLocalService.findActiveByOfferId(id);
+	}
+
+	@Override
+	public java.util.List
+		<com.sun.tools.javac.util.Pair
+			<si.bintegra.sp.model.Offer, si.bintegra.sp.model.PackageOffer>>
+					findActiveByOfferType(String type)
+				throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return _packageOfferLocalService.findActiveByOfferType(type);
+	}
+
+	@Override
+	public si.bintegra.sp.model.PackageOffer findById(Long id)
+		throws si.bintegra.sp.exception.NoSuchPackageOfferException {
+
+		return _packageOfferLocalService.findById(id);
 	}
 
 	@Override

@@ -126,7 +126,7 @@ public class SubscriptionUtil {
 	 * @param packageOffer the package offer
 	 * @return the matching subscriptions
 	 */
-	public static List<Subscription> findBypackageOffer(long packageOffer) {
+	public static List<Subscription> findBypackageOffer(Long packageOffer) {
 		return getPersistence().findBypackageOffer(packageOffer);
 	}
 
@@ -143,7 +143,7 @@ public class SubscriptionUtil {
 	 * @return the range of matching subscriptions
 	 */
 	public static List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end) {
+		Long packageOffer, int start, int end) {
 
 		return getPersistence().findBypackageOffer(packageOffer, start, end);
 	}
@@ -162,7 +162,7 @@ public class SubscriptionUtil {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public static List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().findBypackageOffer(
@@ -184,7 +184,7 @@ public class SubscriptionUtil {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public static List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
@@ -201,7 +201,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public static Subscription findBypackageOffer_First(
-			long packageOffer,
+			Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
@@ -217,7 +217,7 @@ public class SubscriptionUtil {
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public static Subscription fetchBypackageOffer_First(
-		long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().fetchBypackageOffer_First(
 			packageOffer, orderByComparator);
@@ -232,7 +232,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public static Subscription findBypackageOffer_Last(
-			long packageOffer,
+			Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
@@ -248,7 +248,7 @@ public class SubscriptionUtil {
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public static Subscription fetchBypackageOffer_Last(
-		long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().fetchBypackageOffer_Last(
 			packageOffer, orderByComparator);
@@ -264,7 +264,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
 	public static Subscription[] findBypackageOffer_PrevAndNext(
-			long id, long packageOffer,
+			long id, Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
@@ -277,7 +277,7 @@ public class SubscriptionUtil {
 	 *
 	 * @param packageOffer the package offer
 	 */
-	public static void removeBypackageOffer(long packageOffer) {
+	public static void removeBypackageOffer(Long packageOffer) {
 		getPersistence().removeBypackageOffer(packageOffer);
 	}
 
@@ -287,7 +287,7 @@ public class SubscriptionUtil {
 	 * @param packageOffer the package offer
 	 * @return the number of matching subscriptions
 	 */
-	public static int countBypackageOffer(long packageOffer) {
+	public static int countBypackageOffer(Long packageOffer) {
 		return getPersistence().countBypackageOffer(packageOffer);
 	}
 
@@ -297,7 +297,7 @@ public class SubscriptionUtil {
 	 * @param userId the user ID
 	 * @return the matching subscriptions
 	 */
-	public static List<Subscription> findByuserId(long userId) {
+	public static List<Subscription> findByuserId(Long userId) {
 		return getPersistence().findByuserId(userId);
 	}
 
@@ -314,7 +314,7 @@ public class SubscriptionUtil {
 	 * @return the range of matching subscriptions
 	 */
 	public static List<Subscription> findByuserId(
-		long userId, int start, int end) {
+		Long userId, int start, int end) {
 
 		return getPersistence().findByuserId(userId, start, end);
 	}
@@ -333,7 +333,7 @@ public class SubscriptionUtil {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public static List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().findByuserId(
@@ -355,7 +355,7 @@ public class SubscriptionUtil {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public static List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
@@ -372,7 +372,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public static Subscription findByuserId_First(
-			long userId, OrderByComparator<Subscription> orderByComparator)
+			Long userId, OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
 		return getPersistence().findByuserId_First(userId, orderByComparator);
@@ -386,7 +386,7 @@ public class SubscriptionUtil {
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public static Subscription fetchByuserId_First(
-		long userId, OrderByComparator<Subscription> orderByComparator) {
+		Long userId, OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().fetchByuserId_First(userId, orderByComparator);
 	}
@@ -400,7 +400,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public static Subscription findByuserId_Last(
-			long userId, OrderByComparator<Subscription> orderByComparator)
+			Long userId, OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
 		return getPersistence().findByuserId_Last(userId, orderByComparator);
@@ -414,7 +414,7 @@ public class SubscriptionUtil {
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public static Subscription fetchByuserId_Last(
-		long userId, OrderByComparator<Subscription> orderByComparator) {
+		Long userId, OrderByComparator<Subscription> orderByComparator) {
 
 		return getPersistence().fetchByuserId_Last(userId, orderByComparator);
 	}
@@ -429,7 +429,7 @@ public class SubscriptionUtil {
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
 	public static Subscription[] findByuserId_PrevAndNext(
-			long id, long userId,
+			long id, Long userId,
 			OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
@@ -442,7 +442,7 @@ public class SubscriptionUtil {
 	 *
 	 * @param userId the user ID
 	 */
-	public static void removeByuserId(long userId) {
+	public static void removeByuserId(Long userId) {
 		getPersistence().removeByuserId(userId);
 	}
 
@@ -452,7 +452,7 @@ public class SubscriptionUtil {
 	 * @param userId the user ID
 	 * @return the number of matching subscriptions
 	 */
-	public static int countByuserId(long userId) {
+	public static int countByuserId(Long userId) {
 		return getPersistence().countByuserId(userId);
 	}
 

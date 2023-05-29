@@ -17,5 +17,10 @@ public class RoleChecker {
         return false;
     }
 
+    public static void isUserAdministratorStrict(User user) throws IllegalAccessException {
+        if (isUserAdministrator(user)) {
+            throw new IllegalAccessException("userDoesNotHavePermission");
+        }
+    }
 
 }

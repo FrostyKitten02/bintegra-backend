@@ -15,11 +15,12 @@
 package si.bintegra.sp.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
+import com.sun.tools.javac.util.Pair;
 import org.osgi.service.component.annotations.Component;
-
+import si.bintegra.sp.exception.NoSuchOfferException;
+import si.bintegra.sp.exception.NoSuchPackageOfferException;
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
-import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.base.PackageOfferServiceBaseImpl;
 
 import java.util.List;
@@ -35,8 +36,25 @@ import java.util.List;
 	service = AopService.class
 )
 public class PackageOfferServiceImpl extends PackageOfferServiceBaseImpl {
-	public List<PackageOffer> findActiveByPackageId(Long id) {
+	public List<PackageOffer> findActiveByOfferId(Long id) {
 		//TODO check premissions!!!
-		return packageOfferLocalService.findActiveByPackageId(id);
+		return packageOfferLocalService.findActiveByOfferId(id);
 	}
+
+	public PackageOffer findById(Long id) throws NoSuchPackageOfferException {
+		//TODO check premissions!!!
+		return packageOfferLocalService.findById(id);
+	}
+
+	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type) throws NoSuchOfferException {
+		//TODO check premissions!!!
+		return packageOfferLocalService.findActiveByOfferType(type);
+	}
+
+	public PackageOffer createPackageOffer(Long offerId, Long fullDuration, Long discountDuration, Double discountPrice, Double basePrice, Boolean active) throws NoSuchOfferException {
+		//TODO check premissions!!!
+		return packageOfferLocalService.createPackageOffer(offerId, fullDuration, discountDuration, discountPrice, basePrice, active);
+	}
+
+
 }

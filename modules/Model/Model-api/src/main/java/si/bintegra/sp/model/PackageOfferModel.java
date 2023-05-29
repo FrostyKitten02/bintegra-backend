@@ -67,95 +67,88 @@ public interface PackageOfferModel extends BaseModel<PackageOffer> {
 	public void setId(long id);
 
 	/**
-	 * Returns the package ID of this package offer.
+	 * Returns the offer ID of this package offer.
 	 *
-	 * @return the package ID of this package offer
+	 * @return the offer ID of this package offer
 	 */
-	public long getPackageId();
+	public Long getOfferId();
 
 	/**
-	 * Sets the package ID of this package offer.
+	 * Sets the offer ID of this package offer.
 	 *
-	 * @param packageId the package ID of this package offer
+	 * @param offerId the offer ID of this package offer
 	 */
-	public void setPackageId(long packageId);
+	public void setOfferId(Long offerId);
 
 	/**
 	 * Returns the full duration of this package offer.
 	 *
 	 * @return the full duration of this package offer
 	 */
-	public long getFullDuration();
+	public Long getFullDuration();
 
 	/**
 	 * Sets the full duration of this package offer.
 	 *
 	 * @param fullDuration the full duration of this package offer
 	 */
-	public void setFullDuration(long fullDuration);
+	public void setFullDuration(Long fullDuration);
 
 	/**
 	 * Returns the discount duration of this package offer.
 	 *
 	 * @return the discount duration of this package offer
 	 */
-	public long getDiscountDuration();
+	public Long getDiscountDuration();
 
 	/**
 	 * Sets the discount duration of this package offer.
 	 *
 	 * @param discountDuration the discount duration of this package offer
 	 */
-	public void setDiscountDuration(long discountDuration);
+	public void setDiscountDuration(Long discountDuration);
 
 	/**
 	 * Returns the base price of this package offer.
 	 *
 	 * @return the base price of this package offer
 	 */
-	public double getBasePrice();
+	public Double getBasePrice();
 
 	/**
 	 * Sets the base price of this package offer.
 	 *
 	 * @param basePrice the base price of this package offer
 	 */
-	public void setBasePrice(double basePrice);
+	public void setBasePrice(Double basePrice);
 
 	/**
 	 * Returns the discount price of this package offer.
 	 *
 	 * @return the discount price of this package offer
 	 */
-	public double getDiscountPrice();
+	public Double getDiscountPrice();
 
 	/**
 	 * Sets the discount price of this package offer.
 	 *
 	 * @param discountPrice the discount price of this package offer
 	 */
-	public void setDiscountPrice(double discountPrice);
+	public void setDiscountPrice(Double discountPrice);
 
 	/**
 	 * Returns the active of this package offer.
 	 *
 	 * @return the active of this package offer
 	 */
-	public boolean getActive();
+	public Boolean getActive();
 
 	/**
-	 * Returns <code>true</code> if this package offer is active.
-	 *
-	 * @return <code>true</code> if this package offer is active; <code>false</code> otherwise
-	 */
-	public boolean isActive();
-
-	/**
-	 * Sets whether this package offer is active.
+	 * Sets the active of this package offer.
 	 *
 	 * @param active the active of this package offer
 	 */
-	public void setActive(boolean active);
+	public void setActive(Boolean active);
 
 	@Override
 	public PackageOffer cloneWithOriginalValues();

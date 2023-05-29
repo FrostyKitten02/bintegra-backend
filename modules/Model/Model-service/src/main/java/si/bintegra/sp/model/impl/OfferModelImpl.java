@@ -366,12 +366,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getMobileData() {
+	public Long getMobileData() {
 		return _mobileData;
 	}
 
 	@Override
-	public void setMobileData(long mobileData) {
+	public void setMobileData(Long mobileData) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -381,12 +381,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getMobileMinutes() {
+	public Long getMobileMinutes() {
 		return _mobileMinutes;
 	}
 
 	@Override
-	public void setMobileMinutes(long mobileMinutes) {
+	public void setMobileMinutes(Long mobileMinutes) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -396,12 +396,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getMobileSms() {
+	public Long getMobileSms() {
 		return _mobileSms;
 	}
 
 	@Override
-	public void setMobileSms(long mobileSms) {
+	public void setMobileSms(Long mobileSms) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -411,12 +411,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getProgramsNumber() {
+	public Long getProgramsNumber() {
 		return _programsNumber;
 	}
 
 	@Override
-	public void setProgramsNumber(long programsNumber) {
+	public void setProgramsNumber(Long programsNumber) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -426,12 +426,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getDefaultNumberOfTvs() {
+	public Long getDefaultNumberOfTvs() {
 		return _defaultNumberOfTvs;
 	}
 
 	@Override
-	public void setDefaultNumberOfTvs(long defaultNumberOfTvs) {
+	public void setDefaultNumberOfTvs(Long defaultNumberOfTvs) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -441,12 +441,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getDownloadSpeed() {
+	public Long getDownloadSpeed() {
 		return _downloadSpeed;
 	}
 
 	@Override
-	public void setDownloadSpeed(long downloadSpeed) {
+	public void setDownloadSpeed(Long downloadSpeed) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -456,12 +456,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public long getUploadSpeed() {
+	public Long getUploadSpeed() {
 		return _uploadSpeed;
 	}
 
 	@Override
-	public void setUploadSpeed(long uploadSpeed) {
+	public void setUploadSpeed(Long uploadSpeed) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -471,18 +471,12 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	@Override
-	public boolean getActive() {
-		return _active;
-	}
-
-	@JSON
-	@Override
-	public boolean isActive() {
+	public Boolean getActive() {
 		return _active;
 	}
 
 	@Override
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -495,7 +489,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public boolean getOriginalActive() {
+	public Boolean getOriginalActive() {
 		return GetterUtil.getBoolean(
 			this.<Boolean>getColumnOriginalValue("active_"));
 	}
@@ -567,7 +561,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		offerImpl.setDefaultNumberOfTvs(getDefaultNumberOfTvs());
 		offerImpl.setDownloadSpeed(getDownloadSpeed());
 		offerImpl.setUploadSpeed(getUploadSpeed());
-		offerImpl.setActive(isActive());
+		offerImpl.setActive(getActive());
 
 		offerImpl.resetOriginalValues();
 
@@ -704,21 +698,53 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 			offerCacheModel.description = null;
 		}
 
-		offerCacheModel.mobileData = getMobileData();
+		Long mobileData = getMobileData();
 
-		offerCacheModel.mobileMinutes = getMobileMinutes();
+		if (mobileData != null) {
+			offerCacheModel.mobileData = mobileData;
+		}
 
-		offerCacheModel.mobileSms = getMobileSms();
+		Long mobileMinutes = getMobileMinutes();
 
-		offerCacheModel.programsNumber = getProgramsNumber();
+		if (mobileMinutes != null) {
+			offerCacheModel.mobileMinutes = mobileMinutes;
+		}
 
-		offerCacheModel.defaultNumberOfTvs = getDefaultNumberOfTvs();
+		Long mobileSms = getMobileSms();
 
-		offerCacheModel.downloadSpeed = getDownloadSpeed();
+		if (mobileSms != null) {
+			offerCacheModel.mobileSms = mobileSms;
+		}
 
-		offerCacheModel.uploadSpeed = getUploadSpeed();
+		Long programsNumber = getProgramsNumber();
 
-		offerCacheModel.active = isActive();
+		if (programsNumber != null) {
+			offerCacheModel.programsNumber = programsNumber;
+		}
+
+		Long defaultNumberOfTvs = getDefaultNumberOfTvs();
+
+		if (defaultNumberOfTvs != null) {
+			offerCacheModel.defaultNumberOfTvs = defaultNumberOfTvs;
+		}
+
+		Long downloadSpeed = getDownloadSpeed();
+
+		if (downloadSpeed != null) {
+			offerCacheModel.downloadSpeed = downloadSpeed;
+		}
+
+		Long uploadSpeed = getUploadSpeed();
+
+		if (uploadSpeed != null) {
+			offerCacheModel.uploadSpeed = uploadSpeed;
+		}
+
+		Boolean active = getActive();
+
+		if (active != null) {
+			offerCacheModel.active = active;
+		}
 
 		return offerCacheModel;
 	}
@@ -784,14 +810,14 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 	private String _type;
 	private String _title;
 	private String _description;
-	private long _mobileData;
-	private long _mobileMinutes;
-	private long _mobileSms;
-	private long _programsNumber;
-	private long _defaultNumberOfTvs;
-	private long _downloadSpeed;
-	private long _uploadSpeed;
-	private boolean _active;
+	private Long _mobileData;
+	private Long _mobileMinutes;
+	private Long _mobileSms;
+	private Long _programsNumber;
+	private Long _defaultNumberOfTvs;
+	private Long _downloadSpeed;
+	private Long _uploadSpeed;
+	private Boolean _active;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);

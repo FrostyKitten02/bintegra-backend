@@ -43,6 +43,7 @@ public class SubscriptionWrapper
 
 		attributes.put("id", getId());
 		attributes.put("packageOffer", getPackageOffer());
+		attributes.put("startDate", getStartDate());
 		attributes.put("userId", getUserId());
 		attributes.put("phoneId", getPhoneId());
 
@@ -61,6 +62,12 @@ public class SubscriptionWrapper
 
 		if (packageOffer != null) {
 			setPackageOffer(packageOffer);
+		}
+
+		Long startDate = (Long)attributes.get("startDate");
+
+		if (startDate != null) {
+			setStartDate(startDate);
 		}
 
 		Long userId = (Long)attributes.get("userId");
@@ -97,7 +104,7 @@ public class SubscriptionWrapper
 	 * @return the package offer of this subscription
 	 */
 	@Override
-	public long getPackageOffer() {
+	public Long getPackageOffer() {
 		return model.getPackageOffer();
 	}
 
@@ -107,7 +114,7 @@ public class SubscriptionWrapper
 	 * @return the phone ID of this subscription
 	 */
 	@Override
-	public long getPhoneId() {
+	public Long getPhoneId() {
 		return model.getPhoneId();
 	}
 
@@ -122,23 +129,23 @@ public class SubscriptionWrapper
 	}
 
 	/**
+	 * Returns the start date of this subscription.
+	 *
+	 * @return the start date of this subscription
+	 */
+	@Override
+	public Long getStartDate() {
+		return model.getStartDate();
+	}
+
+	/**
 	 * Returns the user ID of this subscription.
 	 *
 	 * @return the user ID of this subscription
 	 */
 	@Override
-	public long getUserId() {
+	public Long getUserId() {
 		return model.getUserId();
-	}
-
-	/**
-	 * Returns the user uuid of this subscription.
-	 *
-	 * @return the user uuid of this subscription
-	 */
-	@Override
-	public String getUserUuid() {
-		return model.getUserUuid();
 	}
 
 	@Override
@@ -162,7 +169,7 @@ public class SubscriptionWrapper
 	 * @param packageOffer the package offer of this subscription
 	 */
 	@Override
-	public void setPackageOffer(long packageOffer) {
+	public void setPackageOffer(Long packageOffer) {
 		model.setPackageOffer(packageOffer);
 	}
 
@@ -172,7 +179,7 @@ public class SubscriptionWrapper
 	 * @param phoneId the phone ID of this subscription
 	 */
 	@Override
-	public void setPhoneId(long phoneId) {
+	public void setPhoneId(Long phoneId) {
 		model.setPhoneId(phoneId);
 	}
 
@@ -187,23 +194,23 @@ public class SubscriptionWrapper
 	}
 
 	/**
+	 * Sets the start date of this subscription.
+	 *
+	 * @param startDate the start date of this subscription
+	 */
+	@Override
+	public void setStartDate(Long startDate) {
+		model.setStartDate(startDate);
+	}
+
+	/**
 	 * Sets the user ID of this subscription.
 	 *
 	 * @param userId the user ID of this subscription
 	 */
 	@Override
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		model.setUserId(userId);
-	}
-
-	/**
-	 * Sets the user uuid of this subscription.
-	 *
-	 * @param userUuid the user uuid of this subscription
-	 */
-	@Override
-	public void setUserUuid(String userUuid) {
-		model.setUserUuid(userUuid);
 	}
 
 	@Override

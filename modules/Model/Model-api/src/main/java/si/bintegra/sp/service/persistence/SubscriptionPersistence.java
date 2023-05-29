@@ -47,7 +47,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @param packageOffer the package offer
 	 * @return the matching subscriptions
 	 */
-	public java.util.List<Subscription> findBypackageOffer(long packageOffer);
+	public java.util.List<Subscription> findBypackageOffer(Long packageOffer);
 
 	/**
 	 * Returns a range of all the subscriptions where packageOffer = &#63;.
@@ -62,7 +62,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end);
+		Long packageOffer, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the subscriptions where packageOffer = &#63;.
@@ -78,7 +78,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -97,7 +97,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator,
 		boolean useFinderCache);
@@ -111,7 +111,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public Subscription findBypackageOffer_First(
-			long packageOffer,
+			Long packageOffer,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -124,7 +124,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public Subscription fetchBypackageOffer_First(
-		long packageOffer,
+		Long packageOffer,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -137,7 +137,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public Subscription findBypackageOffer_Last(
-			long packageOffer,
+			Long packageOffer,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -150,7 +150,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public Subscription fetchBypackageOffer_Last(
-		long packageOffer,
+		Long packageOffer,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -164,7 +164,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
 	public Subscription[] findBypackageOffer_PrevAndNext(
-			long id, long packageOffer,
+			long id, Long packageOffer,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -174,7 +174,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 *
 	 * @param packageOffer the package offer
 	 */
-	public void removeBypackageOffer(long packageOffer);
+	public void removeBypackageOffer(Long packageOffer);
 
 	/**
 	 * Returns the number of subscriptions where packageOffer = &#63;.
@@ -182,7 +182,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @param packageOffer the package offer
 	 * @return the number of matching subscriptions
 	 */
-	public int countBypackageOffer(long packageOffer);
+	public int countBypackageOffer(Long packageOffer);
 
 	/**
 	 * Returns all the subscriptions where userId = &#63;.
@@ -190,7 +190,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @param userId the user ID
 	 * @return the matching subscriptions
 	 */
-	public java.util.List<Subscription> findByuserId(long userId);
+	public java.util.List<Subscription> findByuserId(Long userId);
 
 	/**
 	 * Returns a range of all the subscriptions where userId = &#63;.
@@ -205,7 +205,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findByuserId(
-		long userId, int start, int end);
+		Long userId, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the subscriptions where userId = &#63;.
@@ -221,7 +221,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -240,7 +240,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the ordered range of matching subscriptions
 	 */
 	public java.util.List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator,
 		boolean useFinderCache);
@@ -254,7 +254,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public Subscription findByuserId_First(
-			long userId,
+			Long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -267,7 +267,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public Subscription fetchByuserId_First(
-		long userId,
+		Long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -280,7 +280,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	public Subscription findByuserId_Last(
-			long userId,
+			Long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -293,7 +293,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	public Subscription fetchByuserId_Last(
-		long userId,
+		Long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 			orderByComparator);
 
@@ -307,7 +307,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
 	public Subscription[] findByuserId_PrevAndNext(
-			long id, long userId,
+			long id, Long userId,
 			com.liferay.portal.kernel.util.OrderByComparator<Subscription>
 				orderByComparator)
 		throws NoSuchSubscriptionException;
@@ -317,7 +317,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 *
 	 * @param userId the user ID
 	 */
-	public void removeByuserId(long userId);
+	public void removeByuserId(Long userId);
 
 	/**
 	 * Returns the number of subscriptions where userId = &#63;.
@@ -325,7 +325,7 @@ public interface SubscriptionPersistence extends BasePersistence<Subscription> {
 	 * @param userId the user ID
 	 * @return the number of matching subscriptions
 	 */
-	public int countByuserId(long userId);
+	public int countByuserId(Long userId);
 
 	/**
 	 * Caches the subscription in the entity cache if it is enabled.

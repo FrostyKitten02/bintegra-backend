@@ -15,7 +15,7 @@ create table SP_Offer (
 
 create table SP_PackageOffer (
 	id_ LONG not null primary key,
-	packageId LONG,
+	offerId LONG,
 	fullDuration LONG,
 	discountDuration LONG,
 	basePrice DOUBLE,
@@ -26,6 +26,7 @@ create table SP_PackageOffer (
 create table SP_Subscription (
 	id_ LONG not null primary key,
 	packageOffer LONG,
+	startDate LONG,
 	userId LONG,
 	phoneId LONG
 );

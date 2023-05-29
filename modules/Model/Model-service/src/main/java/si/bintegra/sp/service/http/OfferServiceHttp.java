@@ -82,9 +82,90 @@ public class OfferServiceHttp {
 		}
 	}
 
+	public static si.bintegra.sp.model.Offer findById(
+			HttpPrincipal httpPrincipal, Long id)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				OfferServiceUtil.class, "findById", _findByIdParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, id);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						si.bintegra.sp.exception.NoSuchOfferException) {
+
+					throw (si.bintegra.sp.exception.NoSuchOfferException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (si.bintegra.sp.model.Offer)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static si.bintegra.sp.model.Offer addOffer(
+		HttpPrincipal httpPrincipal, String title, String type,
+		String description, Boolean active, Long mobileData, Long mobileMinutes,
+		Long mobileSms, Long programsNumber, Long defaultNumberOfTvs,
+		Long downloadSpeed, Long uploadSpeed) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				OfferServiceUtil.class, "addOffer", _addOfferParameterTypes2);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, title, type, description, active, mobileData,
+				mobileMinutes, mobileSms, programsNumber, defaultNumberOfTvs,
+				downloadSpeed, uploadSpeed);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (si.bintegra.sp.model.Offer)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(OfferServiceHttp.class);
 
 	private static final Class<?>[] _findActiveByTypeParameterTypes0 =
 		new Class[] {String.class};
+	private static final Class<?>[] _findByIdParameterTypes1 = new Class[] {
+		Long.class
+	};
+	private static final Class<?>[] _addOfferParameterTypes2 = new Class[] {
+		String.class, String.class, String.class, Boolean.class, Long.class,
+		Long.class, Long.class, Long.class, Long.class, Long.class, Long.class
+	};
 
 }

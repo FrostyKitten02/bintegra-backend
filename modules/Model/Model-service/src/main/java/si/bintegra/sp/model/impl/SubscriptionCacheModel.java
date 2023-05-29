@@ -61,12 +61,14 @@ public class SubscriptionCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{id=");
 		sb.append(id);
 		sb.append(", packageOffer=");
 		sb.append(packageOffer);
+		sb.append(", startDate=");
+		sb.append(startDate);
 		sb.append(", userId=");
 		sb.append(userId);
 		sb.append(", phoneId=");
@@ -82,6 +84,7 @@ public class SubscriptionCacheModel
 
 		subscriptionImpl.setId(id);
 		subscriptionImpl.setPackageOffer(packageOffer);
+		subscriptionImpl.setStartDate(startDate);
 		subscriptionImpl.setUserId(userId);
 		subscriptionImpl.setPhoneId(phoneId);
 
@@ -96,6 +99,8 @@ public class SubscriptionCacheModel
 
 		packageOffer = objectInput.readLong();
 
+		startDate = objectInput.readLong();
+
 		userId = objectInput.readLong();
 
 		phoneId = objectInput.readLong();
@@ -107,6 +112,8 @@ public class SubscriptionCacheModel
 
 		objectOutput.writeLong(packageOffer);
 
+		objectOutput.writeLong(startDate);
+
 		objectOutput.writeLong(userId);
 
 		objectOutput.writeLong(phoneId);
@@ -114,6 +121,7 @@ public class SubscriptionCacheModel
 
 	public long id;
 	public long packageOffer;
+	public long startDate;
 	public long userId;
 	public long phoneId;
 

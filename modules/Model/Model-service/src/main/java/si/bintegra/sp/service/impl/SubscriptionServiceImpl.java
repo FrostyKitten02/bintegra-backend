@@ -35,9 +35,9 @@ import java.util.List;
 )
 public class SubscriptionServiceImpl extends SubscriptionServiceBaseImpl {
 
-	public Subscription addSubscription(Long packageOfferId, Long userId, Long phoneId) {
+	public Subscription addSubscription(Long packageOfferId, Long userId, Long phoneId, Long startDate) {
 		//TODO add permissions check!!
-		return subscriptionLocalService.addSubscription(packageOfferId, userId, phoneId);
+		return subscriptionLocalService.addSubscription(packageOfferId, userId, phoneId, startDate);
 	}
 
 	public List<Subscription> findSubscriptionsByUserId(Long userId) {

@@ -60,6 +60,18 @@ public class OfferLocalServiceUtil {
 		return getService().addOffer(offer);
 	}
 
+	public static Offer addOffer(
+		String title, String type, String description, Boolean active,
+		Long mobileData, Long mobileMinutes, Long mobileSms,
+		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
+		Long uploadSpeed) {
+
+		return getService().addOffer(
+			title, type, description, active, mobileData, mobileMinutes,
+			mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed,
+			uploadSpeed);
+	}
+
 	/**
 	 * Creates a new offer with the primary key. Does not add the offer to the database.
 	 *
@@ -210,6 +222,16 @@ public class OfferLocalServiceUtil {
 
 	public static List<Offer> findActiveByType(String type) {
 		return getService().findActiveByType(type);
+	}
+
+	public static Offer findById(long id)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().findById(id);
+	}
+
+	public static List<Offer> findByType(String type) {
+		return getService().findByType(type);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery

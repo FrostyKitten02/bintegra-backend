@@ -122,11 +122,13 @@ public class SubscriptionPersistenceTest {
 
 		Subscription newSubscription = _persistence.create(pk);
 
-		newSubscription.setPackageOffer(RandomTestUtil.nextLong());
+		newSubscription.setPackageOffer();
 
-		newSubscription.setUserId(RandomTestUtil.nextLong());
+		newSubscription.setStartDate();
 
-		newSubscription.setPhoneId(RandomTestUtil.nextLong());
+		newSubscription.setUserId();
+
+		newSubscription.setPhoneId();
 
 		_subscriptions.add(_persistence.update(newSubscription));
 
@@ -139,6 +141,9 @@ public class SubscriptionPersistenceTest {
 			existingSubscription.getPackageOffer(),
 			newSubscription.getPackageOffer());
 		Assert.assertEquals(
+			existingSubscription.getStartDate(),
+			newSubscription.getStartDate());
+		Assert.assertEquals(
 			existingSubscription.getUserId(), newSubscription.getUserId());
 		Assert.assertEquals(
 			existingSubscription.getPhoneId(), newSubscription.getPhoneId());
@@ -146,16 +151,16 @@ public class SubscriptionPersistenceTest {
 
 	@Test
 	public void testCountBypackageOffer() throws Exception {
-		_persistence.countBypackageOffer(RandomTestUtil.nextLong());
+		_persistence.countBypackageOffer((Long)null);
 
-		_persistence.countBypackageOffer(0L);
+		_persistence.countBypackageOffer((Long)null);
 	}
 
 	@Test
 	public void testCountByuserId() throws Exception {
-		_persistence.countByuserId(RandomTestUtil.nextLong());
+		_persistence.countByuserId((Long)null);
 
-		_persistence.countByuserId(0L);
+		_persistence.countByuserId((Long)null);
 	}
 
 	@Test
@@ -183,8 +188,8 @@ public class SubscriptionPersistenceTest {
 
 	protected OrderByComparator<Subscription> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
-			"SP_Subscription", "id", true, "packageOffer", true, "userId", true,
-			"phoneId", true);
+			"SP_Subscription", "id", true, "packageOffer", true, "startDate",
+			true, "userId", true, "phoneId", true);
 	}
 
 	@Test
@@ -400,11 +405,13 @@ public class SubscriptionPersistenceTest {
 
 		Subscription subscription = _persistence.create(pk);
 
-		subscription.setPackageOffer(RandomTestUtil.nextLong());
+		subscription.setPackageOffer();
 
-		subscription.setUserId(RandomTestUtil.nextLong());
+		subscription.setStartDate();
 
-		subscription.setPhoneId(RandomTestUtil.nextLong());
+		subscription.setUserId();
+
+		subscription.setPhoneId();
 
 		_subscriptions.add(_persistence.update(subscription));
 

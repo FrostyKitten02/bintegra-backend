@@ -22,10 +22,15 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import com.sun.tools.javac.util.Pair;
+
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import si.bintegra.sp.exception.NoSuchOfferException;
+import si.bintegra.sp.exception.NoSuchPackageOfferException;
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 
 /**
@@ -51,7 +56,17 @@ public interface PackageOfferService extends BaseService {
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>si.bintegra.sp.service.impl.PackageOfferServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the package offer remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PackageOfferServiceUtil} if injection and service tracking are not available.
 	 */
-	public List<PackageOffer> findActiveByPackageId(Long id);
+	public PackageOffer createPackageOffer(
+			Long offerId, Long fullDuration, Long discountDuration,
+			Double discountPrice, Double basePrice, Boolean active)
+		throws NoSuchOfferException;
+
+	public List<PackageOffer> findActiveByOfferId(Long id);
+
+	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type)
+		throws NoSuchOfferException;
+
+	public PackageOffer findById(Long id) throws NoSuchPackageOfferException;
 
 	/**
 	 * Returns the OSGi service identifier.

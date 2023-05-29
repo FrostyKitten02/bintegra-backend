@@ -18,14 +18,11 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -73,7 +70,8 @@ public class SubscriptionModelImpl
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"id_", Types.BIGINT}, {"packageOffer", Types.BIGINT},
-		{"userId", Types.BIGINT}, {"phoneId", Types.BIGINT}
+		{"startDate", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"phoneId", Types.BIGINT}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -82,12 +80,13 @@ public class SubscriptionModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("id_", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("packageOffer", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("startDate", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("phoneId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SP_Subscription (id_ LONG not null primary key,packageOffer LONG,userId LONG,phoneId LONG)";
+		"create table SP_Subscription (id_ LONG not null primary key,packageOffer LONG,startDate LONG,userId LONG,phoneId LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table SP_Subscription";
 
@@ -239,6 +238,10 @@ public class SubscriptionModelImpl
 		attributeSetterBiConsumers.put(
 			"packageOffer",
 			(BiConsumer<Subscription, Long>)Subscription::setPackageOffer);
+		attributeGetterFunctions.put("startDate", Subscription::getStartDate);
+		attributeSetterBiConsumers.put(
+			"startDate",
+			(BiConsumer<Subscription, Long>)Subscription::setStartDate);
 		attributeGetterFunctions.put("userId", Subscription::getUserId);
 		attributeSetterBiConsumers.put(
 			"userId", (BiConsumer<Subscription, Long>)Subscription::setUserId);
@@ -270,12 +273,12 @@ public class SubscriptionModelImpl
 
 	@JSON
 	@Override
-	public long getPackageOffer() {
+	public Long getPackageOffer() {
 		return _packageOffer;
 	}
 
 	@Override
-	public void setPackageOffer(long packageOffer) {
+	public void setPackageOffer(Long packageOffer) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -288,19 +291,34 @@ public class SubscriptionModelImpl
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public long getOriginalPackageOffer() {
+	public Long getOriginalPackageOffer() {
 		return GetterUtil.getLong(
 			this.<Long>getColumnOriginalValue("packageOffer"));
 	}
 
 	@JSON
 	@Override
-	public long getUserId() {
+	public Long getStartDate() {
+		return _startDate;
+	}
+
+	@Override
+	public void setStartDate(Long startDate) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_startDate = startDate;
+	}
+
+	@JSON
+	@Override
+	public Long getUserId() {
 		return _userId;
 	}
 
 	@Override
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -308,39 +326,23 @@ public class SubscriptionModelImpl
 		_userId = userId;
 	}
 
-	@Override
-	public String getUserUuid() {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException portalException) {
-			return "";
-		}
-	}
-
-	@Override
-	public void setUserUuid(String userUuid) {
-	}
-
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public long getOriginalUserId() {
+	public Long getOriginalUserId() {
 		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("userId"));
 	}
 
 	@JSON
 	@Override
-	public long getPhoneId() {
+	public Long getPhoneId() {
 		return _phoneId;
 	}
 
 	@Override
-	public void setPhoneId(long phoneId) {
+	public void setPhoneId(Long phoneId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -406,6 +408,7 @@ public class SubscriptionModelImpl
 
 		subscriptionImpl.setId(getId());
 		subscriptionImpl.setPackageOffer(getPackageOffer());
+		subscriptionImpl.setStartDate(getStartDate());
 		subscriptionImpl.setUserId(getUserId());
 		subscriptionImpl.setPhoneId(getPhoneId());
 
@@ -421,6 +424,8 @@ public class SubscriptionModelImpl
 		subscriptionImpl.setId(this.<Long>getColumnOriginalValue("id_"));
 		subscriptionImpl.setPackageOffer(
 			this.<Long>getColumnOriginalValue("packageOffer"));
+		subscriptionImpl.setStartDate(
+			this.<Long>getColumnOriginalValue("startDate"));
 		subscriptionImpl.setUserId(this.<Long>getColumnOriginalValue("userId"));
 		subscriptionImpl.setPhoneId(
 			this.<Long>getColumnOriginalValue("phoneId"));
@@ -508,11 +513,29 @@ public class SubscriptionModelImpl
 
 		subscriptionCacheModel.id = getId();
 
-		subscriptionCacheModel.packageOffer = getPackageOffer();
+		Long packageOffer = getPackageOffer();
 
-		subscriptionCacheModel.userId = getUserId();
+		if (packageOffer != null) {
+			subscriptionCacheModel.packageOffer = packageOffer;
+		}
 
-		subscriptionCacheModel.phoneId = getPhoneId();
+		Long startDate = getStartDate();
+
+		if (startDate != null) {
+			subscriptionCacheModel.startDate = startDate;
+		}
+
+		Long userId = getUserId();
+
+		if (userId != null) {
+			subscriptionCacheModel.userId = userId;
+		}
+
+		Long phoneId = getPhoneId();
+
+		if (phoneId != null) {
+			subscriptionCacheModel.phoneId = phoneId;
+		}
 
 		return subscriptionCacheModel;
 	}
@@ -576,9 +599,10 @@ public class SubscriptionModelImpl
 	}
 
 	private long _id;
-	private long _packageOffer;
-	private long _userId;
-	private long _phoneId;
+	private Long _packageOffer;
+	private Long _startDate;
+	private Long _userId;
+	private Long _phoneId;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -611,6 +635,7 @@ public class SubscriptionModelImpl
 
 		_columnOriginalValues.put("id_", _id);
 		_columnOriginalValues.put("packageOffer", _packageOffer);
+		_columnOriginalValues.put("startDate", _startDate);
 		_columnOriginalValues.put("userId", _userId);
 		_columnOriginalValues.put("phoneId", _phoneId);
 	}
@@ -640,9 +665,11 @@ public class SubscriptionModelImpl
 
 		columnBitmasks.put("packageOffer", 2L);
 
-		columnBitmasks.put("userId", 4L);
+		columnBitmasks.put("startDate", 4L);
 
-		columnBitmasks.put("phoneId", 8L);
+		columnBitmasks.put("userId", 8L);
+
+		columnBitmasks.put("phoneId", 16L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

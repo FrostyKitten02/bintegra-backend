@@ -69,7 +69,7 @@ public class PackageOfferModelImpl
 	public static final String TABLE_NAME = "SP_PackageOffer";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"id_", Types.BIGINT}, {"packageId", Types.BIGINT},
+		{"id_", Types.BIGINT}, {"offerId", Types.BIGINT},
 		{"fullDuration", Types.BIGINT}, {"discountDuration", Types.BIGINT},
 		{"basePrice", Types.DOUBLE}, {"discountPrice", Types.DOUBLE},
 		{"active_", Types.BOOLEAN}
@@ -80,7 +80,7 @@ public class PackageOfferModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("id_", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("packageId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("offerId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("fullDuration", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("discountDuration", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("basePrice", Types.DOUBLE);
@@ -89,7 +89,7 @@ public class PackageOfferModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SP_PackageOffer (id_ LONG not null primary key,packageId LONG,fullDuration LONG,discountDuration LONG,basePrice DOUBLE,discountPrice DOUBLE,active_ BOOLEAN)";
+		"create table SP_PackageOffer (id_ LONG not null primary key,offerId LONG,fullDuration LONG,discountDuration LONG,basePrice DOUBLE,discountPrice DOUBLE,active_ BOOLEAN)";
 
 	public static final String TABLE_SQL_DROP = "drop table SP_PackageOffer";
 
@@ -114,14 +114,13 @@ public class PackageOfferModelImpl
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long PACKAGEID_COLUMN_BITMASK = 2L;
+	public static final long ID_COLUMN_BITMASK = 2L;
 
 	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *		#getColumnBitmask(String)}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long ID_COLUMN_BITMASK = 4L;
+	public static final long OFFERID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
@@ -236,10 +235,10 @@ public class PackageOfferModelImpl
 		attributeGetterFunctions.put("id", PackageOffer::getId);
 		attributeSetterBiConsumers.put(
 			"id", (BiConsumer<PackageOffer, Long>)PackageOffer::setId);
-		attributeGetterFunctions.put("packageId", PackageOffer::getPackageId);
+		attributeGetterFunctions.put("offerId", PackageOffer::getOfferId);
 		attributeSetterBiConsumers.put(
-			"packageId",
-			(BiConsumer<PackageOffer, Long>)PackageOffer::setPackageId);
+			"offerId",
+			(BiConsumer<PackageOffer, Long>)PackageOffer::setOfferId);
 		attributeGetterFunctions.put(
 			"fullDuration", PackageOffer::getFullDuration);
 		attributeSetterBiConsumers.put(
@@ -285,19 +284,28 @@ public class PackageOfferModelImpl
 		_id = id;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #getColumnOriginalValue(String)}
+	 */
+	@Deprecated
+	public long getOriginalId() {
+		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("id_"));
+	}
+
 	@JSON
 	@Override
-	public long getPackageId() {
-		return _packageId;
+	public Long getOfferId() {
+		return _offerId;
 	}
 
 	@Override
-	public void setPackageId(long packageId) {
+	public void setOfferId(Long offerId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_packageId = packageId;
+		_offerId = offerId;
 	}
 
 	/**
@@ -305,19 +313,18 @@ public class PackageOfferModelImpl
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public long getOriginalPackageId() {
-		return GetterUtil.getLong(
-			this.<Long>getColumnOriginalValue("packageId"));
+	public Long getOriginalOfferId() {
+		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("offerId"));
 	}
 
 	@JSON
 	@Override
-	public long getFullDuration() {
+	public Long getFullDuration() {
 		return _fullDuration;
 	}
 
 	@Override
-	public void setFullDuration(long fullDuration) {
+	public void setFullDuration(Long fullDuration) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -327,12 +334,12 @@ public class PackageOfferModelImpl
 
 	@JSON
 	@Override
-	public long getDiscountDuration() {
+	public Long getDiscountDuration() {
 		return _discountDuration;
 	}
 
 	@Override
-	public void setDiscountDuration(long discountDuration) {
+	public void setDiscountDuration(Long discountDuration) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -342,12 +349,12 @@ public class PackageOfferModelImpl
 
 	@JSON
 	@Override
-	public double getBasePrice() {
+	public Double getBasePrice() {
 		return _basePrice;
 	}
 
 	@Override
-	public void setBasePrice(double basePrice) {
+	public void setBasePrice(Double basePrice) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -357,12 +364,12 @@ public class PackageOfferModelImpl
 
 	@JSON
 	@Override
-	public double getDiscountPrice() {
+	public Double getDiscountPrice() {
 		return _discountPrice;
 	}
 
 	@Override
-	public void setDiscountPrice(double discountPrice) {
+	public void setDiscountPrice(Double discountPrice) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -372,18 +379,12 @@ public class PackageOfferModelImpl
 
 	@JSON
 	@Override
-	public boolean getActive() {
-		return _active;
-	}
-
-	@JSON
-	@Override
-	public boolean isActive() {
+	public Boolean getActive() {
 		return _active;
 	}
 
 	@Override
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -396,7 +397,7 @@ public class PackageOfferModelImpl
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public boolean getOriginalActive() {
+	public Boolean getOriginalActive() {
 		return GetterUtil.getBoolean(
 			this.<Boolean>getColumnOriginalValue("active_"));
 	}
@@ -458,12 +459,12 @@ public class PackageOfferModelImpl
 		PackageOfferImpl packageOfferImpl = new PackageOfferImpl();
 
 		packageOfferImpl.setId(getId());
-		packageOfferImpl.setPackageId(getPackageId());
+		packageOfferImpl.setOfferId(getOfferId());
 		packageOfferImpl.setFullDuration(getFullDuration());
 		packageOfferImpl.setDiscountDuration(getDiscountDuration());
 		packageOfferImpl.setBasePrice(getBasePrice());
 		packageOfferImpl.setDiscountPrice(getDiscountPrice());
-		packageOfferImpl.setActive(isActive());
+		packageOfferImpl.setActive(getActive());
 
 		packageOfferImpl.resetOriginalValues();
 
@@ -475,8 +476,8 @@ public class PackageOfferModelImpl
 		PackageOfferImpl packageOfferImpl = new PackageOfferImpl();
 
 		packageOfferImpl.setId(this.<Long>getColumnOriginalValue("id_"));
-		packageOfferImpl.setPackageId(
-			this.<Long>getColumnOriginalValue("packageId"));
+		packageOfferImpl.setOfferId(
+			this.<Long>getColumnOriginalValue("offerId"));
 		packageOfferImpl.setFullDuration(
 			this.<Long>getColumnOriginalValue("fullDuration"));
 		packageOfferImpl.setDiscountDuration(
@@ -571,17 +572,41 @@ public class PackageOfferModelImpl
 
 		packageOfferCacheModel.id = getId();
 
-		packageOfferCacheModel.packageId = getPackageId();
+		Long offerId = getOfferId();
 
-		packageOfferCacheModel.fullDuration = getFullDuration();
+		if (offerId != null) {
+			packageOfferCacheModel.offerId = offerId;
+		}
 
-		packageOfferCacheModel.discountDuration = getDiscountDuration();
+		Long fullDuration = getFullDuration();
 
-		packageOfferCacheModel.basePrice = getBasePrice();
+		if (fullDuration != null) {
+			packageOfferCacheModel.fullDuration = fullDuration;
+		}
 
-		packageOfferCacheModel.discountPrice = getDiscountPrice();
+		Long discountDuration = getDiscountDuration();
 
-		packageOfferCacheModel.active = isActive();
+		if (discountDuration != null) {
+			packageOfferCacheModel.discountDuration = discountDuration;
+		}
+
+		Double basePrice = getBasePrice();
+
+		if (basePrice != null) {
+			packageOfferCacheModel.basePrice = basePrice;
+		}
+
+		Double discountPrice = getDiscountPrice();
+
+		if (discountPrice != null) {
+			packageOfferCacheModel.discountPrice = discountPrice;
+		}
+
+		Boolean active = getActive();
+
+		if (active != null) {
+			packageOfferCacheModel.active = active;
+		}
 
 		return packageOfferCacheModel;
 	}
@@ -645,12 +670,12 @@ public class PackageOfferModelImpl
 	}
 
 	private long _id;
-	private long _packageId;
-	private long _fullDuration;
-	private long _discountDuration;
-	private double _basePrice;
-	private double _discountPrice;
-	private boolean _active;
+	private Long _offerId;
+	private Long _fullDuration;
+	private Long _discountDuration;
+	private Double _basePrice;
+	private Double _discountPrice;
+	private Boolean _active;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -682,7 +707,7 @@ public class PackageOfferModelImpl
 		_columnOriginalValues = new HashMap<String, Object>();
 
 		_columnOriginalValues.put("id_", _id);
-		_columnOriginalValues.put("packageId", _packageId);
+		_columnOriginalValues.put("offerId", _offerId);
 		_columnOriginalValues.put("fullDuration", _fullDuration);
 		_columnOriginalValues.put("discountDuration", _discountDuration);
 		_columnOriginalValues.put("basePrice", _basePrice);
@@ -714,7 +739,7 @@ public class PackageOfferModelImpl
 
 		columnBitmasks.put("id_", 1L);
 
-		columnBitmasks.put("packageId", 2L);
+		columnBitmasks.put("offerId", 2L);
 
 		columnBitmasks.put("fullDuration", 4L);
 

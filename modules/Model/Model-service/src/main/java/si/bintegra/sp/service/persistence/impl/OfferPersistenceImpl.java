@@ -630,7 +630,7 @@ public class OfferPersistenceImpl
 	 * @return the matching offers
 	 */
 	@Override
-	public List<Offer> findBytypeAndActive(String type, boolean active) {
+	public List<Offer> findBytypeAndActive(String type, Boolean active) {
 		return findBytypeAndActive(
 			type, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -650,7 +650,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end) {
+		String type, Boolean active, int start, int end) {
 
 		return findBytypeAndActive(type, active, start, end, null);
 	}
@@ -671,7 +671,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		OrderByComparator<Offer> orderByComparator) {
 
 		return findBytypeAndActive(
@@ -695,7 +695,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		OrderByComparator<Offer> orderByComparator, boolean useFinderCache) {
 
 		type = Objects.toString(type, "");
@@ -727,7 +727,7 @@ public class OfferPersistenceImpl
 			if ((list != null) && !list.isEmpty()) {
 				for (Offer offer : list) {
 					if (!type.equals(offer.getType()) ||
-						(active != offer.isActive())) {
+						!Objects.equals(active, offer.getActive())) {
 
 						list = null;
 
@@ -786,7 +786,7 @@ public class OfferPersistenceImpl
 					queryPos.add(type);
 				}
 
-				queryPos.add(active);
+				queryPos.add(active.booleanValue());
 
 				list = (List<Offer>)QueryUtil.list(
 					query, getDialect(), start, end);
@@ -819,7 +819,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public Offer findBytypeAndActive_First(
-			String type, boolean active,
+			String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws NoSuchOfferException {
 
@@ -855,7 +855,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public Offer fetchBytypeAndActive_First(
-		String type, boolean active,
+		String type, Boolean active,
 		OrderByComparator<Offer> orderByComparator) {
 
 		List<Offer> list = findBytypeAndActive(
@@ -879,7 +879,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public Offer findBytypeAndActive_Last(
-			String type, boolean active,
+			String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws NoSuchOfferException {
 
@@ -915,7 +915,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public Offer fetchBytypeAndActive_Last(
-		String type, boolean active,
+		String type, Boolean active,
 		OrderByComparator<Offer> orderByComparator) {
 
 		int count = countBytypeAndActive(type, active);
@@ -946,7 +946,7 @@ public class OfferPersistenceImpl
 	 */
 	@Override
 	public Offer[] findBytypeAndActive_PrevAndNext(
-			long id, String type, boolean active,
+			long id, String type, Boolean active,
 			OrderByComparator<Offer> orderByComparator)
 		throws NoSuchOfferException {
 
@@ -980,7 +980,7 @@ public class OfferPersistenceImpl
 	}
 
 	protected Offer getBytypeAndActive_PrevAndNext(
-		Session session, Offer offer, String type, boolean active,
+		Session session, Offer offer, String type, Boolean active,
 		OrderByComparator<Offer> orderByComparator, boolean previous) {
 
 		StringBundler sb = null;
@@ -1082,7 +1082,7 @@ public class OfferPersistenceImpl
 			queryPos.add(type);
 		}
 
-		queryPos.add(active);
+		queryPos.add(active.booleanValue());
 
 		if (orderByComparator != null) {
 			for (Object orderByConditionValue :
@@ -1109,7 +1109,7 @@ public class OfferPersistenceImpl
 	 * @param active the active
 	 */
 	@Override
-	public void removeBytypeAndActive(String type, boolean active) {
+	public void removeBytypeAndActive(String type, Boolean active) {
 		for (Offer offer :
 				findBytypeAndActive(
 					type, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -1126,7 +1126,7 @@ public class OfferPersistenceImpl
 	 * @return the number of matching offers
 	 */
 	@Override
-	public int countBytypeAndActive(String type, boolean active) {
+	public int countBytypeAndActive(String type, Boolean active) {
 		type = Objects.toString(type, "");
 
 		FinderPath finderPath = _finderPathCountBytypeAndActive;
@@ -1168,7 +1168,7 @@ public class OfferPersistenceImpl
 					queryPos.add(type);
 				}
 
-				queryPos.add(active);
+				queryPos.add(active.booleanValue());
 
 				count = (Long)query.uniqueResult();
 

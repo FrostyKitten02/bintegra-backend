@@ -63,7 +63,7 @@ public interface SubscriptionLocalService
 	 * Never modify this interface directly. Add custom service methods to <code>si.bintegra.sp.service.impl.SubscriptionLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the subscription local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link SubscriptionLocalServiceUtil} if injection and service tracking are not available.
 	 */
 	public Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId);
+		Long packageOfferId, Long userId, Long phoneId, Long startDate);
 
 	/**
 	 * Adds the subscription to the database. Also notifies the appropriate model listeners.

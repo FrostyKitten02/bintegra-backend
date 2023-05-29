@@ -16,11 +16,18 @@ package si.bintegra.sp.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+
+import com.sun.tools.javac.util.Pair;
 import org.osgi.service.component.annotations.Component;
 
+import org.osgi.service.component.annotations.Reference;
+import si.bintegra.sp.exception.NoSuchOfferException;
+import si.bintegra.sp.exception.NoSuchPackageOfferException;
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +39,41 @@ import java.util.List;
 )
 public class PackageOfferLocalServiceImpl
 	extends PackageOfferLocalServiceBaseImpl {
+	@Reference
+	private OfferLocalServiceImpl offerLocalService;
 
-	public List<PackageOffer> findActiveByPackageId(Long id) {
-		return packageOfferPersistence.findBypackageIdAndActive(id, true);
+	public List<PackageOffer> findActiveByOfferId(Long id) {
+		return packageOfferPersistence.findByofferIdAndActive(id, true);
+	}
+
+	public PackageOffer findById(Long id) throws NoSuchPackageOfferException {
+		return packageOfferPersistence.findByid(id);
+	}
+
+	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type) throws NoSuchOfferException {
+		List<PackageOffer> allActive  = packageOfferPersistence.findByactive(true);
+		List<Pair<Offer, PackageOffer>> result = new ArrayList<>(allActive.size());
+
+		for (PackageOffer p : allActive) {
+			Offer offer = offerLocalService.findById(p.getOfferId());
+			result.add(new Pair<>(offer, p));
+		}
+
+		return result;
+	}
+
+	public PackageOffer createPackageOffer(Long offerId, Long fullDuration, Long discountDuration, Double discountPrice, Double basePrice, Boolean active) throws NoSuchOfferException {
+		offerLocalService.findById(offerId);//checking if offer exists
+		PackageOffer packageOffer = createPackageOffer(counterLocalService.increment(PackageOffer.class.getName()));
+
+		packageOffer.setOfferId(offerId);
+		packageOffer.setFullDuration(fullDuration);
+		packageOffer.setDiscountDuration(discountDuration);
+		packageOffer.setDiscountPrice(discountPrice);
+		packageOffer.setBasePrice(basePrice);
+		packageOffer.setActive(active);
+
+		return packageOffer;
 	}
 
 }

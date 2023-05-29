@@ -21,7 +21,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.test.AssertUtils;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.transaction.Propagation;
@@ -123,17 +124,17 @@ public class PackageOfferPersistenceTest {
 
 		PackageOffer newPackageOffer = _persistence.create(pk);
 
-		newPackageOffer.setPackageId(RandomTestUtil.nextLong());
+		newPackageOffer.setOfferId();
 
-		newPackageOffer.setFullDuration(RandomTestUtil.nextLong());
+		newPackageOffer.setFullDuration();
 
-		newPackageOffer.setDiscountDuration(RandomTestUtil.nextLong());
+		newPackageOffer.setDiscountDuration();
 
-		newPackageOffer.setBasePrice(RandomTestUtil.nextDouble());
+		newPackageOffer.setBasePrice();
 
-		newPackageOffer.setDiscountPrice(RandomTestUtil.nextDouble());
+		newPackageOffer.setDiscountPrice();
 
-		newPackageOffer.setActive(RandomTestUtil.randomBoolean());
+		newPackageOffer.setActive();
 
 		_packageOffers.add(_persistence.update(newPackageOffer));
 
@@ -143,45 +144,49 @@ public class PackageOfferPersistenceTest {
 		Assert.assertEquals(
 			existingPackageOffer.getId(), newPackageOffer.getId());
 		Assert.assertEquals(
-			existingPackageOffer.getPackageId(),
-			newPackageOffer.getPackageId());
+			existingPackageOffer.getOfferId(), newPackageOffer.getOfferId());
 		Assert.assertEquals(
 			existingPackageOffer.getFullDuration(),
 			newPackageOffer.getFullDuration());
 		Assert.assertEquals(
 			existingPackageOffer.getDiscountDuration(),
 			newPackageOffer.getDiscountDuration());
-		AssertUtils.assertEquals(
+		Assert.assertEquals(
 			existingPackageOffer.getBasePrice(),
 			newPackageOffer.getBasePrice());
-		AssertUtils.assertEquals(
+		Assert.assertEquals(
 			existingPackageOffer.getDiscountPrice(),
 			newPackageOffer.getDiscountPrice());
 		Assert.assertEquals(
-			existingPackageOffer.isActive(), newPackageOffer.isActive());
+			existingPackageOffer.getActive(), newPackageOffer.getActive());
+	}
+
+	@Test
+	public void testCountByid() throws Exception {
+		_persistence.countByid(RandomTestUtil.nextLong());
+
+		_persistence.countByid(0L);
 	}
 
 	@Test
 	public void testCountByactive() throws Exception {
-		_persistence.countByactive(RandomTestUtil.randomBoolean());
+		_persistence.countByactive((Boolean)null);
 
-		_persistence.countByactive(RandomTestUtil.randomBoolean());
+		_persistence.countByactive((Boolean)null);
 	}
 
 	@Test
-	public void testCountBypackageId() throws Exception {
-		_persistence.countBypackageId(RandomTestUtil.nextLong());
+	public void testCountByofferId() throws Exception {
+		_persistence.countByofferId((Long)null);
 
-		_persistence.countBypackageId(0L);
+		_persistence.countByofferId((Long)null);
 	}
 
 	@Test
-	public void testCountBypackageIdAndActive() throws Exception {
-		_persistence.countBypackageIdAndActive(
-			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean());
+	public void testCountByofferIdAndActive() throws Exception {
+		_persistence.countByofferIdAndActive((Long)null, (Boolean)null);
 
-		_persistence.countBypackageIdAndActive(
-			0L, RandomTestUtil.randomBoolean());
+		_persistence.countByofferIdAndActive((Long)null, (Boolean)null);
 	}
 
 	@Test
@@ -209,7 +214,7 @@ public class PackageOfferPersistenceTest {
 
 	protected OrderByComparator<PackageOffer> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
-			"SP_PackageOffer", "id", true, "packageId", true, "fullDuration",
+			"SP_PackageOffer", "id", true, "offerId", true, "fullDuration",
 			true, "discountDuration", true, "basePrice", true, "discountPrice",
 			true, "active", true);
 	}
@@ -422,22 +427,79 @@ public class PackageOfferPersistenceTest {
 		Assert.assertEquals(0, result.size());
 	}
 
+	@Test
+	public void testResetOriginalValues() throws Exception {
+		PackageOffer newPackageOffer = addPackageOffer();
+
+		_persistence.clearCache();
+
+		_assertOriginalValues(
+			_persistence.findByPrimaryKey(newPackageOffer.getPrimaryKey()));
+	}
+
+	@Test
+	public void testResetOriginalValuesWithDynamicQueryLoadFromDatabase()
+		throws Exception {
+
+		_testResetOriginalValuesWithDynamicQuery(true);
+	}
+
+	@Test
+	public void testResetOriginalValuesWithDynamicQueryLoadFromSession()
+		throws Exception {
+
+		_testResetOriginalValuesWithDynamicQuery(false);
+	}
+
+	private void _testResetOriginalValuesWithDynamicQuery(boolean clearSession)
+		throws Exception {
+
+		PackageOffer newPackageOffer = addPackageOffer();
+
+		if (clearSession) {
+			Session session = _persistence.openSession();
+
+			session.flush();
+
+			session.clear();
+		}
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			PackageOffer.class, _dynamicQueryClassLoader);
+
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq("id", newPackageOffer.getId()));
+
+		List<PackageOffer> result = _persistence.findWithDynamicQuery(
+			dynamicQuery);
+
+		_assertOriginalValues(result.get(0));
+	}
+
+	private void _assertOriginalValues(PackageOffer packageOffer) {
+		Assert.assertEquals(
+			Long.valueOf(packageOffer.getId()),
+			ReflectionTestUtil.<Long>invoke(
+				packageOffer, "getColumnOriginalValue",
+				new Class<?>[] {String.class}, "id_"));
+	}
+
 	protected PackageOffer addPackageOffer() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
 		PackageOffer packageOffer = _persistence.create(pk);
 
-		packageOffer.setPackageId(RandomTestUtil.nextLong());
+		packageOffer.setOfferId();
 
-		packageOffer.setFullDuration(RandomTestUtil.nextLong());
+		packageOffer.setFullDuration();
 
-		packageOffer.setDiscountDuration(RandomTestUtil.nextLong());
+		packageOffer.setDiscountDuration();
 
-		packageOffer.setBasePrice(RandomTestUtil.nextDouble());
+		packageOffer.setBasePrice();
 
-		packageOffer.setDiscountPrice(RandomTestUtil.nextDouble());
+		packageOffer.setDiscountPrice();
 
-		packageOffer.setActive(RandomTestUtil.randomBoolean());
+		packageOffer.setActive();
 
 		_packageOffers.add(_persistence.update(packageOffer));
 

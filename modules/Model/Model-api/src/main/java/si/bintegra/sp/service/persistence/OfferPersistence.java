@@ -191,7 +191,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the matching offers
 	 */
 	public java.util.List<Offer> findBytypeAndActive(
-		String type, boolean active);
+		String type, Boolean active);
 
 	/**
 	 * Returns a range of all the offers where type = &#63; and active = &#63;.
@@ -207,7 +207,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the range of matching offers
 	 */
 	public java.util.List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end);
+		String type, Boolean active, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the offers where type = &#63; and active = &#63;.
@@ -224,7 +224,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the ordered range of matching offers
 	 */
 	public java.util.List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Offer>
 			orderByComparator);
 
@@ -244,7 +244,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the ordered range of matching offers
 	 */
 	public java.util.List<Offer> findBytypeAndActive(
-		String type, boolean active, int start, int end,
+		String type, Boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Offer>
 			orderByComparator,
 		boolean useFinderCache);
@@ -259,7 +259,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @throws NoSuchOfferException if a matching offer could not be found
 	 */
 	public Offer findBytypeAndActive_First(
-			String type, boolean active,
+			String type, Boolean active,
 			com.liferay.portal.kernel.util.OrderByComparator<Offer>
 				orderByComparator)
 		throws NoSuchOfferException;
@@ -273,7 +273,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the first matching offer, or <code>null</code> if a matching offer could not be found
 	 */
 	public Offer fetchBytypeAndActive_First(
-		String type, boolean active,
+		String type, Boolean active,
 		com.liferay.portal.kernel.util.OrderByComparator<Offer>
 			orderByComparator);
 
@@ -287,7 +287,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @throws NoSuchOfferException if a matching offer could not be found
 	 */
 	public Offer findBytypeAndActive_Last(
-			String type, boolean active,
+			String type, Boolean active,
 			com.liferay.portal.kernel.util.OrderByComparator<Offer>
 				orderByComparator)
 		throws NoSuchOfferException;
@@ -301,7 +301,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @return the last matching offer, or <code>null</code> if a matching offer could not be found
 	 */
 	public Offer fetchBytypeAndActive_Last(
-		String type, boolean active,
+		String type, Boolean active,
 		com.liferay.portal.kernel.util.OrderByComparator<Offer>
 			orderByComparator);
 
@@ -316,7 +316,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @throws NoSuchOfferException if a offer with the primary key could not be found
 	 */
 	public Offer[] findBytypeAndActive_PrevAndNext(
-			long id, String type, boolean active,
+			long id, String type, Boolean active,
 			com.liferay.portal.kernel.util.OrderByComparator<Offer>
 				orderByComparator)
 		throws NoSuchOfferException;
@@ -327,7 +327,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @param type the type
 	 * @param active the active
 	 */
-	public void removeBytypeAndActive(String type, boolean active);
+	public void removeBytypeAndActive(String type, Boolean active);
 
 	/**
 	 * Returns the number of offers where type = &#63; and active = &#63;.
@@ -336,7 +336,7 @@ public interface OfferPersistence extends BasePersistence<Offer> {
 	 * @param active the active
 	 * @return the number of matching offers
 	 */
-	public int countBytypeAndActive(String type, boolean active);
+	public int countBytypeAndActive(String type, Boolean active);
 
 	/**
 	 * Caches the offer in the entity cache if it is enabled.

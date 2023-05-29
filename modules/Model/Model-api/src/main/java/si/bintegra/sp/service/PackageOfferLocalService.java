@@ -31,12 +31,17 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.sun.tools.javac.util.Pair;
+
 import java.io.Serializable;
 
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import si.bintegra.sp.exception.NoSuchOfferException;
+import si.bintegra.sp.exception.NoSuchPackageOfferException;
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 
 /**
@@ -84,6 +89,11 @@ public interface PackageOfferLocalService
 	 */
 	@Transactional(enabled = false)
 	public PackageOffer createPackageOffer(long id);
+
+	public PackageOffer createPackageOffer(
+			Long offerId, Long fullDuration, Long discountDuration,
+			Double discountPrice, Double basePrice, Boolean active)
+		throws NoSuchOfferException;
 
 	/**
 	 * @throws PortalException
@@ -200,7 +210,12 @@ public interface PackageOfferLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PackageOffer fetchPackageOffer(long id);
 
-	public List<PackageOffer> findActiveByPackageId(Long id);
+	public List<PackageOffer> findActiveByOfferId(Long id);
+
+	public List<Pair<Offer, PackageOffer>> findActiveByOfferType(String type)
+		throws NoSuchOfferException;
+
+	public PackageOffer findById(Long id) throws NoSuchPackageOfferException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

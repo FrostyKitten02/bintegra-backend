@@ -52,7 +52,7 @@ public interface SubscriptionService extends BaseService {
 	 * Never modify this interface directly. Add custom service methods to <code>si.bintegra.sp.service.impl.SubscriptionServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the subscription remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link SubscriptionServiceUtil} if injection and service tracking are not available.
 	 */
 	public Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId);
+		Long packageOfferId, Long userId, Long phoneId, Long startDate);
 
 	public List<Subscription> findSubscriptionsByUserId(Long userId);
 

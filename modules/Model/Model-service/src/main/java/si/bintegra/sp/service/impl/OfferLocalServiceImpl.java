@@ -14,10 +14,12 @@
 
 package si.bintegra.sp.service.impl;
 
+import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.aop.AopService;
 
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.base.OfferLocalServiceBaseImpl;
 
@@ -33,5 +35,32 @@ import java.util.List;
 public class OfferLocalServiceImpl extends OfferLocalServiceBaseImpl {
 	public List<Offer> findActiveByType(String type) {
 		return offerPersistence.findBytypeAndActive(type, true);
+	}
+
+	public Offer findById(long id) throws NoSuchOfferException {
+		return offerPersistence.findByPrimaryKey(id);
+	}
+
+	public Offer addOffer(String title, String type, String description, Boolean active, Long mobileData, Long mobileMinutes, Long mobileSms, Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed, Long uploadSpeed) {
+		long newId = counterLocalService.increment();
+		Offer offer = offerPersistence.create(newId);
+
+		offer.setTitle(title);
+		offer.setType(type);
+		offer.setDescription(description);
+		offer.setActive(active);
+		offer.setMobileData(mobileData);
+		offer.setMobileMinutes(mobileMinutes);
+		offer.setMobileSms(mobileSms);
+		offer.setProgramsNumber(programsNumber);
+		offer.setDefaultNumberOfTvs(defaultNumberOfTvs);
+		offer.setDownloadSpeed(downloadSpeed);
+		offer.setUploadSpeed(uploadSpeed);
+
+		return offerPersistence.update(offer);
+	}
+
+	public List<Offer> findByType(String type) {
+		return offerPersistence.findBytype(type);
 	}
 }

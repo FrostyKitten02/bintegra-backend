@@ -37,8 +37,33 @@ public class PackageOfferServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.PackageOfferServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static List<PackageOffer> findActiveByPackageId(Long id) {
-		return getService().findActiveByPackageId(id);
+	public static PackageOffer createPackageOffer(
+			Long offerId, Long fullDuration, Long discountDuration,
+			Double discountPrice, Double basePrice, Boolean active)
+		throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().createPackageOffer(
+			offerId, fullDuration, discountDuration, discountPrice, basePrice,
+			active);
+	}
+
+	public static List<PackageOffer> findActiveByOfferId(Long id) {
+		return getService().findActiveByOfferId(id);
+	}
+
+	public static List
+		<com.sun.tools.javac.util.Pair
+			<si.bintegra.sp.model.Offer, PackageOffer>> findActiveByOfferType(
+					String type)
+				throws si.bintegra.sp.exception.NoSuchOfferException {
+
+		return getService().findActiveByOfferType(type);
+	}
+
+	public static PackageOffer findById(Long id)
+		throws si.bintegra.sp.exception.NoSuchPackageOfferException {
+
+		return getService().findById(id);
 	}
 
 	/**

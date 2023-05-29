@@ -71,56 +71,56 @@ public interface SubscriptionModel extends BaseModel<Subscription> {
 	 *
 	 * @return the package offer of this subscription
 	 */
-	public long getPackageOffer();
+	public Long getPackageOffer();
 
 	/**
 	 * Sets the package offer of this subscription.
 	 *
 	 * @param packageOffer the package offer of this subscription
 	 */
-	public void setPackageOffer(long packageOffer);
+	public void setPackageOffer(Long packageOffer);
+
+	/**
+	 * Returns the start date of this subscription.
+	 *
+	 * @return the start date of this subscription
+	 */
+	public Long getStartDate();
+
+	/**
+	 * Sets the start date of this subscription.
+	 *
+	 * @param startDate the start date of this subscription
+	 */
+	public void setStartDate(Long startDate);
 
 	/**
 	 * Returns the user ID of this subscription.
 	 *
 	 * @return the user ID of this subscription
 	 */
-	public long getUserId();
+	public Long getUserId();
 
 	/**
 	 * Sets the user ID of this subscription.
 	 *
 	 * @param userId the user ID of this subscription
 	 */
-	public void setUserId(long userId);
-
-	/**
-	 * Returns the user uuid of this subscription.
-	 *
-	 * @return the user uuid of this subscription
-	 */
-	public String getUserUuid();
-
-	/**
-	 * Sets the user uuid of this subscription.
-	 *
-	 * @param userUuid the user uuid of this subscription
-	 */
-	public void setUserUuid(String userUuid);
+	public void setUserId(Long userId);
 
 	/**
 	 * Returns the phone ID of this subscription.
 	 *
 	 * @return the phone ID of this subscription
 	 */
-	public long getPhoneId();
+	public Long getPhoneId();
 
 	/**
 	 * Sets the phone ID of this subscription.
 	 *
 	 * @param phoneId the phone ID of this subscription
 	 */
-	public void setPhoneId(long phoneId);
+	public void setPhoneId(Long phoneId);
 
 	@Override
 	public Subscription cloneWithOriginalValues();

@@ -42,6 +42,7 @@ import java.lang.reflect.InvocationHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.sql.DataSource;
@@ -103,7 +104,7 @@ public class SubscriptionPersistenceImpl
 	 * @return the matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findBypackageOffer(long packageOffer) {
+	public List<Subscription> findBypackageOffer(Long packageOffer) {
 		return findBypackageOffer(
 			packageOffer, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -122,7 +123,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end) {
+		Long packageOffer, int start, int end) {
 
 		return findBypackageOffer(packageOffer, start, end, null);
 	}
@@ -142,7 +143,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
 		return findBypackageOffer(
@@ -165,7 +166,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public List<Subscription> findBypackageOffer(
-		long packageOffer, int start, int end,
+		Long packageOffer, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
@@ -195,7 +196,9 @@ public class SubscriptionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Subscription subscription : list) {
-					if (packageOffer != subscription.getPackageOffer()) {
+					if (!Objects.equals(
+							packageOffer, subscription.getPackageOffer())) {
+
 						list = null;
 
 						break;
@@ -238,7 +241,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(packageOffer);
+				queryPos.add(packageOffer.longValue());
 
 				list = (List<Subscription>)QueryUtil.list(
 					query, getDialect(), start, end);
@@ -270,7 +273,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription findBypackageOffer_First(
-			long packageOffer,
+			Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
@@ -302,7 +305,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription fetchBypackageOffer_First(
-		long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
 
 		List<Subscription> list = findBypackageOffer(
 			packageOffer, 0, 1, orderByComparator);
@@ -324,7 +327,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription findBypackageOffer_Last(
-			long packageOffer,
+			Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
@@ -356,7 +359,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription fetchBypackageOffer_Last(
-		long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
 
 		int count = countBypackageOffer(packageOffer);
 
@@ -385,7 +388,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription[] findBypackageOffer_PrevAndNext(
-			long id, long packageOffer,
+			long id, Long packageOffer,
 			OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
@@ -417,7 +420,7 @@ public class SubscriptionPersistenceImpl
 	}
 
 	protected Subscription getBypackageOffer_PrevAndNext(
-		Session session, Subscription subscription, long packageOffer,
+		Session session, Subscription subscription, Long packageOffer,
 		OrderByComparator<Subscription> orderByComparator, boolean previous) {
 
 		StringBundler sb = null;
@@ -504,7 +507,7 @@ public class SubscriptionPersistenceImpl
 
 		QueryPos queryPos = QueryPos.getInstance(query);
 
-		queryPos.add(packageOffer);
+		queryPos.add(packageOffer.longValue());
 
 		if (orderByComparator != null) {
 			for (Object orderByConditionValue :
@@ -530,7 +533,7 @@ public class SubscriptionPersistenceImpl
 	 * @param packageOffer the package offer
 	 */
 	@Override
-	public void removeBypackageOffer(long packageOffer) {
+	public void removeBypackageOffer(Long packageOffer) {
 		for (Subscription subscription :
 				findBypackageOffer(
 					packageOffer, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -546,7 +549,7 @@ public class SubscriptionPersistenceImpl
 	 * @return the number of matching subscriptions
 	 */
 	@Override
-	public int countBypackageOffer(long packageOffer) {
+	public int countBypackageOffer(Long packageOffer) {
 		FinderPath finderPath = _finderPathCountBypackageOffer;
 
 		Object[] finderArgs = new Object[] {packageOffer};
@@ -571,7 +574,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(packageOffer);
+				queryPos.add(packageOffer.longValue());
 
 				count = (Long)query.uniqueResult();
 
@@ -602,7 +605,7 @@ public class SubscriptionPersistenceImpl
 	 * @return the matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findByuserId(long userId) {
+	public List<Subscription> findByuserId(Long userId) {
 		return findByuserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -619,7 +622,7 @@ public class SubscriptionPersistenceImpl
 	 * @return the range of matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findByuserId(long userId, int start, int end) {
+	public List<Subscription> findByuserId(Long userId, int start, int end) {
 		return findByuserId(userId, start, end, null);
 	}
 
@@ -638,7 +641,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
 		return findByuserId(userId, start, end, orderByComparator, true);
@@ -660,7 +663,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public List<Subscription> findByuserId(
-		long userId, int start, int end,
+		Long userId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
@@ -688,7 +691,7 @@ public class SubscriptionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Subscription subscription : list) {
-					if (userId != subscription.getUserId()) {
+					if (!Objects.equals(userId, subscription.getUserId())) {
 						list = null;
 
 						break;
@@ -731,7 +734,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(userId);
+				queryPos.add(userId.longValue());
 
 				list = (List<Subscription>)QueryUtil.list(
 					query, getDialect(), start, end);
@@ -763,7 +766,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription findByuserId_First(
-			long userId, OrderByComparator<Subscription> orderByComparator)
+			Long userId, OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
 		Subscription subscription = fetchByuserId_First(
@@ -794,7 +797,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription fetchByuserId_First(
-		long userId, OrderByComparator<Subscription> orderByComparator) {
+		Long userId, OrderByComparator<Subscription> orderByComparator) {
 
 		List<Subscription> list = findByuserId(userId, 0, 1, orderByComparator);
 
@@ -815,7 +818,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription findByuserId_Last(
-			long userId, OrderByComparator<Subscription> orderByComparator)
+			Long userId, OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
 		Subscription subscription = fetchByuserId_Last(
@@ -846,7 +849,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription fetchByuserId_Last(
-		long userId, OrderByComparator<Subscription> orderByComparator) {
+		Long userId, OrderByComparator<Subscription> orderByComparator) {
 
 		int count = countByuserId(userId);
 
@@ -875,7 +878,7 @@ public class SubscriptionPersistenceImpl
 	 */
 	@Override
 	public Subscription[] findByuserId_PrevAndNext(
-			long id, long userId,
+			long id, Long userId,
 			OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
@@ -907,7 +910,7 @@ public class SubscriptionPersistenceImpl
 	}
 
 	protected Subscription getByuserId_PrevAndNext(
-		Session session, Subscription subscription, long userId,
+		Session session, Subscription subscription, Long userId,
 		OrderByComparator<Subscription> orderByComparator, boolean previous) {
 
 		StringBundler sb = null;
@@ -994,7 +997,7 @@ public class SubscriptionPersistenceImpl
 
 		QueryPos queryPos = QueryPos.getInstance(query);
 
-		queryPos.add(userId);
+		queryPos.add(userId.longValue());
 
 		if (orderByComparator != null) {
 			for (Object orderByConditionValue :
@@ -1020,7 +1023,7 @@ public class SubscriptionPersistenceImpl
 	 * @param userId the user ID
 	 */
 	@Override
-	public void removeByuserId(long userId) {
+	public void removeByuserId(Long userId) {
 		for (Subscription subscription :
 				findByuserId(
 					userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -1036,7 +1039,7 @@ public class SubscriptionPersistenceImpl
 	 * @return the number of matching subscriptions
 	 */
 	@Override
-	public int countByuserId(long userId) {
+	public int countByuserId(Long userId) {
 		FinderPath finderPath = _finderPathCountByuserId;
 
 		Object[] finderArgs = new Object[] {userId};
@@ -1061,7 +1064,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(userId);
+				queryPos.add(userId.longValue());
 
 				count = (Long)query.uniqueResult();
 
