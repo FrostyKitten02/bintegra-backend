@@ -1,8 +1,10 @@
 package si.bintegra.sp.util;
 
+import com.liferay.portal.kernel.model.User;
 import si.bintegra.sp.dto.OfferDto;
 import si.bintegra.sp.dto.PackageOfferDto;
 import si.bintegra.sp.dto.SubscriptionDto;
+import si.bintegra.sp.dto.UserDto;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.model.Subscription;
@@ -69,6 +71,17 @@ public class Mapper {
 
         dto.setDownloadSpeed(offer.getDownloadSpeed());
         dto.setUploadSpeed(offer.getUploadSpeed());
+        return dto;
+    }
+
+    public static UserDto toUserDto(User user) {
+        if (user == null) {
+            return null;
+        }
+
+        UserDto dto = new UserDto();
+        dto.setEmail(user.getEmailAddress());
+        dto.setId(user.getUserId());
         return dto;
     }
 

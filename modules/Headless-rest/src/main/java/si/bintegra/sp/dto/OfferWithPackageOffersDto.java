@@ -6,10 +6,7 @@ import java.util.List;
 
 @Data
 public class OfferWithPackageOffersDto extends OfferDto {
-    public OfferWithPackageOffersDto() {
-        super();
-    }
-    public OfferWithPackageOffersDto(OfferDto offerDto, List<PackageOfferDto> packageOffer) {
+    public OfferWithPackageOffersDto(OfferDto offerDto, List<PackageOfferDto> packageOffers) {
         super();
         this.setId(offerDto.getId());
         this.setTitle(offerDto.getTitle());
@@ -23,9 +20,9 @@ public class OfferWithPackageOffersDto extends OfferDto {
         this.setDefaultNumberOfTvs(offerDto.getDefaultNumberOfTvs());
         this.setDownloadSpeed(offerDto.getDownloadSpeed());
         this.setUploadSpeed(offerDto.getUploadSpeed());
-        this.packageOffer = packageOffer;
+        this.packageOffers = packageOffers;
     }
 
 
-    private List<PackageOfferDto> packageOffer;
+    private List<PackageOfferDto> packageOffers;
 }
