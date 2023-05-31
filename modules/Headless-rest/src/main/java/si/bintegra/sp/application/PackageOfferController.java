@@ -3,6 +3,7 @@ package si.bintegra.sp.application;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.remote.cors.annotation.CORS;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 @Path("/package-offer")
 @Produces("application/json")
 @Consumes("application/json")
+@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class PackageOfferController extends Application {
 
 
