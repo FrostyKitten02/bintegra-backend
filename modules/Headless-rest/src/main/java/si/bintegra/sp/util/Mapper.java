@@ -37,6 +37,8 @@ public class Mapper {
 
         PackageOfferDto dto = new PackageOfferDto();
         dto.setId(packageOffer.getId());
+        dto.setOfferId(packageOffer.getOfferId());
+        dto.setActive(packageOffer.getActive());
         dto.setDiscountPrice(packageOffer.getDiscountPrice());
         dto.setBasePrice(packageOffer.getBasePrice());
         dto.setDiscountDuration(packageOffer.getDiscountDuration());

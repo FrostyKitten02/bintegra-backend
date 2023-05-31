@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class OfferRequest {
-    private boolean active;
+    private OfferDto offer;
 }

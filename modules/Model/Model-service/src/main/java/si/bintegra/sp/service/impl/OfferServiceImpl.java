@@ -15,9 +15,7 @@
 package si.bintegra.sp.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
 import org.osgi.service.component.annotations.Component;
-
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.base.OfferServiceBaseImpl;

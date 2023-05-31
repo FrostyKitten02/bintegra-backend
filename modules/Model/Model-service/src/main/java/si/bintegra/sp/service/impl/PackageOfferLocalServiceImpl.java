@@ -15,18 +15,12 @@
 package si.bintegra.sp.service.impl;
 
 import com.liferay.portal.aop.AopService;
-
-
-import com.sun.tools.javac.util.Pair;
 import org.osgi.service.component.annotations.Component;
-
 import org.osgi.service.component.annotations.Reference;
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.exception.NoSuchPackageOfferException;
-import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.service.OfferLocalService;
-import si.bintegra.sp.service.PackageOfferService;
 import si.bintegra.sp.service.base.PackageOfferLocalServiceBaseImpl;
 
 import java.util.ArrayList;
@@ -77,7 +71,7 @@ public class PackageOfferLocalServiceImpl
 		packageOffer.setBasePrice(basePrice);
 		packageOffer.setActive(active);
 
-		return packageOffer;
+		return packageOfferPersistence.update(packageOffer);
 	}
 
 }
