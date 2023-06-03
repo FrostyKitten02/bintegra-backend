@@ -59,7 +59,7 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -85,6 +85,14 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 		sb.append(uploadSpeed);
 		sb.append(", active=");
 		sb.append(active);
+		sb.append(", fullDurationMonths=");
+		sb.append(fullDurationMonths);
+		sb.append(", discountDurationMonths=");
+		sb.append(discountDurationMonths);
+		sb.append(", basePrice=");
+		sb.append(basePrice);
+		sb.append(", discountPrice=");
+		sb.append(discountPrice);
 		sb.append("}");
 
 		return sb.toString();
@@ -125,6 +133,10 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 		offerImpl.setDownloadSpeed(downloadSpeed);
 		offerImpl.setUploadSpeed(uploadSpeed);
 		offerImpl.setActive(active);
+		offerImpl.setFullDurationMonths(fullDurationMonths);
+		offerImpl.setDiscountDurationMonths(discountDurationMonths);
+		offerImpl.setBasePrice(basePrice);
+		offerImpl.setDiscountPrice(discountPrice);
 
 		offerImpl.resetOriginalValues();
 
@@ -153,6 +165,14 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 		uploadSpeed = objectInput.readLong();
 
 		active = objectInput.readBoolean();
+
+		fullDurationMonths = objectInput.readLong();
+
+		discountDurationMonths = objectInput.readLong();
+
+		basePrice = objectInput.readDouble();
+
+		discountPrice = objectInput.readDouble();
 	}
 
 	@Override
@@ -195,6 +215,14 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 		objectOutput.writeLong(uploadSpeed);
 
 		objectOutput.writeBoolean(active);
+
+		objectOutput.writeLong(fullDurationMonths);
+
+		objectOutput.writeLong(discountDurationMonths);
+
+		objectOutput.writeDouble(basePrice);
+
+		objectOutput.writeDouble(discountPrice);
 	}
 
 	public long id;
@@ -209,5 +237,9 @@ public class OfferCacheModel implements CacheModel<Offer>, Externalizable {
 	public long downloadSpeed;
 	public long uploadSpeed;
 	public boolean active;
+	public long fullDurationMonths;
+	public long discountDurationMonths;
+	public double basePrice;
+	public double discountPrice;
 
 }

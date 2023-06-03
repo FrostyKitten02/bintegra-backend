@@ -14,15 +14,10 @@
 		<field name="downloadSpeed" type="Long" />
 		<field name="uploadSpeed" type="Long" />
 		<field name="active" type="Boolean" />
-	</model>
-	<model name="si.bintegra.sp.model.PackageOffer">
-		<field name="id" type="long" />
-		<field name="offerId" type="Long" />
-		<field name="fullDuration" type="Long" />
-		<field name="discountDuration" type="Long" />
+		<field name="fullDurationMonths" type="Long" />
+		<field name="discountDurationMonths" type="Long" />
 		<field name="basePrice" type="Double" />
 		<field name="discountPrice" type="Double" />
-		<field name="active" type="Boolean" />
 	</model>
 	<model name="si.bintegra.sp.model.Subscription">
 		<field name="id" type="long" />

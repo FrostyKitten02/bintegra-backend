@@ -73,7 +73,10 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		{"mobileData", Types.BIGINT}, {"mobileMinutes", Types.BIGINT},
 		{"mobileSms", Types.BIGINT}, {"programsNumber", Types.BIGINT},
 		{"defaultNumberOfTvs", Types.BIGINT}, {"downloadSpeed", Types.BIGINT},
-		{"uploadSpeed", Types.BIGINT}, {"active_", Types.BOOLEAN}
+		{"uploadSpeed", Types.BIGINT}, {"active_", Types.BOOLEAN},
+		{"fullDurationMonths", Types.BIGINT},
+		{"discountDurationMonths", Types.BIGINT}, {"basePrice", Types.DOUBLE},
+		{"discountPrice", Types.DOUBLE}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -92,10 +95,14 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		TABLE_COLUMNS_MAP.put("downloadSpeed", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("uploadSpeed", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("fullDurationMonths", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("discountDurationMonths", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("basePrice", Types.DOUBLE);
+		TABLE_COLUMNS_MAP.put("discountPrice", Types.DOUBLE);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SP_Offer (id_ LONG not null primary key,type_ VARCHAR(75) null,title VARCHAR(75) null,description VARCHAR(75) null,mobileData LONG,mobileMinutes LONG,mobileSms LONG,programsNumber LONG,defaultNumberOfTvs LONG,downloadSpeed LONG,uploadSpeed LONG,active_ BOOLEAN)";
+		"create table SP_Offer (id_ LONG not null primary key,type_ VARCHAR(75) null,title VARCHAR(75) null,description VARCHAR(75) null,mobileData LONG,mobileMinutes LONG,mobileSms LONG,programsNumber LONG,defaultNumberOfTvs LONG,downloadSpeed LONG,uploadSpeed LONG,active_ BOOLEAN,fullDurationMonths LONG,discountDurationMonths LONG,basePrice DOUBLE,discountPrice DOUBLE)";
 
 	public static final String TABLE_SQL_DROP = "drop table SP_Offer";
 
@@ -273,6 +280,23 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		attributeGetterFunctions.put("active", Offer::getActive);
 		attributeSetterBiConsumers.put(
 			"active", (BiConsumer<Offer, Boolean>)Offer::setActive);
+		attributeGetterFunctions.put(
+			"fullDurationMonths", Offer::getFullDurationMonths);
+		attributeSetterBiConsumers.put(
+			"fullDurationMonths",
+			(BiConsumer<Offer, Long>)Offer::setFullDurationMonths);
+		attributeGetterFunctions.put(
+			"discountDurationMonths", Offer::getDiscountDurationMonths);
+		attributeSetterBiConsumers.put(
+			"discountDurationMonths",
+			(BiConsumer<Offer, Long>)Offer::setDiscountDurationMonths);
+		attributeGetterFunctions.put("basePrice", Offer::getBasePrice);
+		attributeSetterBiConsumers.put(
+			"basePrice", (BiConsumer<Offer, Double>)Offer::setBasePrice);
+		attributeGetterFunctions.put("discountPrice", Offer::getDiscountPrice);
+		attributeSetterBiConsumers.put(
+			"discountPrice",
+			(BiConsumer<Offer, Double>)Offer::setDiscountPrice);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -494,6 +518,66 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 			this.<Boolean>getColumnOriginalValue("active_"));
 	}
 
+	@JSON
+	@Override
+	public Long getFullDurationMonths() {
+		return _fullDurationMonths;
+	}
+
+	@Override
+	public void setFullDurationMonths(Long fullDurationMonths) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_fullDurationMonths = fullDurationMonths;
+	}
+
+	@JSON
+	@Override
+	public Long getDiscountDurationMonths() {
+		return _discountDurationMonths;
+	}
+
+	@Override
+	public void setDiscountDurationMonths(Long discountDurationMonths) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_discountDurationMonths = discountDurationMonths;
+	}
+
+	@JSON
+	@Override
+	public Double getBasePrice() {
+		return _basePrice;
+	}
+
+	@Override
+	public void setBasePrice(Double basePrice) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_basePrice = basePrice;
+	}
+
+	@JSON
+	@Override
+	public Double getDiscountPrice() {
+		return _discountPrice;
+	}
+
+	@Override
+	public void setDiscountPrice(Double discountPrice) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_discountPrice = discountPrice;
+	}
+
 	public long getColumnBitmask() {
 		if (_columnBitmask > 0) {
 			return _columnBitmask;
@@ -562,6 +646,10 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		offerImpl.setDownloadSpeed(getDownloadSpeed());
 		offerImpl.setUploadSpeed(getUploadSpeed());
 		offerImpl.setActive(getActive());
+		offerImpl.setFullDurationMonths(getFullDurationMonths());
+		offerImpl.setDiscountDurationMonths(getDiscountDurationMonths());
+		offerImpl.setBasePrice(getBasePrice());
+		offerImpl.setDiscountPrice(getDiscountPrice());
 
 		offerImpl.resetOriginalValues();
 
@@ -591,6 +679,14 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		offerImpl.setUploadSpeed(
 			this.<Long>getColumnOriginalValue("uploadSpeed"));
 		offerImpl.setActive(this.<Boolean>getColumnOriginalValue("active_"));
+		offerImpl.setFullDurationMonths(
+			this.<Long>getColumnOriginalValue("fullDurationMonths"));
+		offerImpl.setDiscountDurationMonths(
+			this.<Long>getColumnOriginalValue("discountDurationMonths"));
+		offerImpl.setBasePrice(
+			this.<Double>getColumnOriginalValue("basePrice"));
+		offerImpl.setDiscountPrice(
+			this.<Double>getColumnOriginalValue("discountPrice"));
 
 		return offerImpl;
 	}
@@ -746,6 +842,30 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 			offerCacheModel.active = active;
 		}
 
+		Long fullDurationMonths = getFullDurationMonths();
+
+		if (fullDurationMonths != null) {
+			offerCacheModel.fullDurationMonths = fullDurationMonths;
+		}
+
+		Long discountDurationMonths = getDiscountDurationMonths();
+
+		if (discountDurationMonths != null) {
+			offerCacheModel.discountDurationMonths = discountDurationMonths;
+		}
+
+		Double basePrice = getBasePrice();
+
+		if (basePrice != null) {
+			offerCacheModel.basePrice = basePrice;
+		}
+
+		Double discountPrice = getDiscountPrice();
+
+		if (discountPrice != null) {
+			offerCacheModel.discountPrice = discountPrice;
+		}
+
 		return offerCacheModel;
 	}
 
@@ -818,6 +938,10 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 	private Long _downloadSpeed;
 	private Long _uploadSpeed;
 	private Boolean _active;
+	private Long _fullDurationMonths;
+	private Long _discountDurationMonths;
+	private Double _basePrice;
+	private Double _discountPrice;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -860,6 +984,11 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		_columnOriginalValues.put("downloadSpeed", _downloadSpeed);
 		_columnOriginalValues.put("uploadSpeed", _uploadSpeed);
 		_columnOriginalValues.put("active_", _active);
+		_columnOriginalValues.put("fullDurationMonths", _fullDurationMonths);
+		_columnOriginalValues.put(
+			"discountDurationMonths", _discountDurationMonths);
+		_columnOriginalValues.put("basePrice", _basePrice);
+		_columnOriginalValues.put("discountPrice", _discountPrice);
 	}
 
 	private static final Map<String, String> _attributeNames;
@@ -908,6 +1037,14 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		columnBitmasks.put("uploadSpeed", 1024L);
 
 		columnBitmasks.put("active_", 2048L);
+
+		columnBitmasks.put("fullDurationMonths", 4096L);
+
+		columnBitmasks.put("discountDurationMonths", 8192L);
+
+		columnBitmasks.put("basePrice", 16384L);
+
+		columnBitmasks.put("discountPrice", 32768L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

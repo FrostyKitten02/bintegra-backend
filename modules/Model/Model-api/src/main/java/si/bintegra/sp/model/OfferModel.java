@@ -224,6 +224,62 @@ public interface OfferModel extends BaseModel<Offer> {
 	 */
 	public void setActive(Boolean active);
 
+	/**
+	 * Returns the full duration months of this offer.
+	 *
+	 * @return the full duration months of this offer
+	 */
+	public Long getFullDurationMonths();
+
+	/**
+	 * Sets the full duration months of this offer.
+	 *
+	 * @param fullDurationMonths the full duration months of this offer
+	 */
+	public void setFullDurationMonths(Long fullDurationMonths);
+
+	/**
+	 * Returns the discount duration months of this offer.
+	 *
+	 * @return the discount duration months of this offer
+	 */
+	public Long getDiscountDurationMonths();
+
+	/**
+	 * Sets the discount duration months of this offer.
+	 *
+	 * @param discountDurationMonths the discount duration months of this offer
+	 */
+	public void setDiscountDurationMonths(Long discountDurationMonths);
+
+	/**
+	 * Returns the base price of this offer.
+	 *
+	 * @return the base price of this offer
+	 */
+	public Double getBasePrice();
+
+	/**
+	 * Sets the base price of this offer.
+	 *
+	 * @param basePrice the base price of this offer
+	 */
+	public void setBasePrice(Double basePrice);
+
+	/**
+	 * Returns the discount price of this offer.
+	 *
+	 * @return the discount price of this offer
+	 */
+	public Double getDiscountPrice();
+
+	/**
+	 * Sets the discount price of this offer.
+	 *
+	 * @param discountPrice the discount price of this offer
+	 */
+	public void setDiscountPrice(Double discountPrice);
+
 	@Override
 	public Offer cloneWithOriginalValues();
 

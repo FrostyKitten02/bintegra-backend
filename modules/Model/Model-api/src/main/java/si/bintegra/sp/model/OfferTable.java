@@ -54,6 +54,15 @@ public class OfferTable extends BaseTable<OfferTable> {
 		"uploadSpeed", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<OfferTable, Boolean> active = createColumn(
 		"active_", Boolean.class, Types.BOOLEAN, Column.FLAG_DEFAULT);
+	public final Column<OfferTable, Long> fullDurationMonths = createColumn(
+		"fullDurationMonths", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+	public final Column<OfferTable, Long> discountDurationMonths = createColumn(
+		"discountDurationMonths", Long.class, Types.BIGINT,
+		Column.FLAG_DEFAULT);
+	public final Column<OfferTable, Double> basePrice = createColumn(
+		"basePrice", Double.class, Types.DOUBLE, Column.FLAG_DEFAULT);
+	public final Column<OfferTable, Double> discountPrice = createColumn(
+		"discountPrice", Double.class, Types.DOUBLE, Column.FLAG_DEFAULT);
 
 	private OfferTable() {
 		super("SP_Offer", OfferTable::new);

@@ -28,44 +28,6 @@
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 	</entity>
 
-	<entity local-service="true" remote-service="true" name="PackageOffer">
-		<column name="id" type="long" primary="true"/>
-
-		<column name="offerId" type="Long" />
-
-		<column name="fullDuration" type="Long" />
-		<column name="discountDuration" type="Long" />
-
-		<column name="basePrice" type="Double" />
-		<column name="discountPrice" type="Double" />
-
-		<column name="active" type="Boolean" />
-
-		<order by="asc">
-			<order-column name="id" />
-		</order>
-
-		<finder name="id" return-type="Entity">
-			<finder-column name="id" />
-		</finder>
-
-		<finder name="active" return-type="Collection">
-			<finder-column name="active" />
-		</finder>
-
-		<finder name="offerId" return-type="Collection">
-			<finder-column name="offerId" />
-		</finder>
-
-		<finder name="offerIdAndActive" return-type="Collection">
-			<finder-column name="offerId" />
-			<finder-column name="active" />
-		</finder>
-
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
-	</entity>
-
 	<entity local-service="true" remote-service="true" name="Offer">
 		<column name="id" type="long" primary="true" />
 
@@ -90,6 +52,12 @@
 		<!---->
 
 		<column name="active" type="Boolean" />
+
+		<column name="fullDurationMonths" type="Long" />
+		<column name="discountDurationMonths" type="Long" />
+
+		<column name="basePrice" type="Double" />
+		<column name="discountPrice" type="Double" />
 
 		<order by="asc">
 			<order-column name="id" />

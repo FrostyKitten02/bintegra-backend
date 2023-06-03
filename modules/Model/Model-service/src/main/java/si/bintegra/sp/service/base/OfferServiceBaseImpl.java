@@ -37,7 +37,6 @@ import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.OfferService;
 import si.bintegra.sp.service.OfferServiceUtil;
 import si.bintegra.sp.service.persistence.OfferPersistence;
-import si.bintegra.sp.service.persistence.PackageOfferPersistence;
 import si.bintegra.sp.service.persistence.SubscriptionPersistence;
 
 /**
@@ -141,9 +140,6 @@ public abstract class OfferServiceBaseImpl
 
 	@Reference
 	protected OfferPersistence offerPersistence;
-
-	@Reference
-	protected PackageOfferPersistence packageOfferPersistence;
 
 	@Reference
 	protected SubscriptionPersistence subscriptionPersistence;

@@ -12,15 +12,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 import si.bintegra.sp.dto.SubscriptionDto;
 import si.bintegra.sp.dto.SubscriptionRequest;
 import si.bintegra.sp.dto.SubscriptionResponse;
-import si.bintegra.sp.exception.NoSuchOfferException;
-import si.bintegra.sp.exception.NoSuchPackageOfferException;
-import si.bintegra.sp.model.Offer;
-import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.model.Subscription;
-import si.bintegra.sp.service.OfferLocalServiceUtil;
-import si.bintegra.sp.service.PackageOfferLocalServiceUtil;
 import si.bintegra.sp.service.SubscriptionLocalServiceUtil;
-import si.bintegra.sp.util.Mapper;
 import si.bintegra.sp.util.RoleChecker;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,16 +56,18 @@ public class SubscriptionController extends Application {
         List<SubscriptionDto> success = new ArrayList<>(all.size());
         List<SubscriptionDto> failed = new ArrayList<>();
 
-        for (Subscription s : all) {
-            try {
-                PackageOffer packageOffer = PackageOfferLocalServiceUtil.findById(s.getPackageOffer());
-                Offer offer = OfferLocalServiceUtil.findById(packageOffer.getOfferId());
-                success.add(Mapper.toSubscriptionDto(s, packageOffer, offer));
-            } catch (NoSuchPackageOfferException | NoSuchOfferException e) {
-                _log.error(e.getLocalizedMessage(), e);
-                failed.add(Mapper.toSubscriptionDto(s));
-            }
-        }
+
+        //TODO rework
+//        for (Subscription s : all) {
+//            try {
+//                PackageOffer packageOffer = PackageOfferLocalServiceUtil.findById(s.getPackageOffer());
+//                Offer offer = OfferLocalServiceUtil.findById(packageOffer.getOfferId());
+//                success.add(Mapper.toSubscriptionDto(s, packageOffer, offer));
+//            } catch (NoSuchPackageOfferException | NoSuchOfferException e) {
+//                _log.error(e.getLocalizedMessage(), e);
+//                failed.add(Mapper.toSubscriptionDto(s));
+//            }
+//        }
 
         res.setSubscriptions(success);
         res.setSubscriptionNoData(failed);

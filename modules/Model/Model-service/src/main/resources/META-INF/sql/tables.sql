@@ -10,7 +10,11 @@ create table SP_Offer (
 	defaultNumberOfTvs LONG,
 	downloadSpeed LONG,
 	uploadSpeed LONG,
-	active_ BOOLEAN
+	active_ BOOLEAN,
+	fullDurationMonths LONG,
+	discountDurationMonths LONG,
+	basePrice DOUBLE,
+	discountPrice DOUBLE
 );
 
 create table SP_PackageOffer (

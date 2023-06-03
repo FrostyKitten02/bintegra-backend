@@ -144,6 +144,14 @@ public class OfferPersistenceTest {
 
 		newOffer.setActive();
 
+		newOffer.setFullDurationMonths();
+
+		newOffer.setDiscountDurationMonths();
+
+		newOffer.setBasePrice();
+
+		newOffer.setDiscountPrice();
+
 		_offers.add(_persistence.update(newOffer));
 
 		Offer existingOffer = _persistence.findByPrimaryKey(
@@ -170,6 +178,16 @@ public class OfferPersistenceTest {
 		Assert.assertEquals(
 			existingOffer.getUploadSpeed(), newOffer.getUploadSpeed());
 		Assert.assertEquals(existingOffer.getActive(), newOffer.getActive());
+		Assert.assertEquals(
+			existingOffer.getFullDurationMonths(),
+			newOffer.getFullDurationMonths());
+		Assert.assertEquals(
+			existingOffer.getDiscountDurationMonths(),
+			newOffer.getDiscountDurationMonths());
+		Assert.assertEquals(
+			existingOffer.getBasePrice(), newOffer.getBasePrice());
+		Assert.assertEquals(
+			existingOffer.getDiscountPrice(), newOffer.getDiscountPrice());
 	}
 
 	@Test
@@ -218,7 +236,9 @@ public class OfferPersistenceTest {
 			"SP_Offer", "id", true, "type", true, "title", true, "description",
 			true, "mobileData", true, "mobileMinutes", true, "mobileSms", true,
 			"programsNumber", true, "defaultNumberOfTvs", true, "downloadSpeed",
-			true, "uploadSpeed", true, "active", true);
+			true, "uploadSpeed", true, "active", true, "fullDurationMonths",
+			true, "discountDurationMonths", true, "basePrice", true,
+			"discountPrice", true);
 	}
 
 	@Test
@@ -444,6 +464,14 @@ public class OfferPersistenceTest {
 		offer.setUploadSpeed();
 
 		offer.setActive();
+
+		offer.setFullDurationMonths();
+
+		offer.setDiscountDurationMonths();
+
+		offer.setBasePrice();
+
+		offer.setDiscountPrice();
 
 		_offers.add(_persistence.update(offer));
 

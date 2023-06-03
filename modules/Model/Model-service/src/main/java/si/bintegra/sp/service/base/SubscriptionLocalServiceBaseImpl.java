@@ -56,7 +56,6 @@ import si.bintegra.sp.model.Subscription;
 import si.bintegra.sp.service.SubscriptionLocalService;
 import si.bintegra.sp.service.SubscriptionLocalServiceUtil;
 import si.bintegra.sp.service.persistence.OfferPersistence;
-import si.bintegra.sp.service.persistence.PackageOfferPersistence;
 import si.bintegra.sp.service.persistence.SubscriptionPersistence;
 
 /**
@@ -464,9 +463,6 @@ public abstract class SubscriptionLocalServiceBaseImpl
 
 	@Reference
 	protected OfferPersistence offerPersistence;
-
-	@Reference
-	protected PackageOfferPersistence packageOfferPersistence;
 
 	protected SubscriptionLocalService subscriptionLocalService;
 

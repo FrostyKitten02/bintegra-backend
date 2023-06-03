@@ -52,6 +52,10 @@ public class OfferWrapper
 		attributes.put("downloadSpeed", getDownloadSpeed());
 		attributes.put("uploadSpeed", getUploadSpeed());
 		attributes.put("active", getActive());
+		attributes.put("fullDurationMonths", getFullDurationMonths());
+		attributes.put("discountDurationMonths", getDiscountDurationMonths());
+		attributes.put("basePrice", getBasePrice());
+		attributes.put("discountPrice", getDiscountPrice());
 
 		return attributes;
 	}
@@ -129,6 +133,31 @@ public class OfferWrapper
 		if (active != null) {
 			setActive(active);
 		}
+
+		Long fullDurationMonths = (Long)attributes.get("fullDurationMonths");
+
+		if (fullDurationMonths != null) {
+			setFullDurationMonths(fullDurationMonths);
+		}
+
+		Long discountDurationMonths = (Long)attributes.get(
+			"discountDurationMonths");
+
+		if (discountDurationMonths != null) {
+			setDiscountDurationMonths(discountDurationMonths);
+		}
+
+		Double basePrice = (Double)attributes.get("basePrice");
+
+		if (basePrice != null) {
+			setBasePrice(basePrice);
+		}
+
+		Double discountPrice = (Double)attributes.get("discountPrice");
+
+		if (discountPrice != null) {
+			setDiscountPrice(discountPrice);
+		}
 	}
 
 	@Override
@@ -144,6 +173,16 @@ public class OfferWrapper
 	@Override
 	public Boolean getActive() {
 		return model.getActive();
+	}
+
+	/**
+	 * Returns the base price of this offer.
+	 *
+	 * @return the base price of this offer
+	 */
+	@Override
+	public Double getBasePrice() {
+		return model.getBasePrice();
 	}
 
 	/**
@@ -167,6 +206,26 @@ public class OfferWrapper
 	}
 
 	/**
+	 * Returns the discount duration months of this offer.
+	 *
+	 * @return the discount duration months of this offer
+	 */
+	@Override
+	public Long getDiscountDurationMonths() {
+		return model.getDiscountDurationMonths();
+	}
+
+	/**
+	 * Returns the discount price of this offer.
+	 *
+	 * @return the discount price of this offer
+	 */
+	@Override
+	public Double getDiscountPrice() {
+		return model.getDiscountPrice();
+	}
+
+	/**
 	 * Returns the download speed of this offer.
 	 *
 	 * @return the download speed of this offer
@@ -174,6 +233,16 @@ public class OfferWrapper
 	@Override
 	public Long getDownloadSpeed() {
 		return model.getDownloadSpeed();
+	}
+
+	/**
+	 * Returns the full duration months of this offer.
+	 *
+	 * @return the full duration months of this offer
+	 */
+	@Override
+	public Long getFullDurationMonths() {
+		return model.getFullDurationMonths();
 	}
 
 	/**
@@ -282,6 +351,16 @@ public class OfferWrapper
 	}
 
 	/**
+	 * Sets the base price of this offer.
+	 *
+	 * @param basePrice the base price of this offer
+	 */
+	@Override
+	public void setBasePrice(Double basePrice) {
+		model.setBasePrice(basePrice);
+	}
+
+	/**
 	 * Sets the default number of tvs of this offer.
 	 *
 	 * @param defaultNumberOfTvs the default number of tvs of this offer
@@ -302,6 +381,26 @@ public class OfferWrapper
 	}
 
 	/**
+	 * Sets the discount duration months of this offer.
+	 *
+	 * @param discountDurationMonths the discount duration months of this offer
+	 */
+	@Override
+	public void setDiscountDurationMonths(Long discountDurationMonths) {
+		model.setDiscountDurationMonths(discountDurationMonths);
+	}
+
+	/**
+	 * Sets the discount price of this offer.
+	 *
+	 * @param discountPrice the discount price of this offer
+	 */
+	@Override
+	public void setDiscountPrice(Double discountPrice) {
+		model.setDiscountPrice(discountPrice);
+	}
+
+	/**
 	 * Sets the download speed of this offer.
 	 *
 	 * @param downloadSpeed the download speed of this offer
@@ -309,6 +408,16 @@ public class OfferWrapper
 	@Override
 	public void setDownloadSpeed(Long downloadSpeed) {
 		model.setDownloadSpeed(downloadSpeed);
+	}
+
+	/**
+	 * Sets the full duration months of this offer.
+	 *
+	 * @param fullDurationMonths the full duration months of this offer
+	 */
+	@Override
+	public void setFullDurationMonths(Long fullDurationMonths) {
+		model.setFullDurationMonths(fullDurationMonths);
 	}
 
 	/**

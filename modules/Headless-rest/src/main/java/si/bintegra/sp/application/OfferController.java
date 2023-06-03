@@ -10,7 +10,6 @@ import si.bintegra.sp.dto.*;
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.OfferLocalServiceUtil;
-import si.bintegra.sp.service.PackageOfferLocalServiceUtil;
 import si.bintegra.sp.util.Mapper;
 import si.bintegra.sp.util.RoleChecker;
 
@@ -18,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component(
         properties = "defaultController.properties",
@@ -37,15 +34,9 @@ public class OfferController extends Application {
     public OfferResponse getActiveOffersByTypeWithActivePackageOffers(@PathParam("type") String type) {
         OfferResponse res = new OfferResponse();
 
-        List<OfferWithPackageOffersDto> activeOffersWithPackageOffers = OfferLocalServiceUtil.findActiveByType(type).stream().map(offer -> {
-            List<PackageOfferDto> activePackageOffers = PackageOfferLocalServiceUtil
-                    .findActiveByOfferId(offer.getId())
-                    .stream().map(Mapper::toPackageOfferDto)
-                    .collect(Collectors.toList());
-            return new OfferWithPackageOffersDto(Mapper.toOfferDto(offer), activePackageOffers);
-        }).collect(Collectors.toList());
+        //TODO rework
 
-        res.setOffersWithPackageOffers(activeOffersWithPackageOffers);
+        //res.setOffersWithPackageOffers(activeOffersWithPackageOffers);
 
         return res;
     }
