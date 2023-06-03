@@ -39,10 +39,10 @@ public class SubscriptionLocalServiceWrapper
 
 	@Override
 	public si.bintegra.sp.model.Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId, Long startDate) {
+		Long offerId, Long userId, Long phoneId, Long startDate) {
 
 		return _subscriptionLocalService.addSubscription(
-			packageOfferId, userId, phoneId, startDate);
+			offerId, userId, phoneId, startDate);
 	}
 
 	/**
