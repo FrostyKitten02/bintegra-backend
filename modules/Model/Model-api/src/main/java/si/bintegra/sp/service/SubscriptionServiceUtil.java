@@ -14,10 +14,6 @@
 
 package si.bintegra.sp.service;
 
-import java.util.List;
-
-import si.bintegra.sp.model.Subscription;
-
 /**
  * Provides the remote service utility for Subscription. This utility wraps
  * <code>si.bintegra.sp.service.impl.SubscriptionServiceImpl</code> and is an
@@ -37,23 +33,13 @@ public class SubscriptionServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.SubscriptionServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId, Long startDate) {
-
-		return getService().addSubscription(
-			packageOfferId, userId, phoneId, startDate);
-	}
-
-	public static List<Subscription> findSubscriptionsByUserId(Long userId) {
-		return getService().findSubscriptionsByUserId(userId);
-	}
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public static String getOSGiServiceIdentifier() {
+	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

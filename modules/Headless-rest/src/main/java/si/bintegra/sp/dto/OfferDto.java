@@ -23,4 +23,10 @@ public class OfferDto {
     //internet fields!!
     private Long downloadSpeed;
     private Long uploadSpeed;
+
+    private Long fullDurationMonths;
+    private Long discountDurationMonths;
+
+    private Double basePrice;
+    private Double discountPrice;
 }

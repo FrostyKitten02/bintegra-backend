@@ -32,8 +32,8 @@ public class SubscriptionTable extends BaseTable<SubscriptionTable> {
 
 	public final Column<SubscriptionTable, Long> id = createColumn(
 		"id_", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-	public final Column<SubscriptionTable, Long> packageOffer = createColumn(
-		"packageOffer", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+	public final Column<SubscriptionTable, Long> offerId = createColumn(
+		"offerId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<SubscriptionTable, Long> startDate = createColumn(
 		"startDate", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<SubscriptionTable, Long> userId = createColumn(

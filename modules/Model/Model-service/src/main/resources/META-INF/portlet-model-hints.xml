@@ -21,7 +21,7 @@
 	</model>
 	<model name="si.bintegra.sp.model.Subscription">
 		<field name="id" type="long" />
-		<field name="packageOffer" type="Long" />
+		<field name="offerId" type="Long" />
 		<field name="startDate" type="Long" />
 		<field name="userId" type="Long" />
 		<field name="phoneId" type="Long" />

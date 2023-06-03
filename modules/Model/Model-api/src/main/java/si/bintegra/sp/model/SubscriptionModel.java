@@ -67,18 +67,18 @@ public interface SubscriptionModel extends BaseModel<Subscription> {
 	public void setId(long id);
 
 	/**
-	 * Returns the package offer of this subscription.
+	 * Returns the offer ID of this subscription.
 	 *
-	 * @return the package offer of this subscription
+	 * @return the offer ID of this subscription
 	 */
-	public Long getPackageOffer();
+	public Long getOfferId();
 
 	/**
-	 * Sets the package offer of this subscription.
+	 * Sets the offer ID of this subscription.
 	 *
-	 * @param packageOffer the package offer of this subscription
+	 * @param offerId the offer ID of this subscription
 	 */
-	public void setPackageOffer(Long packageOffer);
+	public void setOfferId(Long offerId);
 
 	/**
 	 * Returns the start date of this subscription.

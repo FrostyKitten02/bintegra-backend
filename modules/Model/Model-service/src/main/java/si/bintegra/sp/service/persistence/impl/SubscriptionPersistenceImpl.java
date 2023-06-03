@@ -93,71 +93,68 @@ public class SubscriptionPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
-	private FinderPath _finderPathWithPaginationFindBypackageOffer;
-	private FinderPath _finderPathWithoutPaginationFindBypackageOffer;
-	private FinderPath _finderPathCountBypackageOffer;
+	private FinderPath _finderPathWithPaginationFindByofferId;
+	private FinderPath _finderPathWithoutPaginationFindByofferId;
+	private FinderPath _finderPathCountByofferId;
 
 	/**
-	 * Returns all the subscriptions where packageOffer = &#63;.
+	 * Returns all the subscriptions where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @return the matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findBypackageOffer(Long packageOffer) {
-		return findBypackageOffer(
-			packageOffer, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Subscription> findByofferId(Long offerId) {
+		return findByofferId(
+			offerId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the subscriptions where packageOffer = &#63;.
+	 * Returns a range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @return the range of matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end) {
-
-		return findBypackageOffer(packageOffer, start, end, null);
+	public List<Subscription> findByofferId(Long offerId, int start, int end) {
+		return findByofferId(offerId, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the subscriptions where packageOffer = &#63;.
+	 * Returns an ordered range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end,
+	public List<Subscription> findByofferId(
+		Long offerId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
-		return findBypackageOffer(
-			packageOffer, start, end, orderByComparator, true);
+		return findByofferId(offerId, start, end, orderByComparator, true);
 	}
 
 	/**
-	 * Returns an ordered range of all the subscriptions where packageOffer = &#63;.
+	 * Returns an ordered range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -165,8 +162,8 @@ public class SubscriptionPersistenceImpl
 	 * @return the ordered range of matching subscriptions
 	 */
 	@Override
-	public List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end,
+	public List<Subscription> findByofferId(
+		Long offerId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
@@ -177,15 +174,13 @@ public class SubscriptionPersistenceImpl
 			(orderByComparator == null)) {
 
 			if (useFinderCache) {
-				finderPath = _finderPathWithoutPaginationFindBypackageOffer;
-				finderArgs = new Object[] {packageOffer};
+				finderPath = _finderPathWithoutPaginationFindByofferId;
+				finderArgs = new Object[] {offerId};
 			}
 		}
 		else if (useFinderCache) {
-			finderPath = _finderPathWithPaginationFindBypackageOffer;
-			finderArgs = new Object[] {
-				packageOffer, start, end, orderByComparator
-			};
+			finderPath = _finderPathWithPaginationFindByofferId;
+			finderArgs = new Object[] {offerId, start, end, orderByComparator};
 		}
 
 		List<Subscription> list = null;
@@ -196,9 +191,7 @@ public class SubscriptionPersistenceImpl
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Subscription subscription : list) {
-					if (!Objects.equals(
-							packageOffer, subscription.getPackageOffer())) {
-
+					if (!Objects.equals(offerId, subscription.getOfferId())) {
 						list = null;
 
 						break;
@@ -220,7 +213,7 @@ public class SubscriptionPersistenceImpl
 
 			sb.append(_SQL_SELECT_SUBSCRIPTION_WHERE);
 
-			sb.append(_FINDER_COLUMN_PACKAGEOFFER_PACKAGEOFFER_2);
+			sb.append(_FINDER_COLUMN_OFFERID_OFFERID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(
@@ -241,7 +234,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(packageOffer.longValue());
+				queryPos.add(offerId.longValue());
 
 				list = (List<Subscription>)QueryUtil.list(
 					query, getDialect(), start, end);
@@ -264,21 +257,20 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the first subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching subscription
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	@Override
-	public Subscription findBypackageOffer_First(
-			Long packageOffer,
-			OrderByComparator<Subscription> orderByComparator)
+	public Subscription findByofferId_First(
+			Long offerId, OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
-		Subscription subscription = fetchBypackageOffer_First(
-			packageOffer, orderByComparator);
+		Subscription subscription = fetchByofferId_First(
+			offerId, orderByComparator);
 
 		if (subscription != null) {
 			return subscription;
@@ -288,8 +280,8 @@ public class SubscriptionPersistenceImpl
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		sb.append("packageOffer=");
-		sb.append(packageOffer);
+		sb.append("offerId=");
+		sb.append(offerId);
 
 		sb.append("}");
 
@@ -297,18 +289,18 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Returns the first subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the first subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	@Override
-	public Subscription fetchBypackageOffer_First(
-		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+	public Subscription fetchByofferId_First(
+		Long offerId, OrderByComparator<Subscription> orderByComparator) {
 
-		List<Subscription> list = findBypackageOffer(
-			packageOffer, 0, 1, orderByComparator);
+		List<Subscription> list = findByofferId(
+			offerId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -318,21 +310,20 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the last subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching subscription
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
 	@Override
-	public Subscription findBypackageOffer_Last(
-			Long packageOffer,
-			OrderByComparator<Subscription> orderByComparator)
+	public Subscription findByofferId_Last(
+			Long offerId, OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
-		Subscription subscription = fetchBypackageOffer_Last(
-			packageOffer, orderByComparator);
+		Subscription subscription = fetchByofferId_Last(
+			offerId, orderByComparator);
 
 		if (subscription != null) {
 			return subscription;
@@ -342,8 +333,8 @@ public class SubscriptionPersistenceImpl
 
 		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		sb.append("packageOffer=");
-		sb.append(packageOffer);
+		sb.append("offerId=");
+		sb.append(offerId);
 
 		sb.append("}");
 
@@ -351,24 +342,24 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Returns the last subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the last subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
 	@Override
-	public Subscription fetchBypackageOffer_Last(
-		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+	public Subscription fetchByofferId_Last(
+		Long offerId, OrderByComparator<Subscription> orderByComparator) {
 
-		int count = countBypackageOffer(packageOffer);
+		int count = countByofferId(offerId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Subscription> list = findBypackageOffer(
-			packageOffer, count - 1, count, orderByComparator);
+		List<Subscription> list = findByofferId(
+			offerId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -378,17 +369,17 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Returns the subscriptions before and after the current subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the subscriptions before and after the current subscription in the ordered set where offerId = &#63;.
 	 *
 	 * @param id the primary key of the current subscription
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next subscription
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
 	@Override
-	public Subscription[] findBypackageOffer_PrevAndNext(
-			long id, Long packageOffer,
+	public Subscription[] findByofferId_PrevAndNext(
+			long id, Long offerId,
 			OrderByComparator<Subscription> orderByComparator)
 		throws NoSuchSubscriptionException {
 
@@ -401,13 +392,13 @@ public class SubscriptionPersistenceImpl
 
 			Subscription[] array = new SubscriptionImpl[3];
 
-			array[0] = getBypackageOffer_PrevAndNext(
-				session, subscription, packageOffer, orderByComparator, true);
+			array[0] = getByofferId_PrevAndNext(
+				session, subscription, offerId, orderByComparator, true);
 
 			array[1] = subscription;
 
-			array[2] = getBypackageOffer_PrevAndNext(
-				session, subscription, packageOffer, orderByComparator, false);
+			array[2] = getByofferId_PrevAndNext(
+				session, subscription, offerId, orderByComparator, false);
 
 			return array;
 		}
@@ -419,8 +410,8 @@ public class SubscriptionPersistenceImpl
 		}
 	}
 
-	protected Subscription getBypackageOffer_PrevAndNext(
-		Session session, Subscription subscription, Long packageOffer,
+	protected Subscription getByofferId_PrevAndNext(
+		Session session, Subscription subscription, Long offerId,
 		OrderByComparator<Subscription> orderByComparator, boolean previous) {
 
 		StringBundler sb = null;
@@ -436,7 +427,7 @@ public class SubscriptionPersistenceImpl
 
 		sb.append(_SQL_SELECT_SUBSCRIPTION_WHERE);
 
-		sb.append(_FINDER_COLUMN_PACKAGEOFFER_PACKAGEOFFER_2);
+		sb.append(_FINDER_COLUMN_OFFERID_OFFERID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields =
@@ -507,7 +498,7 @@ public class SubscriptionPersistenceImpl
 
 		QueryPos queryPos = QueryPos.getInstance(query);
 
-		queryPos.add(packageOffer.longValue());
+		queryPos.add(offerId.longValue());
 
 		if (orderByComparator != null) {
 			for (Object orderByConditionValue :
@@ -528,31 +519,31 @@ public class SubscriptionPersistenceImpl
 	}
 
 	/**
-	 * Removes all the subscriptions where packageOffer = &#63; from the database.
+	 * Removes all the subscriptions where offerId = &#63; from the database.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 */
 	@Override
-	public void removeBypackageOffer(Long packageOffer) {
+	public void removeByofferId(Long offerId) {
 		for (Subscription subscription :
-				findBypackageOffer(
-					packageOffer, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+				findByofferId(
+					offerId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
 			remove(subscription);
 		}
 	}
 
 	/**
-	 * Returns the number of subscriptions where packageOffer = &#63;.
+	 * Returns the number of subscriptions where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @return the number of matching subscriptions
 	 */
 	@Override
-	public int countBypackageOffer(Long packageOffer) {
-		FinderPath finderPath = _finderPathCountBypackageOffer;
+	public int countByofferId(Long offerId) {
+		FinderPath finderPath = _finderPathCountByofferId;
 
-		Object[] finderArgs = new Object[] {packageOffer};
+		Object[] finderArgs = new Object[] {offerId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -561,7 +552,7 @@ public class SubscriptionPersistenceImpl
 
 			sb.append(_SQL_COUNT_SUBSCRIPTION_WHERE);
 
-			sb.append(_FINDER_COLUMN_PACKAGEOFFER_PACKAGEOFFER_2);
+			sb.append(_FINDER_COLUMN_OFFERID_OFFERID_2);
 
 			String sql = sb.toString();
 
@@ -574,7 +565,7 @@ public class SubscriptionPersistenceImpl
 
 				QueryPos queryPos = QueryPos.getInstance(query);
 
-				queryPos.add(packageOffer.longValue());
+				queryPos.add(offerId.longValue());
 
 				count = (Long)query.uniqueResult();
 
@@ -591,8 +582,8 @@ public class SubscriptionPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_PACKAGEOFFER_PACKAGEOFFER_2 =
-		"subscription.packageOffer = ?";
+	private static final String _FINDER_COLUMN_OFFERID_OFFERID_2 =
+		"subscription.offerId = ?";
 
 	private FinderPath _finderPathWithPaginationFindByuserId;
 	private FinderPath _finderPathWithoutPaginationFindByuserId;
@@ -1606,22 +1597,22 @@ public class SubscriptionPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0], new String[0], false);
 
-		_finderPathWithPaginationFindBypackageOffer = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBypackageOffer",
+		_finderPathWithPaginationFindByofferId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByofferId",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), OrderByComparator.class.getName()
 			},
-			new String[] {"packageOffer"}, true);
+			new String[] {"offerId"}, true);
 
-		_finderPathWithoutPaginationFindBypackageOffer = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findBypackageOffer",
-			new String[] {Long.class.getName()}, new String[] {"packageOffer"},
+		_finderPathWithoutPaginationFindByofferId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByofferId",
+			new String[] {Long.class.getName()}, new String[] {"offerId"},
 			true);
 
-		_finderPathCountBypackageOffer = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBypackageOffer",
-			new String[] {Long.class.getName()}, new String[] {"packageOffer"},
+		_finderPathCountByofferId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByofferId",
+			new String[] {Long.class.getName()}, new String[] {"offerId"},
 			false);
 
 		_finderPathWithPaginationFindByuserId = new FinderPath(

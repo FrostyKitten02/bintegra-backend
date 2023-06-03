@@ -29,7 +29,7 @@ create table SP_PackageOffer (
 
 create table SP_Subscription (
 	id_ LONG not null primary key,
-	packageOffer LONG,
+	offerId LONG,
 	startDate LONG,
 	userId LONG,
 	phoneId LONG

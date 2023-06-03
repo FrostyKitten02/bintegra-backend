@@ -65,8 +65,8 @@ public class SubscriptionCacheModel
 
 		sb.append("{id=");
 		sb.append(id);
-		sb.append(", packageOffer=");
-		sb.append(packageOffer);
+		sb.append(", offerId=");
+		sb.append(offerId);
 		sb.append(", startDate=");
 		sb.append(startDate);
 		sb.append(", userId=");
@@ -83,7 +83,7 @@ public class SubscriptionCacheModel
 		SubscriptionImpl subscriptionImpl = new SubscriptionImpl();
 
 		subscriptionImpl.setId(id);
-		subscriptionImpl.setPackageOffer(packageOffer);
+		subscriptionImpl.setOfferId(offerId);
 		subscriptionImpl.setStartDate(startDate);
 		subscriptionImpl.setUserId(userId);
 		subscriptionImpl.setPhoneId(phoneId);
@@ -97,7 +97,7 @@ public class SubscriptionCacheModel
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 
-		packageOffer = objectInput.readLong();
+		offerId = objectInput.readLong();
 
 		startDate = objectInput.readLong();
 
@@ -110,7 +110,7 @@ public class SubscriptionCacheModel
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(id);
 
-		objectOutput.writeLong(packageOffer);
+		objectOutput.writeLong(offerId);
 
 		objectOutput.writeLong(startDate);
 
@@ -120,7 +120,7 @@ public class SubscriptionCacheModel
 	}
 
 	public long id;
-	public long packageOffer;
+	public long offerId;
 	public long startDate;
 	public long userId;
 	public long phoneId;

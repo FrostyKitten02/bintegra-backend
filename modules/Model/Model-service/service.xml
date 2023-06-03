@@ -7,7 +7,7 @@
 
 	<entity local-service="true" remote-service="true" name="Subscription">
 		<column name="id" primary="true" type="long" />
-		<column name="packageOffer" type="Long" />
+		<column name="offerId" type="Long" />
 		<column name="startDate" type="Long" />
 		<column name="userId" type="Long" />
 		<column name="phoneId" type="Long" />
@@ -16,8 +16,8 @@
 			<order-column name="id" />
 		</order>
 
-		<finder name="packageOffer" return-type="Collection">
-			<finder-column name="packageOffer" />
+		<finder name="offerId" return-type="Collection">
+			<finder-column name="offerId" />
 		</finder>
 
 		<finder name="userId" return-type="Collection">

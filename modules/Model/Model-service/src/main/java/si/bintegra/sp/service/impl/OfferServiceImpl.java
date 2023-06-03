@@ -33,18 +33,4 @@ import java.util.List;
 	service = AopService.class
 )
 public class OfferServiceImpl extends OfferServiceBaseImpl {
-	public List<Offer> findActiveByType(String type) {
-		//todo premisisons check!!!
-		return offerLocalService.findActiveByType(type);
-	}
-
-	public Offer findById(Long id) throws NoSuchOfferException {
-		//todo premisisons check!!!
-		return offerLocalService.findById(id);
-	}
-
-	public Offer addOffer(String title, String type, String description, Boolean active, Long mobileData, Long mobileMinutes, Long mobileSms, Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed, Long uploadSpeed) {
-		//todo premisisons check!!!
-		return offerLocalService.addOffer(title, type, description, active, mobileData, mobileMinutes, mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed, uploadSpeed);
-	}
 }

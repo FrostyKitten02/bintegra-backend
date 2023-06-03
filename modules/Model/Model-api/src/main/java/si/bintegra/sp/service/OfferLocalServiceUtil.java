@@ -64,12 +64,14 @@ public class OfferLocalServiceUtil {
 		String title, String type, String description, Boolean active,
 		Long mobileData, Long mobileMinutes, Long mobileSms,
 		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
-		Long uploadSpeed) {
+		Long uploadSpeed, Long fullDurationMonths, Long discountDurationMonths,
+		Double basePrice, Double discountPrice) {
 
 		return getService().addOffer(
 			title, type, description, active, mobileData, mobileMinutes,
 			mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed,
-			uploadSpeed);
+			uploadSpeed, fullDurationMonths, discountDurationMonths, basePrice,
+			discountPrice);
 	}
 
 	/**

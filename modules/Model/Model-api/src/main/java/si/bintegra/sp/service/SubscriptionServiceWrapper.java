@@ -34,21 +34,6 @@ public class SubscriptionServiceWrapper
 		_subscriptionService = subscriptionService;
 	}
 
-	@Override
-	public si.bintegra.sp.model.Subscription addSubscription(
-		Long packageOfferId, Long userId, Long phoneId, Long startDate) {
-
-		return _subscriptionService.addSubscription(
-			packageOfferId, userId, phoneId, startDate);
-	}
-
-	@Override
-	public java.util.List<si.bintegra.sp.model.Subscription>
-		findSubscriptionsByUserId(Long userId) {
-
-		return _subscriptionService.findSubscriptionsByUserId(userId);
-	}
-
 	/**
 	 * Returns the OSGi service identifier.
 	 *

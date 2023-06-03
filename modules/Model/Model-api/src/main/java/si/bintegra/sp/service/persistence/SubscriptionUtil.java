@@ -121,174 +121,169 @@ public class SubscriptionUtil {
 	}
 
 	/**
-	 * Returns all the subscriptions where packageOffer = &#63;.
+	 * Returns all the subscriptions where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @return the matching subscriptions
 	 */
-	public static List<Subscription> findBypackageOffer(Long packageOffer) {
-		return getPersistence().findBypackageOffer(packageOffer);
+	public static List<Subscription> findByofferId(Long offerId) {
+		return getPersistence().findByofferId(offerId);
 	}
 
 	/**
-	 * Returns a range of all the subscriptions where packageOffer = &#63;.
+	 * Returns a range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @return the range of matching subscriptions
 	 */
-	public static List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end) {
+	public static List<Subscription> findByofferId(
+		Long offerId, int start, int end) {
 
-		return getPersistence().findBypackageOffer(packageOffer, start, end);
+		return getPersistence().findByofferId(offerId, start, end);
 	}
 
 	/**
-	 * Returns an ordered range of all the subscriptions where packageOffer = &#63;.
+	 * Returns an ordered range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching subscriptions
 	 */
-	public static List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end,
+	public static List<Subscription> findByofferId(
+		Long offerId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator) {
 
-		return getPersistence().findBypackageOffer(
-			packageOffer, start, end, orderByComparator);
+		return getPersistence().findByofferId(
+			offerId, start, end, orderByComparator);
 	}
 
 	/**
-	 * Returns an ordered range of all the subscriptions where packageOffer = &#63;.
+	 * Returns an ordered range of all the subscriptions where offerId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>SubscriptionModelImpl</code>.
 	 * </p>
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param start the lower bound of the range of subscriptions
 	 * @param end the upper bound of the range of subscriptions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching subscriptions
 	 */
-	public static List<Subscription> findBypackageOffer(
-		Long packageOffer, int start, int end,
+	public static List<Subscription> findByofferId(
+		Long offerId, int start, int end,
 		OrderByComparator<Subscription> orderByComparator,
 		boolean useFinderCache) {
 
-		return getPersistence().findBypackageOffer(
-			packageOffer, start, end, orderByComparator, useFinderCache);
+		return getPersistence().findByofferId(
+			offerId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Returns the first subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the first subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching subscription
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
-	public static Subscription findBypackageOffer_First(
-			Long packageOffer,
-			OrderByComparator<Subscription> orderByComparator)
+	public static Subscription findByofferId_First(
+			Long offerId, OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
-		return getPersistence().findBypackageOffer_First(
-			packageOffer, orderByComparator);
+		return getPersistence().findByofferId_First(offerId, orderByComparator);
 	}
 
 	/**
-	 * Returns the first subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the first subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
-	public static Subscription fetchBypackageOffer_First(
-		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+	public static Subscription fetchByofferId_First(
+		Long offerId, OrderByComparator<Subscription> orderByComparator) {
 
-		return getPersistence().fetchBypackageOffer_First(
-			packageOffer, orderByComparator);
+		return getPersistence().fetchByofferId_First(
+			offerId, orderByComparator);
 	}
 
 	/**
-	 * Returns the last subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the last subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching subscription
 	 * @throws NoSuchSubscriptionException if a matching subscription could not be found
 	 */
-	public static Subscription findBypackageOffer_Last(
-			Long packageOffer,
-			OrderByComparator<Subscription> orderByComparator)
+	public static Subscription findByofferId_Last(
+			Long offerId, OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
-		return getPersistence().findBypackageOffer_Last(
-			packageOffer, orderByComparator);
+		return getPersistence().findByofferId_Last(offerId, orderByComparator);
 	}
 
 	/**
-	 * Returns the last subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the last subscription in the ordered set where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching subscription, or <code>null</code> if a matching subscription could not be found
 	 */
-	public static Subscription fetchBypackageOffer_Last(
-		Long packageOffer, OrderByComparator<Subscription> orderByComparator) {
+	public static Subscription fetchByofferId_Last(
+		Long offerId, OrderByComparator<Subscription> orderByComparator) {
 
-		return getPersistence().fetchBypackageOffer_Last(
-			packageOffer, orderByComparator);
+		return getPersistence().fetchByofferId_Last(offerId, orderByComparator);
 	}
 
 	/**
-	 * Returns the subscriptions before and after the current subscription in the ordered set where packageOffer = &#63;.
+	 * Returns the subscriptions before and after the current subscription in the ordered set where offerId = &#63;.
 	 *
 	 * @param id the primary key of the current subscription
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next subscription
 	 * @throws NoSuchSubscriptionException if a subscription with the primary key could not be found
 	 */
-	public static Subscription[] findBypackageOffer_PrevAndNext(
-			long id, Long packageOffer,
+	public static Subscription[] findByofferId_PrevAndNext(
+			long id, Long offerId,
 			OrderByComparator<Subscription> orderByComparator)
 		throws si.bintegra.sp.exception.NoSuchSubscriptionException {
 
-		return getPersistence().findBypackageOffer_PrevAndNext(
-			id, packageOffer, orderByComparator);
+		return getPersistence().findByofferId_PrevAndNext(
+			id, offerId, orderByComparator);
 	}
 
 	/**
-	 * Removes all the subscriptions where packageOffer = &#63; from the database.
+	 * Removes all the subscriptions where offerId = &#63; from the database.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 */
-	public static void removeBypackageOffer(Long packageOffer) {
-		getPersistence().removeBypackageOffer(packageOffer);
+	public static void removeByofferId(Long offerId) {
+		getPersistence().removeByofferId(offerId);
 	}
 
 	/**
-	 * Returns the number of subscriptions where packageOffer = &#63;.
+	 * Returns the number of subscriptions where offerId = &#63;.
 	 *
-	 * @param packageOffer the package offer
+	 * @param offerId the offer ID
 	 * @return the number of matching subscriptions
 	 */
-	public static int countBypackageOffer(Long packageOffer) {
-		return getPersistence().countBypackageOffer(packageOffer);
+	public static int countByofferId(Long offerId) {
+		return getPersistence().countByofferId(offerId);
 	}
 
 	/**

@@ -41,7 +41,7 @@ public class OfferLocalServiceImpl extends OfferLocalServiceBaseImpl {
 		return offerPersistence.findByPrimaryKey(id);
 	}
 
-	public Offer addOffer(String title, String type, String description, Boolean active, Long mobileData, Long mobileMinutes, Long mobileSms, Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed, Long uploadSpeed) {
+	public Offer addOffer(String title, String type, String description, Boolean active, Long mobileData, Long mobileMinutes, Long mobileSms, Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed, Long uploadSpeed, Long fullDurationMonths, Long discountDurationMonths, Double basePrice, Double discountPrice) {
 		long newId = counterLocalService.increment();
 		Offer offer = offerPersistence.create(newId);
 
@@ -56,6 +56,10 @@ public class OfferLocalServiceImpl extends OfferLocalServiceBaseImpl {
 		offer.setDefaultNumberOfTvs(defaultNumberOfTvs);
 		offer.setDownloadSpeed(downloadSpeed);
 		offer.setUploadSpeed(uploadSpeed);
+		offer.setFullDurationMonths(fullDurationMonths);
+		offer.setDiscountDurationMonths(discountDurationMonths);
+		offer.setBasePrice(basePrice);
+		offer.setDiscountPrice(discountPrice);
 
 		return offerPersistence.update(offer);
 	}

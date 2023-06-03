@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class SubscriptionDto {
-    private Long packageOfferId;
+    private Long offerId;
     private Long startDate;
     private Long phoneId;
 
-    private PackageOfferDto packageOffer;
+    private OfferDto offer;
 }

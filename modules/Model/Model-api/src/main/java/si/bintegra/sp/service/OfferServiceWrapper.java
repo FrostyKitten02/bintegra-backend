@@ -34,33 +34,6 @@ public class OfferServiceWrapper
 		_offerService = offerService;
 	}
 
-	@Override
-	public si.bintegra.sp.model.Offer addOffer(
-		String title, String type, String description, Boolean active,
-		Long mobileData, Long mobileMinutes, Long mobileSms,
-		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
-		Long uploadSpeed) {
-
-		return _offerService.addOffer(
-			title, type, description, active, mobileData, mobileMinutes,
-			mobileSms, programsNumber, defaultNumberOfTvs, downloadSpeed,
-			uploadSpeed);
-	}
-
-	@Override
-	public java.util.List<si.bintegra.sp.model.Offer> findActiveByType(
-		String type) {
-
-		return _offerService.findActiveByType(type);
-	}
-
-	@Override
-	public si.bintegra.sp.model.Offer findById(Long id)
-		throws si.bintegra.sp.exception.NoSuchOfferException {
-
-		return _offerService.findById(id);
-	}
-
 	/**
 	 * Returns the OSGi service identifier.
 	 *

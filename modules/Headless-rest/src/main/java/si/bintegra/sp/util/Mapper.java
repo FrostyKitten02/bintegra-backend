@@ -2,49 +2,27 @@ package si.bintegra.sp.util;
 
 import com.liferay.portal.kernel.model.User;
 import si.bintegra.sp.dto.OfferDto;
-import si.bintegra.sp.dto.PackageOfferDto;
 import si.bintegra.sp.dto.SubscriptionDto;
 import si.bintegra.sp.dto.UserDto;
 import si.bintegra.sp.model.Offer;
-import si.bintegra.sp.model.PackageOffer;
 import si.bintegra.sp.model.Subscription;
 
 public class Mapper {
 
 
     public static SubscriptionDto toSubscriptionDto(Subscription subscription) {
-        return toSubscriptionDto(subscription, null, null);
+        return toSubscriptionDto(subscription, null);
     }
-    public static SubscriptionDto toSubscriptionDto(Subscription subscription, PackageOffer packageOffer, Offer offer) {
+    public static SubscriptionDto toSubscriptionDto(Subscription subscription, Offer offer) {
         if (subscription == null) {
             return null;
         }
 
         SubscriptionDto dto = new SubscriptionDto();
-        dto.setPackageOfferId(subscription.getPackageOffer());
+        dto.setOfferId(subscription.getOfferId());
         dto.setPhoneId(subscription.getPhoneId());
-        dto.setPackageOffer(toPackageOfferDto(packageOffer, offer));
         dto.setStartDate(subscription.getStartDate());
 
-        return dto;
-    }
-
-    public static PackageOfferDto toPackageOfferDto(PackageOffer packageOffer) {
-        return toPackageOfferDto(packageOffer, null);
-    }
-    public static PackageOfferDto toPackageOfferDto(PackageOffer packageOffer, Offer offer) {
-        if (packageOffer == null) {
-            return null;
-        }
-
-        PackageOfferDto dto = new PackageOfferDto();
-        dto.setId(packageOffer.getId());
-        dto.setOfferId(packageOffer.getOfferId());
-        dto.setActive(packageOffer.getActive());
-        dto.setDiscountPrice(packageOffer.getDiscountPrice());
-        dto.setBasePrice(packageOffer.getBasePrice());
-        dto.setDiscountDuration(packageOffer.getDiscountDuration());
-        dto.setFullDuration(packageOffer.getFullDuration());
         dto.setOffer(toOfferDto(offer));
 
         return dto;
@@ -62,15 +40,27 @@ public class Mapper {
         dto.setDescription(offer.getDescription());
         dto.setActive(offer.getActive());
 
+        //mobile
         dto.setMobileData(offer.getMobileData());
         dto.setMobileMinutes(offer.getMobileMinutes());
         dto.setMobileSms(offer.getMobileSms());
 
+        //tv
         dto.setProgramsNumber(offer.getProgramsNumber());
         dto.setDefaultNumberOfTvs(offer.getDefaultNumberOfTvs());
 
+        //internet
         dto.setDownloadSpeed(offer.getDownloadSpeed());
         dto.setUploadSpeed(offer.getUploadSpeed());
+
+        //duration
+        dto.setFullDurationMonths(offer.getFullDurationMonths());
+        dto.setDiscountDurationMonths(offer.getDiscountDurationMonths());
+
+        //pricing
+        dto.setBasePrice(offer.getBasePrice());
+        dto.setDiscountPrice(offer.getDiscountPrice());
+
         return dto;
     }
 

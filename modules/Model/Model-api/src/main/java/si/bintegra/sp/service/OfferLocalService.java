@@ -81,7 +81,8 @@ public interface OfferLocalService
 		String title, String type, String description, Boolean active,
 		Long mobileData, Long mobileMinutes, Long mobileSms,
 		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
-		Long uploadSpeed);
+		Long uploadSpeed, Long fullDurationMonths, Long discountDurationMonths,
+		Double basePrice, Double discountPrice);
 
 	/**
 	 * Creates a new offer with the primary key. Does not add the offer to the database.

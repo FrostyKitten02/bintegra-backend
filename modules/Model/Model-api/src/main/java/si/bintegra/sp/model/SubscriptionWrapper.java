@@ -42,7 +42,7 @@ public class SubscriptionWrapper
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("id", getId());
-		attributes.put("packageOffer", getPackageOffer());
+		attributes.put("offerId", getOfferId());
 		attributes.put("startDate", getStartDate());
 		attributes.put("userId", getUserId());
 		attributes.put("phoneId", getPhoneId());
@@ -58,10 +58,10 @@ public class SubscriptionWrapper
 			setId(id);
 		}
 
-		Long packageOffer = (Long)attributes.get("packageOffer");
+		Long offerId = (Long)attributes.get("offerId");
 
-		if (packageOffer != null) {
-			setPackageOffer(packageOffer);
+		if (offerId != null) {
+			setOfferId(offerId);
 		}
 
 		Long startDate = (Long)attributes.get("startDate");
@@ -99,13 +99,13 @@ public class SubscriptionWrapper
 	}
 
 	/**
-	 * Returns the package offer of this subscription.
+	 * Returns the offer ID of this subscription.
 	 *
-	 * @return the package offer of this subscription
+	 * @return the offer ID of this subscription
 	 */
 	@Override
-	public Long getPackageOffer() {
-		return model.getPackageOffer();
+	public Long getOfferId() {
+		return model.getOfferId();
 	}
 
 	/**
@@ -164,13 +164,13 @@ public class SubscriptionWrapper
 	}
 
 	/**
-	 * Sets the package offer of this subscription.
+	 * Sets the offer ID of this subscription.
 	 *
-	 * @param packageOffer the package offer of this subscription
+	 * @param offerId the offer ID of this subscription
 	 */
 	@Override
-	public void setPackageOffer(Long packageOffer) {
-		model.setPackageOffer(packageOffer);
+	public void setOfferId(Long offerId) {
+		model.setOfferId(offerId);
 	}
 
 	/**

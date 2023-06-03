@@ -69,7 +69,7 @@ public class SubscriptionModelImpl
 	public static final String TABLE_NAME = "SP_Subscription";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"id_", Types.BIGINT}, {"packageOffer", Types.BIGINT},
+		{"id_", Types.BIGINT}, {"offerId", Types.BIGINT},
 		{"startDate", Types.BIGINT}, {"userId", Types.BIGINT},
 		{"phoneId", Types.BIGINT}
 	};
@@ -79,14 +79,14 @@ public class SubscriptionModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("id_", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("packageOffer", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("offerId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("startDate", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("phoneId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SP_Subscription (id_ LONG not null primary key,packageOffer LONG,startDate LONG,userId LONG,phoneId LONG)";
+		"create table SP_Subscription (id_ LONG not null primary key,offerId LONG,startDate LONG,userId LONG,phoneId LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table SP_Subscription";
 
@@ -105,7 +105,7 @@ public class SubscriptionModelImpl
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long PACKAGEOFFER_COLUMN_BITMASK = 1L;
+	public static final long OFFERID_COLUMN_BITMASK = 1L;
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
@@ -233,11 +233,10 @@ public class SubscriptionModelImpl
 		attributeGetterFunctions.put("id", Subscription::getId);
 		attributeSetterBiConsumers.put(
 			"id", (BiConsumer<Subscription, Long>)Subscription::setId);
-		attributeGetterFunctions.put(
-			"packageOffer", Subscription::getPackageOffer);
+		attributeGetterFunctions.put("offerId", Subscription::getOfferId);
 		attributeSetterBiConsumers.put(
-			"packageOffer",
-			(BiConsumer<Subscription, Long>)Subscription::setPackageOffer);
+			"offerId",
+			(BiConsumer<Subscription, Long>)Subscription::setOfferId);
 		attributeGetterFunctions.put("startDate", Subscription::getStartDate);
 		attributeSetterBiConsumers.put(
 			"startDate",
@@ -273,17 +272,17 @@ public class SubscriptionModelImpl
 
 	@JSON
 	@Override
-	public Long getPackageOffer() {
-		return _packageOffer;
+	public Long getOfferId() {
+		return _offerId;
 	}
 
 	@Override
-	public void setPackageOffer(Long packageOffer) {
+	public void setOfferId(Long offerId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_packageOffer = packageOffer;
+		_offerId = offerId;
 	}
 
 	/**
@@ -291,9 +290,8 @@ public class SubscriptionModelImpl
 	 *             #getColumnOriginalValue(String)}
 	 */
 	@Deprecated
-	public Long getOriginalPackageOffer() {
-		return GetterUtil.getLong(
-			this.<Long>getColumnOriginalValue("packageOffer"));
+	public Long getOriginalOfferId() {
+		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("offerId"));
 	}
 
 	@JSON
@@ -407,7 +405,7 @@ public class SubscriptionModelImpl
 		SubscriptionImpl subscriptionImpl = new SubscriptionImpl();
 
 		subscriptionImpl.setId(getId());
-		subscriptionImpl.setPackageOffer(getPackageOffer());
+		subscriptionImpl.setOfferId(getOfferId());
 		subscriptionImpl.setStartDate(getStartDate());
 		subscriptionImpl.setUserId(getUserId());
 		subscriptionImpl.setPhoneId(getPhoneId());
@@ -422,8 +420,8 @@ public class SubscriptionModelImpl
 		SubscriptionImpl subscriptionImpl = new SubscriptionImpl();
 
 		subscriptionImpl.setId(this.<Long>getColumnOriginalValue("id_"));
-		subscriptionImpl.setPackageOffer(
-			this.<Long>getColumnOriginalValue("packageOffer"));
+		subscriptionImpl.setOfferId(
+			this.<Long>getColumnOriginalValue("offerId"));
 		subscriptionImpl.setStartDate(
 			this.<Long>getColumnOriginalValue("startDate"));
 		subscriptionImpl.setUserId(this.<Long>getColumnOriginalValue("userId"));
@@ -513,10 +511,10 @@ public class SubscriptionModelImpl
 
 		subscriptionCacheModel.id = getId();
 
-		Long packageOffer = getPackageOffer();
+		Long offerId = getOfferId();
 
-		if (packageOffer != null) {
-			subscriptionCacheModel.packageOffer = packageOffer;
+		if (offerId != null) {
+			subscriptionCacheModel.offerId = offerId;
 		}
 
 		Long startDate = getStartDate();
@@ -599,7 +597,7 @@ public class SubscriptionModelImpl
 	}
 
 	private long _id;
-	private Long _packageOffer;
+	private Long _offerId;
 	private Long _startDate;
 	private Long _userId;
 	private Long _phoneId;
@@ -634,7 +632,7 @@ public class SubscriptionModelImpl
 		_columnOriginalValues = new HashMap<String, Object>();
 
 		_columnOriginalValues.put("id_", _id);
-		_columnOriginalValues.put("packageOffer", _packageOffer);
+		_columnOriginalValues.put("offerId", _offerId);
 		_columnOriginalValues.put("startDate", _startDate);
 		_columnOriginalValues.put("userId", _userId);
 		_columnOriginalValues.put("phoneId", _phoneId);
@@ -663,7 +661,7 @@ public class SubscriptionModelImpl
 
 		columnBitmasks.put("id_", 1L);
 
-		columnBitmasks.put("packageOffer", 2L);
+		columnBitmasks.put("offerId", 2L);
 
 		columnBitmasks.put("startDate", 4L);
 

@@ -7,5 +7,4 @@ import java.util.List;
 @Data
 public class SubscriptionResponse {
     private List<SubscriptionDto> subscriptions;
-    private List<SubscriptionDto> subscriptionNoData;
 }

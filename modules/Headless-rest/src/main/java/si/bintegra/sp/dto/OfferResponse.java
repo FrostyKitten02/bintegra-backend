@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class OfferResponse {
     private OfferDto offer;
-    private List<OfferWithPackageOffersDto> offersWithPackageOffers;
+    private List<OfferDto> offers;
 }

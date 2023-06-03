@@ -22,12 +22,7 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import java.util.List;
-
 import org.osgi.annotation.versioning.ProviderType;
-
-import si.bintegra.sp.exception.NoSuchOfferException;
-import si.bintegra.sp.model.Offer;
 
 /**
  * Provides the remote service interface for Offer. Methods of this
@@ -52,15 +47,6 @@ public interface OfferService extends BaseService {
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>si.bintegra.sp.service.impl.OfferServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the offer remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link OfferServiceUtil} if injection and service tracking are not available.
 	 */
-	public Offer addOffer(
-		String title, String type, String description, Boolean active,
-		Long mobileData, Long mobileMinutes, Long mobileSms,
-		Long programsNumber, Long defaultNumberOfTvs, Long downloadSpeed,
-		Long uploadSpeed);
-
-	public List<Offer> findActiveByType(String type);
-
-	public Offer findById(Long id) throws NoSuchOfferException;
 
 	/**
 	 * Returns the OSGi service identifier.

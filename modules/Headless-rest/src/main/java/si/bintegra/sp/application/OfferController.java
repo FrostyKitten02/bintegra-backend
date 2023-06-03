@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
+import java.util.stream.Collectors;
 
 @Component(
         properties = "defaultController.properties",
@@ -33,11 +34,7 @@ public class OfferController extends Application {
     @Path("/active/{type}")
     public OfferResponse getActiveOffersByTypeWithActivePackageOffers(@PathParam("type") String type) {
         OfferResponse res = new OfferResponse();
-
-        //TODO rework
-
-        //res.setOffersWithPackageOffers(activeOffersWithPackageOffers);
-
+        res.setOffers(OfferLocalServiceUtil.findActiveByType(type).stream().map(Mapper::toOfferDto).collect(Collectors.toList()));
         return res;
     }
 
@@ -55,7 +52,7 @@ public class OfferController extends Application {
         OfferResponse res = new OfferResponse();
 
         OfferDto offerDto = req.getOffer();
-        Offer saved = OfferLocalServiceUtil.addOffer(offerDto.getTitle(), offerDto.getType(), offerDto.getDescription(), offerDto.getActive(), offerDto.getMobileData(), offerDto.getMobileMinutes(), offerDto.getMobileSms(), offerDto.getProgramsNumber(), offerDto.getDefaultNumberOfTvs(), offerDto.getDownloadSpeed(), offerDto.getUploadSpeed());
+        Offer saved = OfferLocalServiceUtil.addOffer(offerDto.getTitle(), offerDto.getType(), offerDto.getDescription(), offerDto.getActive(), offerDto.getMobileData(), offerDto.getMobileMinutes(), offerDto.getMobileSms(), offerDto.getProgramsNumber(), offerDto.getDefaultNumberOfTvs(), offerDto.getDownloadSpeed(), offerDto.getUploadSpeed(), offerDto.getFullDurationMonths(), offerDto.getDiscountDurationMonths(), offerDto.getBasePrice(), offerDto.getDiscountPrice());
         res.setOffer(Mapper.toOfferDto(saved));
 
         return res;

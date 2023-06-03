@@ -122,7 +122,7 @@ public class SubscriptionPersistenceTest {
 
 		Subscription newSubscription = _persistence.create(pk);
 
-		newSubscription.setPackageOffer();
+		newSubscription.setOfferId();
 
 		newSubscription.setStartDate();
 
@@ -138,8 +138,7 @@ public class SubscriptionPersistenceTest {
 		Assert.assertEquals(
 			existingSubscription.getId(), newSubscription.getId());
 		Assert.assertEquals(
-			existingSubscription.getPackageOffer(),
-			newSubscription.getPackageOffer());
+			existingSubscription.getOfferId(), newSubscription.getOfferId());
 		Assert.assertEquals(
 			existingSubscription.getStartDate(),
 			newSubscription.getStartDate());
@@ -150,10 +149,10 @@ public class SubscriptionPersistenceTest {
 	}
 
 	@Test
-	public void testCountBypackageOffer() throws Exception {
-		_persistence.countBypackageOffer((Long)null);
+	public void testCountByofferId() throws Exception {
+		_persistence.countByofferId((Long)null);
 
-		_persistence.countBypackageOffer((Long)null);
+		_persistence.countByofferId((Long)null);
 	}
 
 	@Test
@@ -188,8 +187,8 @@ public class SubscriptionPersistenceTest {
 
 	protected OrderByComparator<Subscription> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
-			"SP_Subscription", "id", true, "packageOffer", true, "startDate",
-			true, "userId", true, "phoneId", true);
+			"SP_Subscription", "id", true, "offerId", true, "startDate", true,
+			"userId", true, "phoneId", true);
 	}
 
 	@Test
@@ -405,7 +404,7 @@ public class SubscriptionPersistenceTest {
 
 		Subscription subscription = _persistence.create(pk);
 
-		subscription.setPackageOffer();
+		subscription.setOfferId();
 
 		subscription.setStartDate();
 

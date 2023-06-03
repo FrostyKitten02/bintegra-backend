@@ -12,8 +12,12 @@ import org.osgi.service.component.annotations.ServiceScope;
 import si.bintegra.sp.dto.SubscriptionDto;
 import si.bintegra.sp.dto.SubscriptionRequest;
 import si.bintegra.sp.dto.SubscriptionResponse;
+import si.bintegra.sp.exception.NoSuchOfferException;
+import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.Subscription;
+import si.bintegra.sp.service.OfferLocalServiceUtil;
 import si.bintegra.sp.service.SubscriptionLocalServiceUtil;
+import si.bintegra.sp.util.Mapper;
 import si.bintegra.sp.util.RoleChecker;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +26,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component(
         properties = "defaultController.properties",
@@ -43,7 +48,7 @@ public class SubscriptionController extends Application {
 
         SubscriptionDto subDto = req.getSubscription();
 
-        SubscriptionLocalServiceUtil.addSubscription(subDto.getPackageOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate());
+        SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate());
     }
 
     @GET
@@ -52,26 +57,22 @@ public class SubscriptionController extends Application {
         User user = PortalUtil.getUser(request);
         RoleChecker.isUserGuestStrict(user);
 
-        List<Subscription> all =  SubscriptionLocalServiceUtil.findSubscriptionsByUserId(user.getUserId());
-        List<SubscriptionDto> success = new ArrayList<>(all.size());
-        List<SubscriptionDto> failed = new ArrayList<>();
+        List<SubscriptionDto> subs = SubscriptionLocalServiceUtil
+                .findSubscriptionsByUserId(user.getUserId())
+                .stream().map(subscription -> {
+                    Long offerId = subscription.getOfferId();
+                    Offer offer = null;
+                    try {
+                        offer = OfferLocalServiceUtil.findById(offerId);
+                    } catch (NoSuchOfferException e) {
+                        _log.error(e.getLocalizedMessage(), e);
+                    }
 
 
-        //TODO rework
-//        for (Subscription s : all) {
-//            try {
-//                PackageOffer packageOffer = PackageOfferLocalServiceUtil.findById(s.getPackageOffer());
-//                Offer offer = OfferLocalServiceUtil.findById(packageOffer.getOfferId());
-//                success.add(Mapper.toSubscriptionDto(s, packageOffer, offer));
-//            } catch (NoSuchPackageOfferException | NoSuchOfferException e) {
-//                _log.error(e.getLocalizedMessage(), e);
-//                failed.add(Mapper.toSubscriptionDto(s));
-//            }
-//        }
+                    return Mapper.toSubscriptionDto(subscription, offer);
+                }).collect(Collectors.toList());
 
-        res.setSubscriptions(success);
-        res.setSubscriptionNoData(failed);
-
+        res.setSubscriptions(subs);
         return res;
     }
 }

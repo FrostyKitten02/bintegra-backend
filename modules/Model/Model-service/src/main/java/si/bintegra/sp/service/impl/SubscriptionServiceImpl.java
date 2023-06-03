@@ -34,14 +34,4 @@ import java.util.List;
 	service = AopService.class
 )
 public class SubscriptionServiceImpl extends SubscriptionServiceBaseImpl {
-
-	public Subscription addSubscription(Long packageOfferId, Long userId, Long phoneId, Long startDate) {
-		//TODO add permissions check!!
-		return subscriptionLocalService.addSubscription(packageOfferId, userId, phoneId, startDate);
-	}
-
-	public List<Subscription> findSubscriptionsByUserId(Long userId) {
-		//TODO add permissions check!!
-		return subscriptionLocalService.findSubscriptionsByUserId(userId);
-	}
 }
