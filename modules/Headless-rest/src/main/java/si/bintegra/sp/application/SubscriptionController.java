@@ -15,6 +15,8 @@ import si.bintegra.sp.dto.SubscriptionResponse;
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.model.Subscription;
+import si.bintegra.sp.service.ConsultantCustomerLocalService;
+import si.bintegra.sp.service.ConsultantCustomerLocalServiceUtil;
 import si.bintegra.sp.service.OfferLocalServiceUtil;
 import si.bintegra.sp.service.SubscriptionLocalServiceUtil;
 import si.bintegra.sp.util.Mapper;
@@ -49,6 +51,7 @@ public class SubscriptionController extends Application {
         SubscriptionDto subDto = req.getSubscription();
 
         SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate(), subDto.getSubscriptionContract());
+        ConsultantCustomerLocalServiceUtil.assignConsultantToCustomer(user.getUserId());
     }
 
     @GET

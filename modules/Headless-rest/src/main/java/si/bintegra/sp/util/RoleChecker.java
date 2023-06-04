@@ -10,7 +10,7 @@ public class RoleChecker {
     private final static String ADMINISTRATOR_ROLE = "Administrator";
     private final static String GUEST_ROLE = "Guest";
 
-
+    //this is also consultant
     public static boolean isUserAdministrator(User user) {
         return userHasRole(user, ADMINISTRATOR_ROLE);
     }

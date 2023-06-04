@@ -1,3 +1,14 @@
+create table SP_Consultant (
+	id_ LONG not null primary key,
+	userId LONG
+);
+
+create table SP_ConsultantCustomer (
+	id_ LONG not null primary key,
+	consultantId LONG,
+	customerId LONG
+);
+
 create table SP_Offer (
 	id_ LONG not null primary key,
 	type_ VARCHAR(75) null,

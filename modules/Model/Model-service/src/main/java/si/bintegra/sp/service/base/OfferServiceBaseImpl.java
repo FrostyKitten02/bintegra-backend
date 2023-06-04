@@ -36,6 +36,8 @@ import org.osgi.service.component.annotations.Reference;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.OfferService;
 import si.bintegra.sp.service.OfferServiceUtil;
+import si.bintegra.sp.service.persistence.ConsultantCustomerPersistence;
+import si.bintegra.sp.service.persistence.ConsultantPersistence;
 import si.bintegra.sp.service.persistence.OfferPersistence;
 import si.bintegra.sp.service.persistence.SubscriptionPersistence;
 
@@ -132,6 +134,12 @@ public abstract class OfferServiceBaseImpl
 			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
+
+	@Reference
+	protected ConsultantPersistence consultantPersistence;
+
+	@Reference
+	protected ConsultantCustomerPersistence consultantCustomerPersistence;
 
 	@Reference
 	protected si.bintegra.sp.service.OfferLocalService offerLocalService;

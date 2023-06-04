@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="si.bintegra.sp.model.Consultant">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="si.bintegra.sp.model.ConsultantCustomer">
+		<field name="id" type="long" />
+		<field name="consultantId" type="Long" />
+		<field name="customerId" type="Long" />
+	</model>
 	<model name="si.bintegra.sp.model.Offer">
 		<field name="id" type="long" />
 		<field name="type" type="String" />

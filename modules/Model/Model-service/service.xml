@@ -77,4 +77,32 @@
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 	</entity>
 
+	<entity name="ConsultantCustomer" local-service="true" remote-service="true">
+		<column name="id" type="long" primary="true" />
+
+		<column name="consultantId" type="Long" />
+		<column name="customerId" type="Long" />
+
+		<finder name="consultantId" return-type="Collection">
+			<finder-column name="consultantId" />
+		</finder>
+
+		<finder name="customerId" return-type="Collection">
+			<finder-column name="customerId" />
+		</finder>
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+
+	<entity name="Consultant" local-service="true" remote-service="true">
+		<column name="id" type="long" primary="true" />
+
+		<column name="userId" type="long" />
+
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+
 </service-builder>
