@@ -17,7 +17,7 @@ import javax.ws.rs.core.Application;
 @Component(
         properties = "defaultController.properties",
         scope = ServiceScope.PROTOTYPE,
-        service = SubscriptionController.class
+        service = ConsultantController.class
 )
 @Path("/consultant")
 @Produces("application/json")
