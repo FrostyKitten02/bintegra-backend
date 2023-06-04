@@ -46,10 +46,11 @@ public class SubscriptionLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>si.bintegra.sp.service.impl.SubscriptionLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static Subscription addSubscription(
-		Long offerId, Long userId, Long phoneId, Long startDate) {
+		Long offerId, Long userId, Long phoneId, Long startDate,
+		Boolean subscriptionContract) {
 
 		return getService().addSubscription(
-			offerId, userId, phoneId, startDate);
+			offerId, userId, phoneId, startDate, subscriptionContract);
 	}
 
 	/**

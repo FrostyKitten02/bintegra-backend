@@ -122,6 +122,20 @@ public interface SubscriptionModel extends BaseModel<Subscription> {
 	 */
 	public void setPhoneId(Long phoneId);
 
+	/**
+	 * Returns the contract subscription of this subscription.
+	 *
+	 * @return the contract subscription of this subscription
+	 */
+	public Boolean getContractSubscription();
+
+	/**
+	 * Sets the contract subscription of this subscription.
+	 *
+	 * @param contractSubscription the contract subscription of this subscription
+	 */
+	public void setContractSubscription(Boolean contractSubscription);
+
 	@Override
 	public Subscription cloneWithOriginalValues();
 

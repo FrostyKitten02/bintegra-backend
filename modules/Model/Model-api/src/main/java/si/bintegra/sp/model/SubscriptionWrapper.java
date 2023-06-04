@@ -46,6 +46,7 @@ public class SubscriptionWrapper
 		attributes.put("startDate", getStartDate());
 		attributes.put("userId", getUserId());
 		attributes.put("phoneId", getPhoneId());
+		attributes.put("contractSubscription", getContractSubscription());
 
 		return attributes;
 	}
@@ -81,11 +82,28 @@ public class SubscriptionWrapper
 		if (phoneId != null) {
 			setPhoneId(phoneId);
 		}
+
+		Boolean contractSubscription = (Boolean)attributes.get(
+			"contractSubscription");
+
+		if (contractSubscription != null) {
+			setContractSubscription(contractSubscription);
+		}
 	}
 
 	@Override
 	public Subscription cloneWithOriginalValues() {
 		return wrap(model.cloneWithOriginalValues());
+	}
+
+	/**
+	 * Returns the contract subscription of this subscription.
+	 *
+	 * @return the contract subscription of this subscription
+	 */
+	@Override
+	public Boolean getContractSubscription() {
+		return model.getContractSubscription();
 	}
 
 	/**
@@ -151,6 +169,16 @@ public class SubscriptionWrapper
 	@Override
 	public void persist() {
 		model.persist();
+	}
+
+	/**
+	 * Sets the contract subscription of this subscription.
+	 *
+	 * @param contractSubscription the contract subscription of this subscription
+	 */
+	@Override
+	public void setContractSubscription(Boolean contractSubscription) {
+		model.setContractSubscription(contractSubscription);
 	}
 
 	/**

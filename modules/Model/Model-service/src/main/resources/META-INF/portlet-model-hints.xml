@@ -25,5 +25,6 @@
 		<field name="startDate" type="Long" />
 		<field name="userId" type="Long" />
 		<field name="phoneId" type="Long" />
+		<field name="contractSubscription" type="Boolean" />
 	</model>
 </model-hints>

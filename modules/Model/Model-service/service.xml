@@ -11,6 +11,7 @@
 		<column name="startDate" type="Long" />
 		<column name="userId" type="Long" />
 		<column name="phoneId" type="Long" />
+		<column name="contractSubscription" type="Boolean" />
 
 		<order by="asc">
 			<order-column name="id" />

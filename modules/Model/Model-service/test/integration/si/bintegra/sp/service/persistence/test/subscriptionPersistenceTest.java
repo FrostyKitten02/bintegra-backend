@@ -130,6 +130,8 @@ public class SubscriptionPersistenceTest {
 
 		newSubscription.setPhoneId();
 
+		newSubscription.setContractSubscription();
+
 		_subscriptions.add(_persistence.update(newSubscription));
 
 		Subscription existingSubscription = _persistence.findByPrimaryKey(
@@ -146,6 +148,9 @@ public class SubscriptionPersistenceTest {
 			existingSubscription.getUserId(), newSubscription.getUserId());
 		Assert.assertEquals(
 			existingSubscription.getPhoneId(), newSubscription.getPhoneId());
+		Assert.assertEquals(
+			existingSubscription.getContractSubscription(),
+			newSubscription.getContractSubscription());
 	}
 
 	@Test
@@ -188,7 +193,7 @@ public class SubscriptionPersistenceTest {
 	protected OrderByComparator<Subscription> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
 			"SP_Subscription", "id", true, "offerId", true, "startDate", true,
-			"userId", true, "phoneId", true);
+			"userId", true, "phoneId", true, "contractSubscription", true);
 	}
 
 	@Test
@@ -411,6 +416,8 @@ public class SubscriptionPersistenceTest {
 		subscription.setUserId();
 
 		subscription.setPhoneId();
+
+		subscription.setContractSubscription();
 
 		_subscriptions.add(_persistence.update(subscription));
 

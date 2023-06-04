@@ -22,5 +22,6 @@ create table SP_Subscription (
 	offerId LONG,
 	startDate LONG,
 	userId LONG,
-	phoneId LONG
+	phoneId LONG,
+	contractSubscription BOOLEAN
 );

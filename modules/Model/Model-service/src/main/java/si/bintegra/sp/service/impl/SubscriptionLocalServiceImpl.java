@@ -38,7 +38,7 @@ import java.util.List;
 public class SubscriptionLocalServiceImpl
 	extends SubscriptionLocalServiceBaseImpl {
 
-	public Subscription addSubscription(Long offerId, Long userId, Long phoneId, Long startDate) {
+	public Subscription addSubscription(Long offerId, Long userId, Long phoneId, Long startDate, Boolean subscriptionContract) {
 		long newId = counterLocalService.increment();
 		Subscription subscription = subscriptionPersistence.create(newId);
 
@@ -46,6 +46,7 @@ public class SubscriptionLocalServiceImpl
 		subscription.setUserId(userId);
 		subscription.setPhoneId(phoneId);
 		subscription.setStartDate(startDate);
+		subscription.setContractSubscription(subscriptionContract);
 
 		return subscriptionPersistence.update(subscription);
 	}

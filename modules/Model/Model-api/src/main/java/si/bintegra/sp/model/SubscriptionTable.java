@@ -40,6 +40,10 @@ public class SubscriptionTable extends BaseTable<SubscriptionTable> {
 		"userId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<SubscriptionTable, Long> phoneId = createColumn(
 		"phoneId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+	public final Column<SubscriptionTable, Boolean> contractSubscription =
+		createColumn(
+			"contractSubscription", Boolean.class, Types.BOOLEAN,
+			Column.FLAG_DEFAULT);
 
 	private SubscriptionTable() {
 		super("SP_Subscription", SubscriptionTable::new);

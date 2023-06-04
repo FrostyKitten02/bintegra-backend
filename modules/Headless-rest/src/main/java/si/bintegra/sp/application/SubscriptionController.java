@@ -48,7 +48,7 @@ public class SubscriptionController extends Application {
 
         SubscriptionDto subDto = req.getSubscription();
 
-        SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate());
+        SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate(), subDto.getSubscriptionContract());
     }
 
     @GET

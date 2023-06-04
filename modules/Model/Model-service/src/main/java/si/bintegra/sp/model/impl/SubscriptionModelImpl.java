@@ -71,7 +71,7 @@ public class SubscriptionModelImpl
 	public static final Object[][] TABLE_COLUMNS = {
 		{"id_", Types.BIGINT}, {"offerId", Types.BIGINT},
 		{"startDate", Types.BIGINT}, {"userId", Types.BIGINT},
-		{"phoneId", Types.BIGINT}
+		{"phoneId", Types.BIGINT}, {"contractSubscription", Types.BOOLEAN}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -83,10 +83,11 @@ public class SubscriptionModelImpl
 		TABLE_COLUMNS_MAP.put("startDate", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("phoneId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("contractSubscription", Types.BOOLEAN);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SP_Subscription (id_ LONG not null primary key,offerId LONG,startDate LONG,userId LONG,phoneId LONG)";
+		"create table SP_Subscription (id_ LONG not null primary key,offerId LONG,startDate LONG,userId LONG,phoneId LONG,contractSubscription BOOLEAN)";
 
 	public static final String TABLE_SQL_DROP = "drop table SP_Subscription";
 
@@ -248,6 +249,12 @@ public class SubscriptionModelImpl
 		attributeSetterBiConsumers.put(
 			"phoneId",
 			(BiConsumer<Subscription, Long>)Subscription::setPhoneId);
+		attributeGetterFunctions.put(
+			"contractSubscription", Subscription::getContractSubscription);
+		attributeSetterBiConsumers.put(
+			"contractSubscription",
+			(BiConsumer<Subscription, Boolean>)
+				Subscription::setContractSubscription);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -348,6 +355,21 @@ public class SubscriptionModelImpl
 		_phoneId = phoneId;
 	}
 
+	@JSON
+	@Override
+	public Boolean getContractSubscription() {
+		return _contractSubscription;
+	}
+
+	@Override
+	public void setContractSubscription(Boolean contractSubscription) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_contractSubscription = contractSubscription;
+	}
+
 	public long getColumnBitmask() {
 		if (_columnBitmask > 0) {
 			return _columnBitmask;
@@ -409,6 +431,7 @@ public class SubscriptionModelImpl
 		subscriptionImpl.setStartDate(getStartDate());
 		subscriptionImpl.setUserId(getUserId());
 		subscriptionImpl.setPhoneId(getPhoneId());
+		subscriptionImpl.setContractSubscription(getContractSubscription());
 
 		subscriptionImpl.resetOriginalValues();
 
@@ -427,6 +450,8 @@ public class SubscriptionModelImpl
 		subscriptionImpl.setUserId(this.<Long>getColumnOriginalValue("userId"));
 		subscriptionImpl.setPhoneId(
 			this.<Long>getColumnOriginalValue("phoneId"));
+		subscriptionImpl.setContractSubscription(
+			this.<Boolean>getColumnOriginalValue("contractSubscription"));
 
 		return subscriptionImpl;
 	}
@@ -535,6 +560,12 @@ public class SubscriptionModelImpl
 			subscriptionCacheModel.phoneId = phoneId;
 		}
 
+		Boolean contractSubscription = getContractSubscription();
+
+		if (contractSubscription != null) {
+			subscriptionCacheModel.contractSubscription = contractSubscription;
+		}
+
 		return subscriptionCacheModel;
 	}
 
@@ -601,6 +632,7 @@ public class SubscriptionModelImpl
 	private Long _startDate;
 	private Long _userId;
 	private Long _phoneId;
+	private Boolean _contractSubscription;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -636,6 +668,8 @@ public class SubscriptionModelImpl
 		_columnOriginalValues.put("startDate", _startDate);
 		_columnOriginalValues.put("userId", _userId);
 		_columnOriginalValues.put("phoneId", _phoneId);
+		_columnOriginalValues.put(
+			"contractSubscription", _contractSubscription);
 	}
 
 	private static final Map<String, String> _attributeNames;
@@ -668,6 +702,8 @@ public class SubscriptionModelImpl
 		columnBitmasks.put("userId", 8L);
 
 		columnBitmasks.put("phoneId", 16L);
+
+		columnBitmasks.put("contractSubscription", 32L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}
