@@ -72,6 +72,9 @@ public class Mapper {
         UserDto dto = new UserDto();
         dto.setEmail(user.getEmailAddress());
         dto.setId(user.getUserId());
+        dto.setFirstname(user.getFirstName());
+        dto.setLastname(user.getLastName());
+
         return dto;
     }
 

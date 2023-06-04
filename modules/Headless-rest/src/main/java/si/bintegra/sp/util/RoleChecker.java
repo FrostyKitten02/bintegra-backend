@@ -1,14 +1,14 @@
 package si.bintegra.sp.util;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 
 public class RoleChecker {
 
-    private final static String ADMINISTRATOR_ROLE = "Administrator";
-    private final static String GUEST_ROLE = "Guest";
+    private final static String ADMINISTRATOR_ROLE = RoleConstants.ADMINISTRATOR;
+    private final static String GUEST_ROLE = RoleConstants.GUEST;
 
     //this is also consultant
     public static boolean isUserAdministrator(User user) {
