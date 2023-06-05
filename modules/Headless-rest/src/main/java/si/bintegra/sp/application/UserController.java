@@ -24,6 +24,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import java.util.Locale;
+import java.util.UUID;
 
 @Component(
         properties = "defaultController.properties",
@@ -84,9 +85,26 @@ public class UserController extends Application {
         Role role = RoleLocalServiceUtil.getRole(companyId, RoleConstants.ADMINISTRATOR);
         User admin = UserLocalServiceUtil.getRoleUsers(role.getRoleId()).get(0);
 
+        if (req.getRegisterRequest().getBirthYear() == null) {
+            req.getRegisterRequest().setBirthYear(1);
+        }
+
+        if (req.getRegisterRequest().getBirthMonth() == null) {
+            req.getRegisterRequest().setBirthMonth(1);
+        }
+
+        if (req.getRegisterRequest().getBirthDay() == null) {
+            req.getRegisterRequest().setBirthDay(1);
+        }
+
+        if (req.getRegisterRequest().getMale() == null) {
+            req.getRegisterRequest().setMale(true);
+        }
+
+        String screenName = UUID.randomUUID().toString();
 
         UserLocalServiceUtil.addUser(
-                admin.getUserId(), companyId, false, req.getRegisterRequest().getPassword(), req.getRegisterRequest().getRepeatPassword(), false, "defaultScreenName", req.getRegisterRequest().getEmail(),
+                admin.getUserId(), companyId, false, req.getRegisterRequest().getPassword(), req.getRegisterRequest().getRepeatPassword(), false, screenName, req.getRegisterRequest().getEmail(),
                 Locale.ENGLISH, req.getRegisterRequest().getFirstName(), null, req.getRegisterRequest().getLastName(), 0, 0, req.getRegisterRequest().getMale(), req.getRegisterRequest().getBirthMonth(), req.getRegisterRequest().getBirthDay(),
                 req.getRegisterRequest().getBirthYear(), "", new long[0], new long[0], new long[0], new long[0], false, null
         );
