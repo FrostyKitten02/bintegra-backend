@@ -23,7 +23,6 @@ import java.util.Set;
 	},
 	service = Application.class
 )
-@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class HeadlessRestApplication extends Application{
 
 	@Override
