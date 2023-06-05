@@ -1,8 +1,10 @@
 package si.bintegra.sp.application;
 
-import com.liferay.portal.remote.cors.annotation.CORS;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
+import si.bintegra.sp.providers.CorsFilter;
+import si.bintegra.sp.providers.RuntimeExceptionHandler;
+import si.bintegra.sp.providers.ExceptionHandler;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Application;
@@ -27,8 +29,9 @@ public class HeadlessRestApplication extends Application{
 	@Override
 	public Set<Object> getSingletons() {
 		Set<Object> providers = new HashSet<>();
-		CorsFilter corsFilter = new CorsFilter();
-		providers.add(corsFilter);
+		providers.add(new CorsFilter());
+		providers.add(new ExceptionHandler());
+		providers.add(new RuntimeExceptionHandler());
 		return providers;
 	}
 	@GET

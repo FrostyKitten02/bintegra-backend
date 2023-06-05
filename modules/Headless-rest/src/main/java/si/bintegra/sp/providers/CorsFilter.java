@@ -1,4 +1,4 @@
-package si.bintegra.sp.application;
+package si.bintegra.sp.providers;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
