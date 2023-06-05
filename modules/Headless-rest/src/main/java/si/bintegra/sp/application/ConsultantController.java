@@ -1,7 +1,6 @@
 package si.bintegra.sp.application;
 
 
-import com.liferay.portal.remote.cors.annotation.CORS;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -13,7 +12,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
-import java.util.Objects;
 
 @Component(
         properties = "defaultController.properties",

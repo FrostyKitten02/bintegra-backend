@@ -21,7 +21,6 @@ import si.bintegra.sp.util.RoleChecker;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import java.util.Locale;
 import java.util.UUID;

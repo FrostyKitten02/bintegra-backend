@@ -2,11 +2,12 @@ package si.bintegra.sp.application;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.remote.cors.annotation.CORS;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-import si.bintegra.sp.dto.*;
+import si.bintegra.sp.dto.OfferDto;
+import si.bintegra.sp.dto.OfferRequest;
+import si.bintegra.sp.dto.OfferResponse;
 import si.bintegra.sp.exception.NoSuchOfferException;
 import si.bintegra.sp.model.Offer;
 import si.bintegra.sp.service.OfferLocalServiceUtil;
@@ -15,7 +16,6 @@ import si.bintegra.sp.util.RoleChecker;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import java.util.stream.Collectors;
 

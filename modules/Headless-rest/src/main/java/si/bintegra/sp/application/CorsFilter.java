@@ -1,6 +1,5 @@
 package si.bintegra.sp.application;
 
-import javax.servlet.*;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;

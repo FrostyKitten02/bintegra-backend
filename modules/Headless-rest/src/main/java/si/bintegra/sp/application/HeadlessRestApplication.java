@@ -1,12 +1,11 @@
 package si.bintegra.sp.application;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.core.Application;
-
 import com.liferay.portal.remote.cors.annotation.CORS;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
