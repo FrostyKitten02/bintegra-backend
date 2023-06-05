@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 @Produces("application/json")
 @Consumes("application/json")
 @CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
-public class SubscriptionController extends Application {
+public class SubscriptionController {
     private static final Log _log = LogFactoryUtil.getLog(SubscriptionController.class);
 
     @POST

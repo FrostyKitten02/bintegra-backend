@@ -35,9 +35,10 @@ import java.util.UUID;
 @Produces("application/json")
 @Consumes("application/json")
 @CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
-public class UserController extends Application {
+public class UserController {
 
     @GET
+    @CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
     public UserResponse getCurrentUser(@Context HttpServletRequest httpReq) throws PortalException {
         UserResponse res = new UserResponse();
         User user = PortalUtil.getUser(httpReq);

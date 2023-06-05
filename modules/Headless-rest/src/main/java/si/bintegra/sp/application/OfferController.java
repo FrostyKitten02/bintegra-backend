@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Produces("application/json")
 @Consumes("application/json")
 @CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
-public class OfferController extends Application {
+public class OfferController {
 
     @GET
     @Path("/active/{type}")
