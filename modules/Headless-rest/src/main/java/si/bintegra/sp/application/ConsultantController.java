@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
+import java.util.Objects;
 
 @Component(
         properties = "defaultController.properties",
@@ -25,11 +26,12 @@ import javax.ws.rs.core.Application;
 public class ConsultantController extends Application {
 
     @POST
-    public void addConsultant(@RequestBody ConsultantRequest req) {
+    public Object addConsultant(@RequestBody ConsultantRequest req) {
         if (req.getUserId() == null) {
-            return;
+            return new Object();
         }
 
         ConsultantLocalServiceUtil.addConsultant(req.getUserId());
+        return new Object();
     }
 }

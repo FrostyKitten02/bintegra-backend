@@ -43,14 +43,18 @@ public class SubscriptionController {
 
     @POST
     @Path("/subscribe")
-    public void subscribe(@RequestBody SubscriptionRequest req, @Context HttpServletRequest request) throws PortalException {
+    public SubscriptionResponse subscribe(@RequestBody SubscriptionRequest req, @Context HttpServletRequest request) throws PortalException {
+        SubscriptionResponse res = new SubscriptionResponse();
         User user = PortalUtil.getUser(request);
         RoleChecker.isUserGuestStrict(user);
 
         SubscriptionDto subDto = req.getSubscription();
 
-        SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate(), subDto.getSubscriptionContract());
+        Subscription sub = SubscriptionLocalServiceUtil.addSubscription(subDto.getOfferId(), user.getUserId(),subDto.getPhoneId(), subDto.getStartDate(), subDto.getSubscriptionContract());
         ConsultantCustomerLocalServiceUtil.assignConsultantToCustomer(user.getUserId());
+
+        res.setSubscriptionId(sub.getId());
+        return res;
     }
 
     @GET
