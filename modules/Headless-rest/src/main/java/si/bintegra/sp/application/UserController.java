@@ -34,7 +34,7 @@ import java.util.UUID;
 @Path("/user")
 @Produces("application/json")
 @Consumes("application/json")
-@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
+//@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class UserController {
 
     @GET

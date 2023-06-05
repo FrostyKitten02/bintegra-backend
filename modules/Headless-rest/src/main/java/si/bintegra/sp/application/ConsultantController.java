@@ -22,7 +22,6 @@ import javax.ws.rs.core.Application;
 @Path("/consultant")
 @Produces("application/json")
 @Consumes("application/json")
-@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class ConsultantController extends Application {
 
     @POST

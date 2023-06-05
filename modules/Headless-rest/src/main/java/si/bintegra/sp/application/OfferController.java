@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 @Path("/offer")
 @Produces("application/json")
 @Consumes("application/json")
-@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class OfferController {
 
     @GET
