@@ -18,11 +18,10 @@ import java.util.Set;
 		JaxrsWhiteboardConstants.JAX_RS_NAME + "=HeadlessSP.Rest",
 		"auth.verifier.guest.allowed=true",
 		"liferay.access.control.disable=true",
-		"liferay.cors.annotation=true"
+		"liferay.cors.annotation=false"
 	},
 	service = Application.class
 )
-@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class HeadlessRestApplication extends Application{
 
 	@Override

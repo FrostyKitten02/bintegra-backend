@@ -19,7 +19,7 @@ public class CorsFilter implements ContainerResponseFilter {
     public static void fillCors(MultivaluedMap<String, Object> m) {
         m.add("Access-Control-Allow-Origin", "*");
         m.add("Access-Control-Allow-Credentials", "true");
-        m.add("Access-Control-Allow-Headers", "origin, content-type, accept, authorization");
+        m.add("Access-Control-Allow-Headers", "origin, content-type, accept, Authorization, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Credentials");
         m.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
     }
 }
