@@ -38,6 +38,7 @@ import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
+import si.bintegra.sp.exception.NoSuchConsultantException;
 import si.bintegra.sp.model.ConsultantCustomer;
 
 /**
@@ -219,6 +220,10 @@ public interface ConsultantCustomerLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ConsultantCustomer getConsultantCustomer(long id)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Long> getConsultantCustomerIdsByConsultantUserId(long userId)
+		throws NoSuchConsultantException;
 
 	/**
 	 * Returns a range of all the consultant customers.

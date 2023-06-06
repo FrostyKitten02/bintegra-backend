@@ -4,6 +4,7 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
+import si.bintegra.sp.service.ConsultantLocalServiceUtil;
 
 public class RoleChecker {
 
@@ -28,6 +29,10 @@ public class RoleChecker {
         return false;
     }
 
+    private static boolean isUserConsultant(User user) {
+        return ConsultantLocalServiceUtil.getConsultantByUserId(user.getUserId()) != null;
+    }
+
     public static void isUserAdministratorStrict(User user) throws PrincipalException {
         if (!isUserAdministrator(user)) {
             throw new PrincipalException("userDoesNotHavePermission");
@@ -36,6 +41,12 @@ public class RoleChecker {
 
     public static void isUserGuestStrict(User user) throws PrincipalException {
         if(isUserGuest(user)) {
+            throw new PrincipalException("userDoesNotHavePermission");
+        }
+    }
+
+    public static void isUserConsultantStrict(User user) throws PrincipalException {
+        if(!isUserConsultant(user)) {
             throw new PrincipalException("userDoesNotHavePermission");
         }
     }

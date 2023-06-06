@@ -267,6 +267,15 @@ public class ConsultantCustomerLocalServiceWrapper
 		return _consultantCustomerLocalService.getConsultantCustomer(id);
 	}
 
+	@Override
+	public java.util.List<Long> getConsultantCustomerIdsByConsultantUserId(
+			long userId)
+		throws si.bintegra.sp.exception.NoSuchConsultantException {
+
+		return _consultantCustomerLocalService.
+			getConsultantCustomerIdsByConsultantUserId(userId);
+	}
+
 	/**
 	 * Returns a range of all the consultant customers.
 	 *

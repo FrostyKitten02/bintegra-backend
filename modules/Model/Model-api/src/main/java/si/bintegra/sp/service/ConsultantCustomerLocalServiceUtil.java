@@ -237,6 +237,13 @@ public class ConsultantCustomerLocalServiceUtil {
 		return getService().getConsultantCustomer(id);
 	}
 
+	public static List<Long> getConsultantCustomerIdsByConsultantUserId(
+			long userId)
+		throws si.bintegra.sp.exception.NoSuchConsultantException {
+
+		return getService().getConsultantCustomerIdsByConsultantUserId(userId);
+	}
+
 	/**
 	 * Returns a range of all the consultant customers.
 	 *

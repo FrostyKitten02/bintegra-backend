@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.exception.NoSuchConsultantException;
 import si.bintegra.sp.model.ConsultantCustomer;
 import si.bintegra.sp.model.ConsultantCustomerModel;
 import si.bintegra.sp.model.ConsultantModel;
@@ -71,6 +72,11 @@ public class ConsultantCustomerLocalServiceImpl
 
 		consultantCustomerPersistence.update(cc);
 	}
+
+	public List<Long> getConsultantCustomerIdsByConsultantUserId(long userId) throws NoSuchConsultantException {
+		return consultantCustomerPersistence.findByconsultantId(consultantPersistence.findByuserId(userId).getId()).stream().map(ConsultantCustomerModel::getCustomerId).collect(Collectors.toList());
+	}
+
 
 	@Getter
 	@Setter
