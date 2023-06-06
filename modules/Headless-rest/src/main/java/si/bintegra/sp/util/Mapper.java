@@ -78,4 +78,10 @@ public class Mapper {
         return dto;
     }
 
+    public static UserDto toUserDto(User user, boolean isConsultant) {
+        UserDto dto = toUserDto(user);
+        dto.setIsConsultant(isConsultant);
+        return dto;
+    }
+
 }

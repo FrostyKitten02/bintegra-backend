@@ -1,3 +1,5 @@
+create index IX_6629CF7D on SP_Consultant (userId);
+
 create index IX_588E156B on SP_ConsultantCustomer (consultantId);
 create index IX_470B9A0E on SP_ConsultantCustomer (customerId);
 

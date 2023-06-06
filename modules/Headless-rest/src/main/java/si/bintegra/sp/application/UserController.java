@@ -16,6 +16,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 import si.bintegra.sp.dto.request.LoginRequestDto;
 import si.bintegra.sp.dto.request.UserRequest;
 import si.bintegra.sp.dto.response.UserResponse;
+import si.bintegra.sp.service.ConsultantLocalServiceUtil;
 import si.bintegra.sp.util.Mapper;
 import si.bintegra.sp.util.RoleChecker;
 
@@ -33,7 +34,6 @@ import java.util.UUID;
 @Path("/user")
 @Produces("application/json")
 @Consumes("application/json")
-//@CORS(allowMethods = "*", allowHeaders = "*", allowOrigin = "*")
 public class UserController {
 
     @GET
@@ -47,7 +47,7 @@ public class UserController {
         }
 
         res.setSuccess(true);
-        res.setUser(Mapper.toUserDto(user));
+        res.setUser(Mapper.toUserDto(user, ConsultantLocalServiceUtil.getConsultantByUserId(user.getUserId()) != null));
         return res;
     }
 
@@ -57,10 +57,11 @@ public class UserController {
     @Path("/login")
     public UserResponse loginUser(@RequestBody UserRequest req, @Context HttpServletRequest httpReq) throws PortalException {
         UserResponse res = new UserResponse();
+        User user = PortalUtil.getUser(httpReq);
 
-        if (!RoleChecker.isUserGuest(PortalUtil.getUser(httpReq))) {
+        if (!RoleChecker.isUserGuest(user)) {
             res.setSuccess(false);
-            res.setUser(Mapper.toUserDto(PortalUtil.getUser(httpReq)));
+            res.setUser(Mapper.toUserDto(user, ConsultantLocalServiceUtil.getConsultantByUserId(user.getUserId()) != null));
             return res;
         }
         LoginRequestDto loginRequest = req.getLoginRequest();
@@ -72,9 +73,10 @@ public class UserController {
             return res;
         }
 
-        User loggediInUser = UserLocalServiceUtil.getUser(userId);
-        res.setUser(Mapper.toUserDto(loggediInUser));
+        User loggedInUser = UserLocalServiceUtil.getUser(userId);
+        res.setUser(Mapper.toUserDto(loggedInUser, ConsultantLocalServiceUtil.getConsultantByUserId(userId) != null));
         res.setSuccess(true);
+
         return res;
     }
 

@@ -42,6 +42,50 @@ public interface ConsultantPersistence extends BasePersistence<Consultant> {
 	 */
 
 	/**
+	 * Returns the consultant where userId = &#63; or throws a <code>NoSuchConsultantException</code> if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant
+	 * @throws NoSuchConsultantException if a matching consultant could not be found
+	 */
+	public Consultant findByuserId(long userId)
+		throws NoSuchConsultantException;
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	public Consultant fetchByuserId(long userId);
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	public Consultant fetchByuserId(long userId, boolean useFinderCache);
+
+	/**
+	 * Removes the consultant where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the consultant that was removed
+	 */
+	public Consultant removeByuserId(long userId)
+		throws NoSuchConsultantException;
+
+	/**
+	 * Returns the number of consultants where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching consultants
+	 */
+	public int countByuserId(long userId);
+
+	/**
 	 * Caches the consultant in the entity cache if it is enabled.
 	 *
 	 * @param consultant the consultant

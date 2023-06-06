@@ -18,6 +18,7 @@ import com.liferay.portal.aop.AopService;
 
 import org.osgi.service.component.annotations.Component;
 
+import si.bintegra.sp.exception.NoSuchConsultantException;
 import si.bintegra.sp.model.Consultant;
 import si.bintegra.sp.service.base.ConsultantLocalServiceBaseImpl;
 
@@ -37,5 +38,13 @@ public class ConsultantLocalServiceImpl extends ConsultantLocalServiceBaseImpl {
 		consultant.setUserId(userId);
 
 		consultantPersistence.update(consultant);
+	}
+
+	public Consultant getConsultantByUserId(Long userId) {
+		try {
+			return consultantPersistence.findByuserId(userId);
+		} catch (NoSuchConsultantException e) {
+			return null;
+		}
 	}
 }

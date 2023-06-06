@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
@@ -30,12 +31,16 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +93,216 @@ public class ConsultantPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathFetchByuserId;
+	private FinderPath _finderPathCountByuserId;
+
+	/**
+	 * Returns the consultant where userId = &#63; or throws a <code>NoSuchConsultantException</code> if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant
+	 * @throws NoSuchConsultantException if a matching consultant could not be found
+	 */
+	@Override
+	public Consultant findByuserId(long userId)
+		throws NoSuchConsultantException {
+
+		Consultant consultant = fetchByuserId(userId);
+
+		if (consultant == null) {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			sb.append("userId=");
+			sb.append(userId);
+
+			sb.append("}");
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(sb.toString());
+			}
+
+			throw new NoSuchConsultantException(sb.toString());
+		}
+
+		return consultant;
+	}
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	@Override
+	public Consultant fetchByuserId(long userId) {
+		return fetchByuserId(userId, true);
+	}
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	@Override
+	public Consultant fetchByuserId(long userId, boolean useFinderCache) {
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {userId};
+		}
+
+		Object result = null;
+
+		if (useFinderCache) {
+			result = finderCache.getResult(
+				_finderPathFetchByuserId, finderArgs, this);
+		}
+
+		if (result instanceof Consultant) {
+			Consultant consultant = (Consultant)result;
+
+			if (userId != consultant.getUserId()) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler sb = new StringBundler(3);
+
+			sb.append(_SQL_SELECT_CONSULTANT_WHERE);
+
+			sb.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(userId);
+
+				List<Consultant> list = query.list();
+
+				if (list.isEmpty()) {
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByuserId, finderArgs, list);
+					}
+				}
+				else {
+					if (list.size() > 1) {
+						Collections.sort(list, Collections.reverseOrder());
+
+						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {userId};
+							}
+
+							_log.warn(
+								"ConsultantPersistenceImpl.fetchByuserId(long, boolean) with parameters (" +
+									StringUtil.merge(finderArgs) +
+										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+						}
+					}
+
+					Consultant consultant = list.get(0);
+
+					result = consultant;
+
+					cacheResult(consultant);
+				}
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Consultant)result;
+		}
+	}
+
+	/**
+	 * Removes the consultant where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the consultant that was removed
+	 */
+	@Override
+	public Consultant removeByuserId(long userId)
+		throws NoSuchConsultantException {
+
+		Consultant consultant = findByuserId(userId);
+
+		return remove(consultant);
+	}
+
+	/**
+	 * Returns the number of consultants where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching consultants
+	 */
+	@Override
+	public int countByuserId(long userId) {
+		FinderPath finderPath = _finderPathCountByuserId;
+
+		Object[] finderArgs = new Object[] {userId};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler sb = new StringBundler(2);
+
+			sb.append(_SQL_COUNT_CONSULTANT_WHERE);
+
+			sb.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(userId);
+
+				count = (Long)query.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_USERID_USERID_2 =
+		"consultant.userId = ?";
 
 	public ConsultantPersistenceImpl() {
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
@@ -113,6 +328,10 @@ public class ConsultantPersistenceImpl
 	public void cacheResult(Consultant consultant) {
 		entityCache.putResult(
 			ConsultantImpl.class, consultant.getPrimaryKey(), consultant);
+
+		finderCache.putResult(
+			_finderPathFetchByuserId, new Object[] {consultant.getUserId()},
+			consultant);
 	}
 
 	private int _valueObjectFinderCacheListThreshold;
@@ -180,6 +399,16 @@ public class ConsultantPersistenceImpl
 		for (Serializable primaryKey : primaryKeys) {
 			entityCache.removeResult(ConsultantImpl.class, primaryKey);
 		}
+	}
+
+	protected void cacheUniqueFindersCache(
+		ConsultantModelImpl consultantModelImpl) {
+
+		Object[] args = new Object[] {consultantModelImpl.getUserId()};
+
+		finderCache.putResult(_finderPathCountByuserId, args, Long.valueOf(1));
+		finderCache.putResult(
+			_finderPathFetchByuserId, args, consultantModelImpl);
 	}
 
 	/**
@@ -285,6 +514,25 @@ public class ConsultantPersistenceImpl
 	public Consultant updateImpl(Consultant consultant) {
 		boolean isNew = consultant.isNew();
 
+		if (!(consultant instanceof ConsultantModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(consultant.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(consultant);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in consultant proxy " +
+						invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom Consultant implementation " +
+					consultant.getClass());
+		}
+
+		ConsultantModelImpl consultantModelImpl =
+			(ConsultantModelImpl)consultant;
+
 		Session session = null;
 
 		try {
@@ -304,7 +552,10 @@ public class ConsultantPersistenceImpl
 			closeSession(session);
 		}
 
-		entityCache.putResult(ConsultantImpl.class, consultant, false, true);
+		entityCache.putResult(
+			ConsultantImpl.class, consultantModelImpl, false, true);
+
+		cacheUniqueFindersCache(consultantModelImpl);
 
 		if (isNew) {
 			consultant.setNew(false);
@@ -589,6 +840,15 @@ public class ConsultantPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0], new String[0], false);
 
+		_finderPathFetchByuserId = new FinderPath(
+			FINDER_CLASS_NAME_ENTITY, "fetchByuserId",
+			new String[] {Long.class.getName()}, new String[] {"userId"}, true);
+
+		_finderPathCountByuserId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByuserId",
+			new String[] {Long.class.getName()}, new String[] {"userId"},
+			false);
+
 		_setConsultantUtilPersistence(this);
 	}
 
@@ -649,13 +909,22 @@ public class ConsultantPersistenceImpl
 	private static final String _SQL_SELECT_CONSULTANT =
 		"SELECT consultant FROM Consultant consultant";
 
+	private static final String _SQL_SELECT_CONSULTANT_WHERE =
+		"SELECT consultant FROM Consultant consultant WHERE ";
+
 	private static final String _SQL_COUNT_CONSULTANT =
 		"SELECT COUNT(consultant) FROM Consultant consultant";
+
+	private static final String _SQL_COUNT_CONSULTANT_WHERE =
+		"SELECT COUNT(consultant) FROM Consultant consultant WHERE ";
 
 	private static final String _ORDER_BY_ENTITY_ALIAS = "consultant.";
 
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
 		"No Consultant exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No Consultant exists with the key {";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ConsultantPersistenceImpl.class);

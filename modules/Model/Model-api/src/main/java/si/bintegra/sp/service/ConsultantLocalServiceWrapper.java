@@ -254,6 +254,11 @@ public class ConsultantLocalServiceWrapper
 		return _consultantLocalService.getConsultant(id);
 	}
 
+	@Override
+	public si.bintegra.sp.model.Consultant getConsultantByUserId(Long userId) {
+		return _consultantLocalService.getConsultantByUserId(userId);
+	}
+
 	/**
 	 * Returns a range of all the consultants.
 	 *

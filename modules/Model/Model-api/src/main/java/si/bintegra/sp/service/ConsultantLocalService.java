@@ -215,6 +215,9 @@ public interface ConsultantLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Consultant getConsultant(long id) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Consultant getConsultantByUserId(Long userId);
+
 	/**
 	 * Returns a range of all the consultants.
 	 *

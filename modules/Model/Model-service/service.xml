@@ -100,6 +100,9 @@
 
 		<column name="userId" type="long" />
 
+		<finder name="userId" return-type="">
+			<finder-column name="userId" />
+		</finder>
 
 		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />

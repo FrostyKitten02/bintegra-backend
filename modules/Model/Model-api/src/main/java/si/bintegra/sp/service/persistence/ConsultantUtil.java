@@ -121,6 +121,64 @@ public class ConsultantUtil {
 	}
 
 	/**
+	 * Returns the consultant where userId = &#63; or throws a <code>NoSuchConsultantException</code> if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant
+	 * @throws NoSuchConsultantException if a matching consultant could not be found
+	 */
+	public static Consultant findByuserId(long userId)
+		throws si.bintegra.sp.exception.NoSuchConsultantException {
+
+		return getPersistence().findByuserId(userId);
+	}
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	public static Consultant fetchByuserId(long userId) {
+		return getPersistence().fetchByuserId(userId);
+	}
+
+	/**
+	 * Returns the consultant where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the matching consultant, or <code>null</code> if a matching consultant could not be found
+	 */
+	public static Consultant fetchByuserId(
+		long userId, boolean useFinderCache) {
+
+		return getPersistence().fetchByuserId(userId, useFinderCache);
+	}
+
+	/**
+	 * Removes the consultant where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the consultant that was removed
+	 */
+	public static Consultant removeByuserId(long userId)
+		throws si.bintegra.sp.exception.NoSuchConsultantException {
+
+		return getPersistence().removeByuserId(userId);
+	}
+
+	/**
+	 * Returns the number of consultants where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching consultants
+	 */
+	public static int countByuserId(long userId) {
+		return getPersistence().countByuserId(userId);
+	}
+
+	/**
 	 * Caches the consultant in the entity cache if it is enabled.
 	 *
 	 * @param consultant the consultant

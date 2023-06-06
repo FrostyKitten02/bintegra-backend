@@ -229,6 +229,10 @@ public class ConsultantLocalServiceUtil {
 		return getService().getConsultant(id);
 	}
 
+	public static Consultant getConsultantByUserId(Long userId) {
+		return getService().getConsultantByUserId(userId);
+	}
+
 	/**
 	 * Returns a range of all the consultants.
 	 *
