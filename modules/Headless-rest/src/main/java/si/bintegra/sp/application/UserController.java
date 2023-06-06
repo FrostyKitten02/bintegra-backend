@@ -13,9 +13,9 @@ import com.liferay.portal.remote.cors.annotation.CORS;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-import si.bintegra.sp.dto.LoginRequestDto;
-import si.bintegra.sp.dto.UserRequest;
-import si.bintegra.sp.dto.UserResponse;
+import si.bintegra.sp.dto.request.LoginRequestDto;
+import si.bintegra.sp.dto.request.UserRequest;
+import si.bintegra.sp.dto.response.UserResponse;
 import si.bintegra.sp.util.Mapper;
 import si.bintegra.sp.util.RoleChecker;
 

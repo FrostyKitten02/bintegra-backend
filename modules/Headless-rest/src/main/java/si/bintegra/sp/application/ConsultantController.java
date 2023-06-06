@@ -4,7 +4,7 @@ package si.bintegra.sp.application;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-import si.bintegra.sp.dto.ConsultantRequest;
+import si.bintegra.sp.dto.request.ConsultantRequest;
 import si.bintegra.sp.service.ConsultantLocalServiceUtil;
 
 import javax.ws.rs.Consumes;
