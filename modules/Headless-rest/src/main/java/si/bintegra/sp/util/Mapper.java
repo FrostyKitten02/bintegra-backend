@@ -22,6 +22,7 @@ public class Mapper {
         dto.setOfferId(subscription.getOfferId());
         dto.setPhoneId(subscription.getPhoneId());
         dto.setStartDate(subscription.getStartDate());
+        dto.setSubscriptionContract(subscription.getContractSubscription());
 
         dto.setOffer(toOfferDto(offer));
 
