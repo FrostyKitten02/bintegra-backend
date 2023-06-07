@@ -205,6 +205,9 @@ public interface ConsultantLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Consultant> getAllConsultants();
+
 	/**
 	 * Returns the consultant with the primary key.
 	 *

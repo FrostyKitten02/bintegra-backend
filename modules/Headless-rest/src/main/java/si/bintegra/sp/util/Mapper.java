@@ -81,6 +81,9 @@ public class Mapper {
 
     public static UserDto toUserDto(User user, boolean isConsultant) {
         UserDto dto = toUserDto(user);
+        if (dto == null) {
+            return null;
+        }
         dto.setIsConsultant(isConsultant);
         return dto;
     }

@@ -218,6 +218,10 @@ public class ConsultantLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static List<Consultant> getAllConsultants() {
+		return getService().getAllConsultants();
+	}
+
 	/**
 	 * Returns the consultant with the primary key.
 	 *

@@ -3,7 +3,11 @@ package si.bintegra.sp.application;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.PortalUtil;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.osgi.service.component.annotations.Component;
@@ -23,6 +27,7 @@ import si.bintegra.sp.util.RoleChecker;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.awt.print.PrinterIOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +79,39 @@ public class SubscriptionController {
                     return Mapper.toSubscriptionDto(subscription, offer);
                 }).collect(Collectors.toList());
 
+        res.setSubscriptions(subs);
+        return res;
+    }
+
+    @GET
+    @Path("/{userId}")
+    public SubscriptionResponse getUserSubscriptions(@PathParam("userId") Long userId, @Context HttpServletRequest request) throws PortalException {
+        SubscriptionResponse res = new SubscriptionResponse();
+        User user = PortalUtil.getUser(request);
+        if (RoleChecker.isUserGuest(user)) {
+            throw new PrincipalException("UserDoesntHavePermission");
+        }
+
+        if(!RoleChecker.isUserAdministrator(user) && !RoleChecker.isUserConsultant(user)) {
+            throw new PrincipalException("UserDoesntHavePermission");
+        }
+
+        List<SubscriptionDto> subs = SubscriptionLocalServiceUtil
+                .findSubscriptionsByUserId(userId)
+                .stream().map(subscription -> {
+                    Long offerId = subscription.getOfferId();
+                    Offer offer = null;
+                    try {
+                        offer = OfferLocalServiceUtil.findById(offerId);
+                    } catch (NoSuchOfferException e) {
+                        _log.error(e.getLocalizedMessage(), e);
+                    }
+
+
+                    return Mapper.toSubscriptionDto(subscription, offer);
+                }).collect(Collectors.toList());
+
+        res.setUser(Mapper.toUserDto(UserLocalServiceUtil.getUserById(userId)));
         res.setSubscriptions(subs);
         return res;
     }

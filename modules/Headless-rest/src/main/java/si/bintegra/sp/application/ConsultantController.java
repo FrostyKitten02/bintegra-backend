@@ -57,6 +57,7 @@ public class ConsultantController extends Application {
 
 
     @GET
+    @Path("/customers")
     public ConsultantResponse getConsultantCustomers(@Context HttpServletRequest request) throws PortalException {
         ConsultantResponse res = new ConsultantResponse();
         User user = PortalUtil.getUser(request);
@@ -95,6 +96,25 @@ public class ConsultantController extends Application {
             return Mapper.toSubscriptionDto(sub, offer);
         }).collect(Collectors.toList()));
         res.setCustomerId(id);
+        return res;
+    }
+    @GET
+    @Path("/all")
+    public ConsultantResponse getAllConsultants(@Context HttpServletRequest request) throws PortalException {
+        ConsultantResponse res = new ConsultantResponse();
+        RoleChecker.isUserAdministratorStrict(PortalUtil.getUser(request));
+
+        res.setCustomers(ConsultantLocalServiceUtil.getAllConsultants().stream().map(consultant -> {
+            User usr = null;
+            try {
+                usr = UserLocalServiceUtil.getUserById(consultant.getUserId());
+            } catch (PortalException e) {
+                e.printStackTrace();
+            }
+
+            return Mapper.toUserDto(usr, true);
+        }).collect(Collectors.toList()));
+
         return res;
     }
 

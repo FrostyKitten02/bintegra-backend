@@ -55,7 +55,13 @@ public class ConsultantCustomerLocalServiceImpl
 		for (Long cid : allConsultants) {
 			int size = consultantCustomerPersistence.findByconsultantId(cid).size();
 			if (size == 0) {
+				long newId = counterLocalService.increment();
+				ConsultantCustomer cc = consultantCustomerPersistence.create(newId);
 
+				cc.setConsultantId(cid);
+				cc.setCustomerId(customerUserId);
+
+				consultantCustomerPersistence.update(cc);
 				return;
 			}
 			consultantNumberOfCustomers.add(new ConsultantAndCustomerNumber(cid, size));
@@ -74,7 +80,7 @@ public class ConsultantCustomerLocalServiceImpl
 	}
 
 	public List<Long> getConsultantCustomerIdsByConsultantUserId(long userId) throws NoSuchConsultantException {
-		return consultantCustomerPersistence.findByconsultantId(consultantPersistence.findByuserId(userId).getId()).stream().map(ConsultantCustomerModel::getCustomerId).collect(Collectors.toList());
+		return consultantCustomerPersistence.findByconsultantId(userId).stream().map(ConsultantCustomerModel::getCustomerId).collect(Collectors.toList());
 	}
 
 

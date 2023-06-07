@@ -29,7 +29,7 @@ public class RoleChecker {
         return false;
     }
 
-    private static boolean isUserConsultant(User user) {
+    public static boolean isUserConsultant(User user) {
         return ConsultantLocalServiceUtil.getConsultantByUserId(user.getUserId()) != null;
     }
 

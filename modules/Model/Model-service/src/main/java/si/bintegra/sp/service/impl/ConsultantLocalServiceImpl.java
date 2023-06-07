@@ -22,6 +22,8 @@ import si.bintegra.sp.exception.NoSuchConsultantException;
 import si.bintegra.sp.model.Consultant;
 import si.bintegra.sp.service.base.ConsultantLocalServiceBaseImpl;
 
+import java.util.List;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -46,5 +48,9 @@ public class ConsultantLocalServiceImpl extends ConsultantLocalServiceBaseImpl {
 		} catch (NoSuchConsultantException e) {
 			return null;
 		}
+	}
+
+	public List<Consultant> getAllConsultants() {
+		return consultantPersistence.findAll();
 	}
 }

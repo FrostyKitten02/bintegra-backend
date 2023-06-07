@@ -240,6 +240,11 @@ public class ConsultantLocalServiceWrapper
 		return _consultantLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<si.bintegra.sp.model.Consultant> getAllConsultants() {
+		return _consultantLocalService.getAllConsultants();
+	}
+
 	/**
 	 * Returns the consultant with the primary key.
 	 *
