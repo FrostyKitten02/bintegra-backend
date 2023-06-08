@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="si.bintegra.sp.model.Consultant">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="si.bintegra.sp.model.ConsultantCustomer">
+		<field name="id" type="long" />
+		<field name="consultantId" type="Long" />
+		<field name="customerId" type="Long" />
+	</model>
+	<model name="si.bintegra.sp.model.Offer">
+		<field name="id" type="long" />
+		<field name="type" type="String" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="mobileData" type="Long" />
+		<field name="mobileMinutes" type="Long" />
+		<field name="mobileSms" type="Long" />
+		<field name="programsNumber" type="Long" />
+		<field name="defaultNumberOfTvs" type="Long" />
+		<field name="downloadSpeed" type="Long" />
+		<field name="uploadSpeed" type="Long" />
+		<field name="active" type="Boolean" />
+		<field name="fullDurationMonths" type="Long" />
+		<field name="discountDurationMonths" type="Long" />
+		<field name="basePrice" type="Double" />
+		<field name="discountPrice" type="Double" />
+	</model>
+	<model name="si.bintegra.sp.model.Subscription">
+		<field name="id" type="long" />
+		<field name="offerId" type="Long" />
+		<field name="startDate" type="Long" />
+		<field name="userId" type="Long" />
+		<field name="phoneId" type="Long" />
+		<field name="contractSubscription" type="Boolean" />
+	</model>
+</model-hints>
