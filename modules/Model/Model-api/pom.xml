@@ -17,7 +17,8 @@
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>release.portal.api</artifactId>
-			<scope>provided</scope>
+<!--			<scope>provided</scope>-->
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
