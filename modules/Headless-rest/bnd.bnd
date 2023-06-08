@@ -1,6 +1,9 @@
 Bundle-Name: Headless-rest
 Bundle-SymbolicName: si.bintegra.sp
 Bundle-Version: 1.0.0
+Import-Package:\
+  si.bintegra.sp;resolution:=optional,\
+  *
 Liferay-Configuration-Path: /configuration
 -consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
 -metatype: *

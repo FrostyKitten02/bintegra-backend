@@ -3,6 +3,9 @@ Bundle-SymbolicName: si.bintegra.sp.service
 Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
+Import-Package:\
+  si.bintegra.sp;resolution:=optional,\
+  *
 -consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
 -dsannotations-options: inherit
 -includeresource: META-INF/service.xml=service.xml
