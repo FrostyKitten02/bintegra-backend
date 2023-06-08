@@ -19,8 +19,16 @@
 
 Connection to database is in the portal-ext.properties. You can change it to your liking (make sure you include all the neccessary db connectors).
 
-##Liferay localhost:8080
+## Liferay localhost:8080
 1. To access the Liferay UI go to localhost:8080.
 2. Navigate to sign in: username: test@liferay.com, password: test. You can proceed to change password to your liking. If you can't sign in try opening another browser -  Liferay has problems with sign in on Opera - instead use Edge.
+
+### Docker 
+Run docker-compose.yml file in the folder. Custom images are uploaded to afridau/afridau repository on Docker Hub - with tags bintegrareact and bintegrabackend.
+1. Firstly you need Docker installed - install Docker.
+2. Go to the root folder of the file and run " docker compose . "
+3. You should see a container in the Containers.
+4. Run the images.
+Make sure you don't have ports 8080, 8009, 11311, 8000 binded - if you have kill the processes on those ports.
 
 Authors: Alen Fridau, Klara Kebrič
