@@ -1,0 +1,14 @@
+services:
+  react-frontend:
+    image: afridau/afridau:bintegrareact
+    ports:
+      - 3000:3000
+
+  liferay-backend:
+    image: afridau/afridau:bintegrabackend
+    command:
+    ports:
+      - 8080:8080
+      - 8009:8009
+      - 11311:11311
+      - 8000:8000
