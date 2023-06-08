@@ -1,4 +1,4 @@
-# Bintergra-backend for "Samopostrežni portla"
+# Bintergra-backend for "Samopostrežni portal"
 
 ## Project setup
 1. Install liferay plugin, if you are using Intellij.
